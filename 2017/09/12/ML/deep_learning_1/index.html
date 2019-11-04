@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>【Andrew Ng】深度学习(1)：Logistic回归 - Sky Inside the Eyewall</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="深度学习（deep learning）是机器学习的一大分支，它试图在机器上建立模仿人脑机制进行分析学习的神经网络，赋予机器解释图像、声音、文本等数据的能力。 这里，首先介绍深度学习中的最基础的学习算法–Logistic回归。">
+<meta name="keywords" content="Coursera,ML,Deep Learning,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Andrew Ng】深度学习(1)：Logistic回归">
+<meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2017&#x2F;09&#x2F;12&#x2F;ML&#x2F;deep_learning_1&#x2F;index.html">
+<meta property="og:site_name" content="Sky Inside the Eyewall">
+<meta property="og:description" content="深度学习（deep learning）是机器学习的一大分支，它试图在机器上建立模仿人脑机制进行分析学习的神经网络，赋予机器解释图像、声音、文本等数据的能力。 这里，首先介绍深度学习中的最基础的学习算法–Logistic回归。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;07&#x2F;04&#x2F;5d1de1fb0e78431856.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;10&#x2F;5c3720add829f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;10&#x2F;5c37550ace941.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;10&#x2F;5c374d0d3a617.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;10&#x2F;5c3754276029b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;07&#x2F;04&#x2F;5d1de22941b5c68721.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fjh1zdo2tij20h70dh0ur.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fjh33bb9juj20em0atjri.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fjh3i9cu8vj20at07q3yj.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fjh3t7y41xj20at07e3yo.jpg">
+<meta property="og:updated_time" content="2019-07-04T11:25:36.712Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;07&#x2F;04&#x2F;5d1de1fb0e78431856.jpg">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?39cf421aa5135cf766cfcefab0d79e58";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="【Andrew Ng】深度学习(1)：Logistic回归" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/tags/ML/">ML</a>
+                
+                <a class="navbar-item"
+                href="/tags/CS/">CS</a>
+                
+                <a class="navbar-item"
+                href="/tags/EE/">EE</a>
+                
+                <a class="navbar-item"
+                href="/tags/Math/">Math</a>
+                
+                <a class="navbar-item"
+                href="/tags/Daily/">Daily</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d079ccf2314243451.jpg" alt="【Andrew Ng】深度学习(1)：Logistic回归">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-11T16:00:00.000Z">2017-09-12</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    30 分钟 读完 (大约 4539 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                【Andrew Ng】深度学习(1)：Logistic回归
+            
+        </h1>
+        <div class="content">
+            <p><strong>深度学习（deep learning）</strong>是机器学习的一大分支，它试图在机器上建立模仿人脑机制进行分析学习的神经网络，赋予机器解释图像、声音、文本等数据的能力。</p>
+<p>这里，首先介绍深度学习中的最基础的学习算法–Logistic回归。</p>
+<a id="more"></a>
+<h3 id="二分类"><a href="#二分类" class="headerlink" title="二分类"></a>二分类</h3><p>Logistic回归常用于解决<strong>二分类（Binary Classification）</strong>问题。在二分分类问题中，对于某个输入，输出的结果是离散的值。</p>
+<p>例如：想要构建一个猫图分类器，即输入一张图片，希望该分类器准确判断出该图片是否是一张猫图，并输出它的预测结果。<br><img src="https://i.loli.net/2019/07/04/5d1de1fb0e78431856.jpg" alt="猫图"></p>
+<p>首先，考虑这个猫图分类器的输入。图片是一类非结构化的数据，一张图片在计算机中以RGB编码时，是以红、绿、蓝为三基色，每个像素点上三基色对应的量的多少（即“亮度”）编码为数据进行存储。那么在计算机上，一张图片就可以由大小与图片一致的三个矩阵来表示，三个矩阵分别表示各颜色通道，矩阵中的值则表示各像素值。由此，上图中的猫图大小为$64 \times 64$，便可以表示为三个大小为$64\times64$的矩阵。</p>
+<p>然而，在<strong>模式识别（Pattern Recognition）</strong>以及机器学习中，对于处理的各种类型的数据，通常采用一些特征向量来表示。简单地将一张猫图表示为一个特征向量，可以直接把三个矩阵进行拆分重塑，最终形成维数$n_x = 64 \times 64 \times 3 = 12288 $的一个向量$x$:<br><img src="https://i.loli.net/2019/01/10/5c3720add829f.png" alt="特征向量"></p>
+<p>其次，实现这个分类器，需要准备大量的猫图及少量的非猫图，并取其中大部分组成该分类器的<strong>训练样本</strong>，少部分组成<strong>测试样本</strong>。将这些样本都以上述的方式表示为特征向量的形式，一个样本由一对$(x,y)$进行表示，其中x为$n_x$维的特征向量，$y$是该特征向量的<strong>标签（Label）</strong>，根据该特征向量表示的是猫或非猫，取值为$0$或$1$。如果有$m$个训练样本对，它们将被表示为：$$ {(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),…,(x^{(m)},y^{(m)})} $$</p>
+<p>更进一步，可以用矩阵的形式将我们的数据表示得更为紧凑。训练集中所有特征向量$x^{(1)}$、$x^{(2)}$…以及它们的标签$y^{(1)}$、$y^{(2)}$…分别进行列组合，变成两个矩阵$X$、$Y$：$$ {X = [x^{(1)},x^{(2)},…,x^{(m)}]}$$ $$ {Y = [y^{(1)},y^{(2)},…,y^{(m)}]}$$<br>这样，$X$会是个大小为$n_x \times m$的矩阵，$Y$是个大小为$1 \times m$的矩阵。</p>
+<h3 id="Logistic回归模型"><a href="#Logistic回归模型" class="headerlink" title="Logistic回归模型"></a>Logistic回归模型</h3><p>Logistic回归是一种用于解决<strong>监督学习（Supervised Learning）</strong>问题的学习算法。进行Logistic回归的目的，是使训练数据的标签值与预测出来的值之间的误差最小化。建立猫图分类器的Logistic回归模型过程如下：</p>
+<p>猫图分类器中，要实现的是：对于给定的以$n_x$维特征向量$x$表示、标签为$y$的一张图片，估计出这张图片为猫图的概率$\hat{y}$，即：$$\hat{y} = p(y = 1|x), 0 \le \hat{y} \le 1$$</p>
+<p>有大量猫图的数据时，考虑采用<strong>线性拟合</strong>的方法，来找到一个$\hat{y}$关于$x$的函数，从而实现这个猫分类器。规定一个$n_x$维向量$w$和一个值$b$作为参数，可得到线性回归的表达式：$${\hat{y} = w^Tx + b}$$</p>
+<p>由于$\hat{y}$为概率值，取值范围为$[0,1]$，简单地进行线性拟合，得出的$\hat{y}$可能非常大，还可能为负值。此时，就需要用一个<strong>Logistic回归单元</strong>来对其值域进行约束。这里以<strong>sigmoid函数</strong>为逻辑回归单元，其表达式为：$$\sigma{(z)} = \frac{1}{1+e^{-z}}$$</p>
+<p>函数图像为：<br><img src="https://i.loli.net/2019/01/10/5c37550ace941.png" alt="sigmoid函数"></p>
+<p>从中可以看出，sigmoid函数具有如下性质：</p>
+<ul>
+<li>当$z$趋近于正无穷大时，$\sigma{(z)} = 1$;</li>
+<li>当$z$趋近于负无穷大时，$\sigma{(z)} = 0$;</li>
+<li>当$z = 0$时，$\sigma{(z)} = 0.5$。</li>
+</ul>
+<p>所以可以用sigmoid函数来约束$\hat{y}$的值域，得到该分类器的Logistic回归模型：$${ \hat{y} = σ(w^Tx + b) = \frac{1}{1+e^{-(w^Tx + b)}}}$$</p>
+<p>建立好Logistic回归模型后，接下来要考虑的是如何利用我们的训练集数据，找到该模型中的两个参数$w$和$b$的最优解。</p>
+<h3 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h3><p>为了训练逻辑回归模型中的参数w和b，使得输出值$\hat{y}$与真实值y尽可能一致，即尽可能准确地判断一张图是否为猫，需要定义一个<strong>成本函数（Cost Function）</strong>作为衡量的标准。</p>
+<p>单个样本的预测值（${\hat y}^{(i)}$）与其真实值（$y^{(i)}$）之间的误差大小用<strong>损失函数（Loss Function）</strong>来衡量。<strong>平方误差（Square Loss）</strong>就是一种常用的损失函数，其表达式为：$${\mathcal{L}(\hat y,y)=\frac{1}{2}(\hat y-y)^2}$$</p>
+<p>但Logistic回归中，一般不采用这个损失函数，因为在训练参数过程中，使用这个损失函数将得到一个非凸函数而存在很多个局部最优解，使得后面可能无法使用<strong>梯度下降（Gradient Descent）</strong>来得到我们想要的最优解。</p>
+<p>对这个Logistic回归模型，希望能够满足如下条件概率：<br>$$p(y|x) = \begin{cases} \hat{y},  &amp; \text{$(y=1)$} \\ 1 - \hat{y}, &amp; \text{$(y=0)$} \end{cases}$$</p>
+<p>将上下两个式子合二为一，可写成：$$p(y|x) = \hat{y}^y (1 - \hat{y})^{(1 - y)} $$</p>
+<p>对两边取对数，进一步化简为：$$log\ p(y|x) = ylog\ \hat y+(1-y)log\ (1-\hat y) $$</p>
+<p>我们希望$p(y|x)$的值越大越好，而损失越小越好。所以为上式添上负号，就可以将它作为一个损失函数，这便是应用很广的<strong>交叉熵（Cross Entropy）</strong>损失函数，表达式为：$${\mathcal{L}(\hat y,y)=-[ylog\ \hat y+(1-y)log\ (1-\hat y)]}$$</p>
+<p>交叉熵损失函数有如下性质：</p>
+<ul>
+<li>当$y^{(i)}=1$时，${\mathcal{L}({\hat y}^{(i)},y^{(i)})=-log\ {\hat y}^{(i)}}$，意味着损失越小，$\hat{y}$越接近于1；</li>
+<li>当$y^{(i)}=0$时，${\mathcal{L}({\hat y}^{(i)},y^{(i)})=-log\ (1-{\hat y}^{(i)})}$，意味着损失越小，$\hat{y}$越接近0。</li>
+</ul>
+<p>对m个训练样本整体的成本函数，可以使用数理统计中的参数估计方法之一–<strong>最大似然估计法（Maximum Likelihood Estimation）</strong>推导出来的。</p>
+<p>假设所有训练样本独立同分布，则它们的联合概率为所有样本概率的乘积，得到似然函数为:<br>$$P (x) = \prod_{i=1}^m p(y^{(i)}|x^{(i)})$$</p>
+<p>两边取对数有：<br>$$log\ P(x) = \sum_{i=1}^m log\ p(y^{(i)}|x^{(i)}) = - \sum_{i=1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)})$$</p>
+<p>最大似然估计中的下一步，是求解出一组使得上式取得最大值的 参数。而在这里，由于我们训练模型时，目标是使成本函数最小化，所以不直接使用上式作为成本函数，而将其负号去掉，同时为方便处理数据，而乘上一个常数$1/m$对式子适当进行放缩，最后得到下面的成本函数：<br>$${J(w,b) = \frac{1}{m} \sum_{i=1}^m \mathcal{L}({\hat y}^{(i)}, y^{(i)}) = - \frac{1}{m} \sum_{i=1}^m [ylog\ \hat y+(1-y)log\ (1-\hat y)]}$$ </p>
+<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>要找到参数的最优解，一般采用梯度下降法。</p>
+<p>标量场中某一函数上某一点的梯度，指向该函数在该点处增长最快的方向，函数在该点处沿着该方向变化最快且变化率最大。</p>
+<p>在空间坐标中以$w$，$b$为轴，画出的损失函数$J$的图像将类似于下图，要找到函数取得最小值的最优参数，先为$w$和$b$赋一个初始值，正如下图的最上面的红点。<br><img src="https://i.loli.net/2019/01/10/5c374d0d3a617.png" alt="J(w,b)图像"></p>
+<p>对Logistic回归模型，因为成本函数是凸函数，无论参数的初始值是多少，最后总能到达同一个点或大致相同的点，所以几乎任何初始化方法都有效，于是通常将参数直接初始化为0。</p>
+<p>所谓的梯度下降，就是从起始点开始，试图每次都沿最陡峭的下降方向下坡，尽可能快地到达最低点即凸函数取得最小值的点，而下坡的方向便是各点上的梯度值。<br><img src="https://i.loli.net/2019/01/10/5c3754276029b.png" alt="J(w,b)二维图像"></p>
+<p>从一个二维上的图像看，函数的导数方向即为梯度方向，下降速度最快。即每经过一次梯度下降，参数$w$、$b$即更新为：$${w = w-\alpha\frac{\partial J(w,b)}{\partial w}}$$<br>$${b = b-\alpha\frac{\partial J(w,b)}{\partial b}}$$</p>
+<p>式中的$\alpha$被称为学习率，通常为一个小于1的值，用于控制梯度下降过程中每一次移动的规格大小，好比于下降时每一次迈步的大小。$\alpha$的不宜太小也不宜过大：太小会使迭代次数增加，容易陷入局部最优解；太大容易错过最优解。</p>
+<p>由梯度下降法，由训练数据经过多次迭代，就可以求得使成本函数的取得最小值的参数$w$和$b$，从而建立好Logistic模型，实现我们想要的猫图分类器。</p>
+<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><p>使用Python编写一个逻辑回归分类器来识别猫，以此来了解如何使用神经网络的思维方式来进行这项任务，识别过程如图：<br><img src="https://i.loli.net/2019/07/04/5d1de22941b5c68721.jpg" alt="识别过程示意图"></p>
+<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p>其中用到的Python包有：</p>
+<ul>
+<li><a href="http://www.numpy.org/" target="_blank" rel="noopener">numpy</a>是使用Python进行科学计算的基础包。</li>
+<li><a href="http://matplotlib.org/" target="_blank" rel="noopener">matplotlib</a>是Python中著名的绘图库。</li>
+<li><a href="http://www.h5py.org/" target="_blank" rel="noopener">h5py</a>在Python提供读取HDF5二进制数据格式文件的接口，本次的训练及测试图片集是以HDF5储存的。</li>
+<li><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="noopener">PIL</a>(Python Image Library)为Python提供图像处理功能。</li>
+<li><a href="https://www.scipy.org/" target="_blank" rel="noopener">scipy</a>基于NumPy来做高等数学、信号处理、优化、统计和许多其它科学任务的拓展库。<br>几个Python包的安装及基本使用方法详见官网。</li>
+</ul>
+<p>1.导入要用到的所有包</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#导入用到的包</span></span><br><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> h5py</span><br><span class="line"><span class="hljs-keyword">import</span> scipy</span><br><span class="line"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image</span><br><span class="line"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> ndimage</span><br></pre></td></tr></table></figure>
+<p>2.导入数据</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#导入数据</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load_dataset</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    train_dataset = h5py.File(<span class="hljs-string">"train_cat.h5"</span>,<span class="hljs-string">"r"</span>) <span class="hljs-comment">#读取训练数据，共209张图片</span></span><br><span class="line">    test_dataset = h5py.File(<span class="hljs-string">"test_cat.h5"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-comment">#读取测试数据，共50张图片</span></span><br><span class="line"></span><br><span class="line">    train_set_x_orig = np.array(train_dataset[<span class="hljs-string">"train_set_x"</span>][:]) <span class="hljs-comment">#原始训练集（209*64*64*3）</span></span><br><span class="line">    train_set_y_orig = np.array(train_dataset[<span class="hljs-string">"train_set_y"</span>][:]) <span class="hljs-comment">#原始训练集的标签集（y=0非猫,y=1是猫）（209*1）</span></span><br><span class="line"></span><br><span class="line">    test_set_x_orig = np.array(test_dataset[<span class="hljs-string">"test_set_x"</span>][:]) <span class="hljs-comment">#原始测试集（50*64*64*3</span></span><br><span class="line">    test_set_y_orig = np.array(test_dataset[<span class="hljs-string">"test_set_y"</span>][:]) <span class="hljs-comment">#原始测试集的标签集（y=0非猫,y=1是猫）（50*1）</span></span><br><span class="line"></span><br><span class="line">    train_set_y_orig = train_set_y_orig.reshape((<span class="hljs-number">1</span>,train_set_y_orig.shape[<span class="hljs-number">0</span>])) <span class="hljs-comment">#原始训练集的标签集设为（1*209）</span></span><br><span class="line">    test_set_y_orig = test_set_y_orig.reshape((<span class="hljs-number">1</span>,test_set_y_orig.shape[<span class="hljs-number">0</span>])) <span class="hljs-comment">#原始测试集的标签集设为（1*50）</span></span><br><span class="line"></span><br><span class="line">    classes = np.array(test_dataset[<span class="hljs-string">"list_classes"</span>][:])</span><br><span class="line">    <span class="hljs-keyword">return</span> train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes</span><br></pre></td></tr></table></figure>
+<p>需要说明的是，本次的训练及测试图片集是以HDF5格式储存的,train_cat.h5、test_cat.h5文件打开后结构如下：</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fjh1zdo2tij20h70dh0ur.jpg" alt="h5文件结构"></p>
+<p>另外，也可以调用以下方法来查看训练集或测试集中的图片：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#显示图片</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">image_show</span><span class="hljs-params">(index,dataset)</span>:</span></span><br><span class="line">    index = index</span><br><span class="line">    <span class="hljs-keyword">if</span> dataset == <span class="hljs-string">"train"</span>:</span><br><span class="line">        plt.imshow(train_set_x_orig[index])</span><br><span class="line">        <span class="hljs-keyword">print</span> (<span class="hljs-string">"y = "</span> + str(train_set_y[:, index]) + <span class="hljs-string">", 它是一张"</span> + classes[np.squeeze(train_set_y[:, index])].decode(<span class="hljs-string">"utf-8"</span>) +  <span class="hljs-string">"' 图片。"</span>)</span><br><span class="line">    <span class="hljs-keyword">elif</span> dataset == <span class="hljs-string">"test"</span>:</span><br><span class="line">        plt.imshow(test_set_x_orig[index])</span><br><span class="line">        <span class="hljs-keyword">print</span> (<span class="hljs-string">"y = "</span> + str(test_set_y[:, index]) + <span class="hljs-string">", 它是一张"</span> + classes[np.squeeze(test_set_y[:, index])].decode(<span class="hljs-string">"utf-8"</span>) +  <span class="hljs-string">"' 图片。"</span>)</span><br></pre></td></tr></table></figure>
+<p>3.sigmoid函数</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#sigmoid函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sigmoid</span><span class="hljs-params">(z)</span>:</span></span><br><span class="line">    s = <span class="hljs-number">1</span>/(<span class="hljs-number">1</span>+np.exp(-z))</span><br><span class="line">    <span class="hljs-keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<p>4.初始化参数w，b</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#初始化参数w,b</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize_with_zeros</span><span class="hljs-params">(dim)</span>:</span></span><br><span class="line">    w = np.zeros((dim,<span class="hljs-number">1</span>)) <span class="hljs-comment">#w为一个dim*1矩阵</span></span><br><span class="line">    b = <span class="hljs-number">0</span>    </span><br><span class="line">    <span class="hljs-keyword">return</span> w, b</span><br></pre></td></tr></table></figure>
+<p>5.计算Y_hat,成本函数J以及dw，db</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#计算Y_hat,成本函数J以及dw，db</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">propagate</span><span class="hljs-params">(w, b, X, Y)</span>:</span></span><br><span class="line">    m = X.shape[<span class="hljs-number">1</span>] <span class="hljs-comment">#样本个数</span></span><br><span class="line">    Y_hat = sigmoid(np.dot(w.T,X)+b)                                     </span><br><span class="line">    cost = -(np.sum(np.dot(Y,np.log(Y_hat).T)+np.dot((<span class="hljs-number">1</span>-Y),np.log(<span class="hljs-number">1</span>-Y_hat).T)))/m <span class="hljs-comment">#成本函数</span></span><br><span class="line"></span><br><span class="line">    dw = (np.dot(X,(Y_hat-Y).T))/m</span><br><span class="line">    db = (np.sum(Y_hat-Y))/m</span><br><span class="line"></span><br><span class="line">    cost = np.squeeze(cost) <span class="hljs-comment">#压缩维度    </span></span><br><span class="line">    grads = &#123;<span class="hljs-string">"dw"</span>: dw,</span><br><span class="line">             <span class="hljs-string">"db"</span>: db&#125; <span class="hljs-comment">#梯度</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> grads, cost</span><br></pre></td></tr></table></figure>
+<p>6.梯度下降找出最优解</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#梯度下降找出最优解</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">optimize</span><span class="hljs-params">(w, b, X, Y, num_iterations, learning_rate, print_cost = False)</span>:</span><span class="hljs-comment">#num_iterations-梯度下降次数 learning_rate-学习率，即参数ɑ</span></span><br><span class="line">    costs = [] <span class="hljs-comment">#记录成本值</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num_iterations): <span class="hljs-comment">#循环进行梯度下降</span></span><br><span class="line">        grads, cost = propagate(w,b,X,Y)</span><br><span class="line">        dw = grads[<span class="hljs-string">"dw"</span>]</span><br><span class="line">        db = grads[<span class="hljs-string">"db"</span>]</span><br><span class="line"></span><br><span class="line">        w = w - learning_rate*dw</span><br><span class="line">        b = b - learning_rate*db</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> i % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>: <span class="hljs-comment">#每100次记录一次成本值</span></span><br><span class="line">            costs.append(cost)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> print_cost <span class="hljs-keyword">and</span> i % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>: <span class="hljs-comment">#打印成本值</span></span><br><span class="line">            <span class="hljs-keyword">print</span> (<span class="hljs-string">"循环%i次后的成本值: %f"</span> %(i, cost))</span><br><span class="line"></span><br><span class="line">    params = &#123;<span class="hljs-string">"w"</span>: w,</span><br><span class="line">              <span class="hljs-string">"b"</span>: b&#125; <span class="hljs-comment">#最终参数值</span></span><br><span class="line"></span><br><span class="line">    grads = &#123;<span class="hljs-string">"dw"</span>: dw,</span><br><span class="line">             <span class="hljs-string">"db"</span>: db&#125;<span class="hljs-comment">#最终梯度值</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> params, grads, costs</span><br></pre></td></tr></table></figure>
+<p>7.得出预测结果</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#预测出结果</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(w, b, X)</span>:</span></span><br><span class="line">    m = X.shape[<span class="hljs-number">1</span>] <span class="hljs-comment">#样本个数</span></span><br><span class="line">    Y_prediction = np.zeros((<span class="hljs-number">1</span>,m)) <span class="hljs-comment">#初始化预测输出</span></span><br><span class="line">    w = w.reshape(X.shape[<span class="hljs-number">0</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">#转置参数向量w</span></span><br><span class="line"></span><br><span class="line">    Y_hat = sigmoid(np.dot(w.T,X)+b) <span class="hljs-comment">#最终得到的参数代入方程</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(Y_hat.shape[<span class="hljs-number">1</span>]):</span><br><span class="line">        <span class="hljs-keyword">if</span> Y_hat[:,i]&gt;<span class="hljs-number">0.5</span>:</span><br><span class="line">            Y_prediction[:,i] = <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            Y_prediction[:,i] = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> Y_prediction</span><br></pre></td></tr></table></figure>
+<p>8.建立整个预测模型</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#建立整个预测模型</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">model</span><span class="hljs-params">(X_train, Y_train, X_test, Y_test, num_iterations = <span class="hljs-number">2000</span>, learning_rate = <span class="hljs-number">0.5</span>, print_cost = False)</span>:</span> <span class="hljs-comment">#num_iterations-梯度下降次数 learning_rate-学习率，即参数ɑ</span></span><br><span class="line">    w, b = initialize_with_zeros(X_train.shape[<span class="hljs-number">0</span>]) <span class="hljs-comment">#初始化参数w，b</span></span><br><span class="line"></span><br><span class="line">    parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost) <span class="hljs-comment">#梯度下降找到最优参数</span></span><br><span class="line"></span><br><span class="line">    w = parameters[<span class="hljs-string">"w"</span>]</span><br><span class="line">    b = parameters[<span class="hljs-string">"b"</span>]</span><br><span class="line"></span><br><span class="line">    Y_prediction_train = predict(w, b, X_train) <span class="hljs-comment">#训练集的预测结果</span></span><br><span class="line">    Y_prediction_test = predict(w, b, X_test) <span class="hljs-comment">#测试集的预测结果</span></span><br><span class="line"></span><br><span class="line">    train_accuracy = <span class="hljs-number">100</span> - np.mean(np.abs(Y_prediction_train - Y_train)) * <span class="hljs-number">100</span> <span class="hljs-comment">#训练集识别准确度</span></span><br><span class="line">    test_accuracy = <span class="hljs-number">100</span> - np.mean(np.abs(Y_prediction_test - Y_test)) * <span class="hljs-number">100</span> <span class="hljs-comment">#测试集识别准确度</span></span><br><span class="line"></span><br><span class="line">    print(<span class="hljs-string">"训练集识别准确度: &#123;&#125; %"</span>.format(train_accuracy))</span><br><span class="line">    print(<span class="hljs-string">"测试集识别准确度: &#123;&#125; %"</span>.format(test_accuracy))</span><br><span class="line"></span><br><span class="line">    d = &#123;<span class="hljs-string">"costs"</span>: costs,</span><br><span class="line">         <span class="hljs-string">"Y_prediction_test"</span>: Y_prediction_test,</span><br><span class="line">         <span class="hljs-string">"Y_prediction_train"</span> : Y_prediction_train,</span><br><span class="line">         <span class="hljs-string">"w"</span> : w,</span><br><span class="line">         <span class="hljs-string">"b"</span> : b,</span><br><span class="line">         <span class="hljs-string">"learning_rate"</span> : learning_rate,</span><br><span class="line">         <span class="hljs-string">"num_iterations"</span>: num_iterations&#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> d</span><br></pre></td></tr></table></figure>
+<p>9.初始化样本，输入模型，得出结果</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#初始化数据</span></span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line"></span><br><span class="line">m_train = train_set_x_orig.shape[<span class="hljs-number">0</span>] <span class="hljs-comment">#训练集中样本个数</span></span><br><span class="line">m_test = test_set_x_orig.shape[<span class="hljs-number">0</span>] <span class="hljs-comment">#测试集总样本个数</span></span><br><span class="line">num_px = test_set_x_orig.shape[<span class="hljs-number">1</span>] <span class="hljs-comment">#图片的像素大小</span></span><br><span class="line"></span><br><span class="line">train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[<span class="hljs-number">0</span>],<span class="hljs-number">-1</span>).T <span class="hljs-comment">#原始训练集的设为（12288*209）</span></span><br><span class="line">test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[<span class="hljs-number">0</span>],<span class="hljs-number">-1</span>).T <span class="hljs-comment">#原始测试集设为（12288*50）</span></span><br><span class="line"></span><br><span class="line">train_set_x = train_set_x_flatten/<span class="hljs-number">255.</span> <span class="hljs-comment">#将训练集矩阵标准化</span></span><br><span class="line">test_set_x = test_set_x_flatten/<span class="hljs-number">255.</span> <span class="hljs-comment">#将测试集矩阵标准化</span></span><br><span class="line"></span><br><span class="line">d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = <span class="hljs-number">2000</span>, learning_rate = <span class="hljs-number">0.005</span>, print_cost = <span class="hljs-literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h4><p>运行程序最终得到的结果为：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fjh33bb9juj20em0atjri.jpg" alt="结果"><br>训练集识别准确率接近100％，测试集的准确率有70％。由于训练使用的小数据集，而且逻辑回归是线性分类器，所以这个结果对于这个简单的模型实际上还是不错。</p>
+<p>使用mathplotlib画出学习曲线：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 画出学习曲线</span></span><br><span class="line">costs = np.squeeze(d[<span class="hljs-string">'costs'</span>])</span><br><span class="line">plt.plot(costs)</span><br><span class="line">plt.ylabel(<span class="hljs-string">'cost'</span>)</span><br><span class="line">plt.xlabel(<span class="hljs-string">'iterations (per hundreds)'</span>)</span><br><span class="line">plt.title(<span class="hljs-string">"Learning rate ="</span> + str(d[<span class="hljs-string">"learning_rate"</span>]))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fjh3i9cu8vj20at07q3yj.jpg" alt="学习曲线"></p>
+<p>学习率不同时的学习曲线：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">learning_rates = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.001</span>, <span class="hljs-number">0.0001</span>]</span><br><span class="line">models = &#123;&#125;</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> learning_rates:</span><br><span class="line">    <span class="hljs-keyword">print</span> (<span class="hljs-string">"学习率: "</span> + str(i))</span><br><span class="line">    models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = <span class="hljs-number">1500</span>, learning_rate = i, print_cost = <span class="hljs-literal">False</span>)</span><br><span class="line">    <span class="hljs-keyword">print</span> (<span class="hljs-string">'\n'</span> + <span class="hljs-string">"-------------------------------------------------------"</span> + <span class="hljs-string">'\n'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> learning_rates:</span><br><span class="line">    plt.plot(np.squeeze(models[str(i)][<span class="hljs-string">"costs"</span>]), label= str(models[str(i)][<span class="hljs-string">"learning_rate"</span>]))</span><br><span class="line"></span><br><span class="line">plt.ylabel(<span class="hljs-string">'cost'</span>)</span><br><span class="line">plt.xlabel(<span class="hljs-string">'iterations'</span>)</span><br><span class="line"></span><br><span class="line">legend = plt.legend(loc=<span class="hljs-string">'upper center'</span>, shadow=<span class="hljs-literal">True</span>)</span><br><span class="line">frame = legend.get_frame()</span><br><span class="line">frame.set_facecolor(<span class="hljs-string">'0.90'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fjh3t7y41xj20at07e3yo.jpg" alt="几个不同学习率下的学习曲线"><br>说明不同的学习率会带来不同的成本，从而产生不同的预测结果。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://mooc.study.163.com/learn/deeplearning_ai-2001281002" target="_blank" rel="noopener">吴恩达-神经网络与深度学习-网易云课堂</a></li>
+<li><a href="https://www.coursera.org/learn/neural-networks-deep-learning/" target="_blank" rel="noopener">Andrew Ng-Neural Networks and Deep Learning-Coursera</a></li>
+<li><a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">deeplearning.ai</a></li>
+<li><a href="https://github.com/BinWeber/Machine-Learning" target="_blank" rel="noopener">课程代码与资料-GitHub</a></li>
+</ol>
+<p>注：本文涉及的图片及资料均整理翻译自Andrew Ng的Deep Learning系列课程，版权归其所有。翻译整理水平有限，如有不妥的地方欢迎指出。</p>
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2017.09.13 完成初稿</li>
+<li>2017.09.17 修正部分错误</li>
+<li>2018.02.13 修改部分内容   </li>
+<li>2019.01.10 修改部分内容</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Coursera/" rel="tag">Coursera</a>, <a class="has-link-grey -link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a>, <a class="has-link-grey -link" href="/tags/ML/" rel="tag">ML</a>, <a class="has-link-grey -link" href="/tags/Python/" rel="tag">Python</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/05/03/5ccba06bd3732.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/05/03/5ccba08a9116b.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/25/ML/deep_learning_2/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">【Andrew Ng】深度学习(2)：神经网络</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzQ2Mi8xMDAxOA==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
+    <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
+</div>
+
+    </div>
+</div>
+
+
+  </div>
+                
+
+  
+    
+    
+    
+    
+    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/head.png" alt="Hugsy">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Hugsy
+                    </p>
+                    
+                    
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        33
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        19
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/hugsy19" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="微博" href="http://weibo.com/u/2195809350/">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/wang-mou-mou-980122">
+                
+                <i class="fab fa-quora"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=909219821&amp;site=qq&amp;menu=yes">
+                
+                <i class="fab fa-qq"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#二分类">
+        <span class="has-mr-6">1</span>
+        <span>二分类</span>
+        </a></li><li>
+        <a class="is-flex" href="#Logistic回归模型">
+        <span class="has-mr-6">2</span>
+        <span>Logistic回归模型</span>
+        </a></li><li>
+        <a class="is-flex" href="#成本函数">
+        <span class="has-mr-6">3</span>
+        <span>成本函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#梯度下降">
+        <span class="has-mr-6">4</span>
+        <span>梯度下降</span>
+        </a></li><li>
+        <a class="is-flex" href="#Python实现">
+        <span class="has-mr-6">5</span>
+        <span>Python实现</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#实现过程">
+        <span class="has-mr-6">5.1</span>
+        <span>实现过程</span>
+        </a></li><li>
+        <a class="is-flex" href="#结果分析">
+        <span class="has-mr-6">5.2</span>
+        <span>结果分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#参考资料">
+        <span class="has-mr-6">6</span>
+        <span>参考资料</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">数据结构与算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+            <span class="level-start">
+                <span class="level-item">目标检测</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">
+            <span class="level-start">
+                <span class="level-item">编程语言</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+            <span class="level-start">
+                <span class="level-item">读书笔记</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Algorithms/" style="font-size: 13.33px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Daily/" style="font-size: 10px;">Daily</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 12.22px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Math/" style="font-size: 11.11px;">Math</a> <a href="/tags/Python/" style="font-size: 12.22px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a>
+    </div>
+</div>
+
+        
+        
+            <div class="column-right-shadow is-hidden-widescreen is-sticky">
+            
+                
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/04/Daily/daily_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/09/28/c2bSjExyRprPiUa.png" alt="如何">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T16:00:00.000Z">2019-11-04</time></div>
+                    <a href="/2019/11/04/Daily/daily_1/" class="has-link-black-ter is-size-6">如何</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/04/CS/sql_tutorial/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/11/04/qfhSFDYdGBK4Hai.png" alt="SQL基础教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T16:00:00.000Z">2019-11-04</time></div>
+                    <a href="/2019/11/04/CS/sql_tutorial/" class="has-link-black-ter is-size-6">SQL基础教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/05/CS/algs_3_ex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法习题(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T16:00:00.000Z">2019-08-05</time></div>
+                    <a href="/2019/08/05/CS/algs_3_ex/" class="has-link-black-ter is-size-6">【Princeton】算法习题(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/02/CS/algs_3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
+                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/02/CS/cpp_ex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/08/03/Ve3ET4YxibwtDkS.jpg" alt="C++编程练习">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
+                    <a href="/2019/08/02/CS/cpp_ex/" class="has-link-black-ter is-size-6">C++编程练习</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+            
+                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+            
+                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithms/">
+                        <span class="tag">Algorithms</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CS/">
+                        <span class="tag">CS</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coursera/">
+                        <span class="tag">Coursera</span>
+                        <span class="tag is-grey">19</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Daily/">
+                        <span class="tag">Daily</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EE/">
+                        <span class="tag">EE</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MCU/">
+                        <span class="tag">MCU</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ML/">
+                        <span class="tag">ML</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Math/">
+                        <span class="tag">Math</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspi/">
+                        <span class="tag">Raspi</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SQL/">
+                        <span class="tag">SQL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/TensorFlow/">
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+            
+            </div>
+        
+    </div>
+    
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="【Andrew Ng】深度学习(1)：Logistic回归" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Hugsy&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;" target="_blank" rel="noopener">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
