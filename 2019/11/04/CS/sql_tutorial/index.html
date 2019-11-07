@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Sky Inside the Eyewall">
 <meta property="og:description" content="《SQL基础教程》读书笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T13:18:23.333Z">
+<meta property="og:updated_time" content="2019-11-07T15:33:54.302Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -154,7 +154,7 @@ var _hmt = _hmt || [];
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/11/04/qfhSFDYdGBK4Hai.png" alt="SQL基础教程">
+            <img class="thumbnail" src="https://i.loli.net/2019/11/04/yf4WdxAUhmMEcKv.png" alt="SQL基础教程">
         </span>
     </div>
     
@@ -172,7 +172,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 604 个字)
+                    11 分钟 读完 (大约 1626 个字)
                 </span>
                 
                 
@@ -220,8 +220,39 @@ var _hmt = _hmt || [];
 <li>DML（Date Manipulation Lanugage，数据操纵）：对表中的数据进行增删改操作</li>
 <li>DCL（Data Control Lanugage，数据控制）：确定、取消数据变更、设定用户权限等操作</li>
 </ul>
-<p>实际使用的SQL语句大都为DML，这里重点学习的也是DML。SQL语句不区分大小写，通常习惯将关键字及表名首字母大写，每条语句以分号结束。</p>
-<h3 id="表对象的操作"><a href="#表对象的操作" class="headerlink" title="表对象的操作"></a>表对象的操作</h3><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<p>实际使用的SQL语句大都为DML，这里重点学习的也是DML。SQL语句不区分大小写，通常习惯将关键字及表名首字母大写，除数字可以直接书，字符串、时间等常数都需要包括在单引号（’）中，各条语句以分号（;）结束。</p>
+<h3 id="基本操作语句"><a href="#基本操作语句" class="headerlink" title="基本操作语句"></a>基本操作语句</h3><h4 id="表对象操作"><a href="#表对象操作" class="headerlink" title="表对象操作"></a>表对象操作</h4><p>对数据库或表对象进行增删改的常用SQL语句有：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> &lt;database_name&gt;; <span class="hljs-comment">-- 创建数据库</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> &lt;table_name&gt;</span><br><span class="line">( &lt;line_name_1&gt; &lt;data_type&gt; &lt;<span class="hljs-keyword">constraint</span>&gt;,</span><br><span class="line">  &lt;line_name_n&gt; &lt;data_type&gt; &lt;<span class="hljs-keyword">constraint</span>&gt;); <span class="hljs-comment">-- 创建并定义表</span></span><br><span class="line"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> &lt;table_name&gt;; <span class="hljs-comment">-- 删除表</span></span><br><span class="line"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> &lt;table_name&gt; &lt;ops&gt;; <span class="hljs-comment">-- 更新表的定义</span></span><br></pre></td></tr></table></figure>
+<p>其中<table_name>及<line_name>可由半角英文字母、数字、下划线组成，创建表的同时需要定义表中各字段的数据类型<data_type>及约束<constraints>，标准SQL中几种常见的数据类型有：</constraints></data_type></line_name></table_name></p>
+<ul>
+<li>INTEGER：整型</li>
+<li>CHAR：定长字符串，以定长存储，长度可自行指定</li>
+<li>VARCHAR：可变字符串，以边长存储，长度可自行指定</li>
+<li>DATE：日期</li>
+<li>NUMERIC：数值，可定义全体及小数位数</li>
+</ul>
+<p>约束用以对各字段中存储的数据进行一些限制或追加条件，几种常用的约束有：</p>
+<ul>
+<li>PRIMARY KEY：主键</li>
+<li>NOT NULL：非空</li>
+<li>DEFAULT：默认值</li>
+</ul>
+<p>更新表的定义便是表中的字段进行增改，<ops>中常用的有：</ops></p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD COLUMN &lt;line_define&gt;; -- 新增列</span><br><span class="line"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> &lt;line_name&gt;; <span class="hljs-comment">-- 删除列</span></span><br><span class="line"><span class="hljs-keyword">RENAME</span> <span class="hljs-keyword">TO</span> &lt;new_name&gt;; <span class="hljs-comment">-- 重命名</span></span><br></pre></td></tr></table></figure>
+<p>在PostgreSQL中，使用这些语句操作表对象的例子如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> shop; <span class="hljs-comment">-- 创建数据库shop</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Product</span><br><span class="line">(product_id      <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">4</span>)      <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line"> product_name    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line"> product_type    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">32</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line"> sale_price      <span class="hljs-built_in">INTEGER</span> ,</span><br><span class="line"> purchase_price  <span class="hljs-built_in">INTEGER</span> ,</span><br><span class="line"> regist_date     <span class="hljs-built_in">DATE</span> ,</span><br><span class="line"> PRIMARY <span class="hljs-keyword">KEY</span> (product_id)); <span class="hljs-comment">-- 创建并定义表Product</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Product <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> product_name_pingyin <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">-- 增加字段</span></span><br><span class="line"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Product <span class="hljs-keyword">RENAME</span> <span class="hljs-keyword">TO</span> product_name_chinese; <span class="hljs-comment">-- 重命名字段</span></span><br><span class="line"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Product <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> product_name_chinese; <span class="hljs-comment">-- 删除字段</span></span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> Product; <span class="hljs-comment">-- 删除表Product</span></span><br></pre></td></tr></table></figure>
+<h4 id="表的增删改"><a href="#表的增删改" class="headerlink" title="表的增删改"></a>表的增删改</h4><p>对表中数据进行增删改的常用SQL语句有：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> &lt;table_name&gt; (&lt;line_name_list&gt;) <span class="hljs-keyword">VALUES</span> (&lt;value_list&gt;); <span class="hljs-comment">-- 插入数据</span></span><br><span class="line"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">WHERE</span> &lt;cond_expr&gt;; <span class="hljs-comment">-- 依条件删除数据</span></span><br><span class="line"><span class="hljs-keyword">UPDATE</span> &lt;table_name&gt; <span class="hljs-keyword">SET</span> (&lt;line_name_list&gt;) = (&lt;expr&gt;) <span class="hljs-keyword">WHERE</span> &lt;cond_expr&gt;; <span class="hljs-comment">-- 依条件更新字段</span></span><br></pre></td></tr></table></figure>
+<p>插入数据时，清单（list）中的名字或值须以逗号（,）分隔，要插入的数据值清单<value_list>必须和字段名清单<line_name_list>一一对应，且<line_name_list>可省略，此时<value_list>将默认以从左到右的顺序赋到各个字段上，例如向Product中插入数据：</value_list></line_name_list></line_name_list></value_list></p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Product (product_id, product_name, product_type, sale_price, purchase_price, regist_date) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'0001'</span>, <span class="hljs-string">'T恤'</span> ,<span class="hljs-string">'衣服'</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">500</span>, <span class="hljs-string">'2009-09-20'</span>);</span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Product <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'0002'</span>, <span class="hljs-string">'打孔器'</span>, <span class="hljs-string">'办公用品'</span>, <span class="hljs-number">500</span>, <span class="hljs-number">320</span>, <span class="hljs-string">'2009-09-11'</span>); <span class="hljs-comment">-- 两者的效果是一样的</span></span><br></pre></td></tr></table></figure>
+
+<p>更新或删除数据时，可通过WHERE子句来指定条件，<cond_expr>可以是由比较或逻辑运算符组成的条件表达式，<epxr>可以为常量算术表达式，没有WHERE子句时将对整张表进行相应的操作。这些语句的用例如下：</epxr></cond_expr></p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">WHERE</span> sale_price &gt;= <span class="hljs-number">4000</span> <span class="hljs-keyword">AND</span> purchase_price &gt;= <span class="hljs-number">4000</span>; <span class="hljs-comment">-- 删除符合条件的数据</span></span><br><span class="line"><span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> regist_date = <span class="hljs-string">'2009-10-10'</span>; <span class="hljs-comment">-- 整张表的regist_date字段都更新为该值</span></span><br><span class="line"><span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> sale_price = sale_price * <span class="hljs-number">10</span> <span class="hljs-keyword">WHERE</span> product_type = <span class="hljs-string">'厨房用具'</span>; <span class="hljs-comment">-- 根据条件更新数据</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><p>SELECT是SQL最基本也是最重要的语句，它常用以查询表中的数据，几个基本的SELECT查询语句如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 简单查询</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt;/&lt;<span class="hljs-keyword">constant</span>&gt; <span class="hljs-keyword">AS</span> &lt;<span class="hljs-keyword">alias</span>&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 取别名</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 去重</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">WHERE</span> &lt;cond_expr&gt;; <span class="hljs-comment">-- 依条件查询</span></span><br></pre></td></tr></table></figure>
+<p>查询过程中，在SELECT子句中列出要查询的字段名<line_name>，得到的查询结果将字段的罗列顺序一致，其中可以用星号（*）来查询表中的所有字段。查询过程中还可以用AS关键字为一些字段取别名<alias>，查询结果中的字段名就会被别名所替换。另外，SELECT子句中还可以接常数<constant>，此时在得到的查询结果中，所有记录的该字段都将为该常数值。</constant></alias></line_name></p>
+<p>在SELECT子句中使用DISTINCT关键字，可以根据一些字段来删除查询结果中的重复数据，也通过WHERE子句来指定条件，筛选除想要的查询结果。</p>
+<h4 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h4><h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><h4 id="函数、谓词、条件"><a href="#函数、谓词、条件" class="headerlink" title="函数、谓词、条件"></a>函数、谓词、条件</h4><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
 <li><a href="https://book.douban.com/subject/27055712/" target="_blank" rel="noopener">SQL基础教程-豆瓣</a></li>
 <li><a href="https://mubu.com/doc/sxdwxvM3g0" target="_blank" rel="noopener">SQL基础教程（笔记）-幕布</a></li>
 </ol>
@@ -519,7 +550,7 @@ var _hmt = _hmt || [];
             
             <a href="/2019/11/04/CS/sql_tutorial/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/11/04/qfhSFDYdGBK4Hai.png" alt="SQL基础教程">
+                    <img class="thumbnail" src="https://i.loli.net/2019/11/04/yf4WdxAUhmMEcKv.png" alt="SQL基础教程">
                 </p>
             </a>
             
