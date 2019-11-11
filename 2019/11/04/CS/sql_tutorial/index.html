@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Sky Inside the Eyewall">
 <meta property="og:description" content="《SQL基础教程》读书笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-07T15:33:54.302Z">
+<meta property="og:updated_time" content="2019-11-11T15:16:09.086Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -172,7 +172,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1626 个字)
+                    26 分钟 读完 (大约 3973 个字)
                 </span>
                 
                 
@@ -246,13 +246,92 @@ var _hmt = _hmt || [];
 <p>插入数据时，清单（list）中的名字或值须以逗号（,）分隔，要插入的数据值清单<value_list>必须和字段名清单<line_name_list>一一对应，且<line_name_list>可省略，此时<value_list>将默认以从左到右的顺序赋到各个字段上，例如向Product中插入数据：</value_list></line_name_list></line_name_list></value_list></p>
 <figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Product (product_id, product_name, product_type, sale_price, purchase_price, regist_date) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'0001'</span>, <span class="hljs-string">'T恤'</span> ,<span class="hljs-string">'衣服'</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">500</span>, <span class="hljs-string">'2009-09-20'</span>);</span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Product <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'0002'</span>, <span class="hljs-string">'打孔器'</span>, <span class="hljs-string">'办公用品'</span>, <span class="hljs-number">500</span>, <span class="hljs-number">320</span>, <span class="hljs-string">'2009-09-11'</span>); <span class="hljs-comment">-- 两者的效果是一样的</span></span><br></pre></td></tr></table></figure>
 
-<p>更新或删除数据时，可通过WHERE子句来指定条件，<cond_expr>可以是由比较或逻辑运算符组成的条件表达式，<epxr>可以为常量算术表达式，没有WHERE子句时将对整张表进行相应的操作。这些语句的用例如下：</epxr></cond_expr></p>
+<p>更新或删除数据时，可通过WHERE子句来指定条件，<cond_expr>是由比较（用&lt;&gt;表示不等于）及逻辑运算符（AND、OR、NOT）组成的条件表达式，<epxr>可以为常量算术表达式，没有WHERE子句时将对整张表进行相应的操作。这些语句的用例如下：</epxr></cond_expr></p>
 <figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">WHERE</span> sale_price &gt;= <span class="hljs-number">4000</span> <span class="hljs-keyword">AND</span> purchase_price &gt;= <span class="hljs-number">4000</span>; <span class="hljs-comment">-- 删除符合条件的数据</span></span><br><span class="line"><span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> regist_date = <span class="hljs-string">'2009-10-10'</span>; <span class="hljs-comment">-- 整张表的regist_date字段都更新为该值</span></span><br><span class="line"><span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> sale_price = sale_price * <span class="hljs-number">10</span> <span class="hljs-keyword">WHERE</span> product_type = <span class="hljs-string">'厨房用具'</span>; <span class="hljs-comment">-- 根据条件更新数据</span></span><br></pre></td></tr></table></figure>
 <h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><p>SELECT是SQL最基本也是最重要的语句，它常用以查询表中的数据，几个基本的SELECT查询语句如下：</p>
 <figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 简单查询</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt;/&lt;<span class="hljs-keyword">constant</span>&gt; <span class="hljs-keyword">AS</span> &lt;<span class="hljs-keyword">alias</span>&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 取别名</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;; <span class="hljs-comment">-- 去重</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">WHERE</span> &lt;cond_expr&gt;; <span class="hljs-comment">-- 依条件查询</span></span><br></pre></td></tr></table></figure>
-<p>查询过程中，在SELECT子句中列出要查询的字段名<line_name>，得到的查询结果将字段的罗列顺序一致，其中可以用星号（*）来查询表中的所有字段。查询过程中还可以用AS关键字为一些字段取别名<alias>，查询结果中的字段名就会被别名所替换。另外，SELECT子句中还可以接常数<constant>，此时在得到的查询结果中，所有记录的该字段都将为该常数值。</constant></alias></line_name></p>
-<p>在SELECT子句中使用DISTINCT关键字，可以根据一些字段来删除查询结果中的重复数据，也通过WHERE子句来指定条件，筛选除想要的查询结果。</p>
-<h4 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h4><h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><h4 id="函数、谓词、条件"><a href="#函数、谓词、条件" class="headerlink" title="函数、谓词、条件"></a>函数、谓词、条件</h4><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<p>查询过程中，在SELECT子句中列出要查询的字段名<line_name>，得到的查询结果将字段的罗列顺序一致，SQL语句中常用星号（*）来代表查询表中的所有字段。查询过程中还可以用AS关键字为一些字段取别名<alias>，查询结果中的字段名就会被别名所替换，以中文作为别名时需要用双引号（”）将文本括起来。另外，SELECT子句中还可以接常数<constant>，此时在得到的查询结果中，所有记录的该字段都将为该常数值。</constant></alias></line_name></p>
+<p>在SELECT子句中使用DISTINCT关键字，可以根据一些字段来删除查询结果中的重复数据，也通过WHERE子句来指定条件，筛选出想要的查询结果。</p>
+<p>这些基本查询语句的用例如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_id, product_name, purchase_price <span class="hljs-keyword">FROM</span> Product; <span class="hljs-comment">-- 查询其中三列</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> product_id <span class="hljs-keyword">AS</span> <span class="hljs-string">"商品编号"</span>, product_name <span class="hljs-keyword">AS</span> <span class="hljs-string">"商品名称"</span> <span class="hljs-keyword">FROM</span> Product; <span class="hljs-comment">-- 在查询结果中为一些字段设置别名</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">'商品'</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">string</span>, <span class="hljs-number">38</span> <span class="hljs-keyword">AS</span> <span class="hljs-built_in">number</span>, product_id, product_name <span class="hljs-keyword">FROM</span> Product; <span class="hljs-comment">-- 查询结果中所有记录的string、number字段都是相同的常数</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> product_type, regist_date <span class="hljs-keyword">FROM</span> Product; <span class="hljs-comment">-- 对两个字段组合后的数据去重</span></span><br><span class="line"><span class="hljs-keyword">SELECT</span> product_name, product_type <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">WHERE</span> product_type = <span class="hljs-string">'衣服’; -- 得到符合条件的查询结果</span></span><br></pre></td></tr></table></figure>
+<h4 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h4><p>通过SQL对数据进行某种操作或计算时需要使用函数，其中对数据进行一些汇总操作的函数就被称为聚合函数，常用的聚合函数有</p>
+<ul>
+<li>COUNT()：计算表中的记录数</li>
+<li>SUM()：计算某字段的合计值</li>
+<li>AVG()：计算某字段的平均值</li>
+<li>MAX/MIN()：求出某字段的最大/最小值</li>
+</ul>
+<p>以聚合函数为SELECT子句，结合GROUP BY关键字，可以实现对表中地数据进行分组汇总，其基本地语法如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;line_name&gt;; <span class="hljs-comment">-- 分组聚合</span></span><br></pre></td></tr></table></figure>
+<p>例如，可使用如下语句来统计Product中各类产品的数量：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_type, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type; <span class="hljs-comment">-- 分组聚合</span></span><br></pre></td></tr></table></figure>
+<p>其中GROUP BY子句中的字段名被称为<strong>聚合键</strong>，它决定了表的分组方式，SELECT子句中除了聚合函数外不可出现除该聚合键以外的字段名。</p>
+<p>句中可引入WHERE语句，以实现依条件进行汇总：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt;  <span class="hljs-keyword">WHERE</span> &lt;cond_expr&gt; <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;line_name&gt;; <span class="hljs-comment">-- 根据条件进行分组聚合</span></span><br></pre></td></tr></table></figure>
+<p>GROUP BY子句一定要写在FROM及WHERE语句之后，且上述语句中各子句的执行顺序如下：</p>
+<blockquote>
+<p>FROM -&gt; WHERE -&gt; GROUP BY -&gt; SELECT </p>
+</blockquote>
+<p>因此，GROUP BY中不可使用SELECT子句中由AS定义的别名作为聚合键。</p>
+<p>用WHERE语句中只能对原始记录指定条件，要由分组聚合结果指定条件，即从分组结果中筛选数据，就需要用到HAVING子句，其语法如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;line_name&gt; <span class="hljs-keyword">HAVING</span> &lt;cond_expr&gt;; <span class="hljs-comment">-- 从分组结果中依条件选择</span></span><br></pre></td></tr></table></figure>
+<p>HAVING子句可由常数、聚合函数或聚合键构造。例如，将Product按商品种类分组后，可使用如下语句取出其中数据行为2的组：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_type. <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type <span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(*) = <span class="hljs-number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>加入HAVING子句后，整个查询语句的执行顺序如下：</p>
+<blockquote>
+<p>SELECT -&gt; FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING</p>
+</blockquote>
+<p>在查询表中数据时，默认情况下的查询结果都是无序的。通过ORDER BY关键词，可查询到的表记录按某个字段进行排序，具体的语法如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> &lt;line_name&gt; <span class="hljs-keyword">FROM</span> &lt;table_name&gt; <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> &lt;line_name&gt; <span class="hljs-keyword">DESC</span>/<span class="hljs-keyword">ASC</span>; <span class="hljs-comment">-- 按某字段进行升/降排序</span></span><br></pre></td></tr></table></figure>
+<p>其中通过最后的关键字为DESC或ASC来指定升降序。ORDER BY子句中的字段名被称为<strong>排序键</strong>，类似GROUP BY，排序键也可以有多个，且越先写的排序键优先级越高。</p>
+<p>ORDER BY子句通常要放在SELECT语句的末尾，其中可以使用别名，因为ORDER BY子句总在最后执行，具体顺序如下：</p>
+<blockquote>
+<p>FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; SELECT -&gt; ORDER BY</p>
+</blockquote>
+<p>要注意的是，聚合函数只能在SELECT、HAVING、ORDER BY子句中使用，WHERE子句中不可出现聚合函数。</p>
+<h4 id="事务与视图"><a href="#事务与视图" class="headerlink" title="事务与视图"></a>事务与视图</h4><p>所谓的<strong>事务（transaction）</strong>，指的是需要在同一个处理单元中执行的一系列更新处理的集合。表的增删改操作常需要用多条SQL语句才能完成，因此可以多条这样的SQL语句封装成一个事务来统一执行。在RDBMS中，事务是对表中数据进行更新的单位。</p>
+<p>封装多条用于操作表的数据的SQL语句的方法，及构建事务的语法如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">事务开始语句;</span><br><span class="line">    DML语句1;</span><br><span class="line">    DML语句2;</span><br><span class="line">    ...</span><br><span class="line">事务结束语句;</span><br></pre></td></tr></table></figure>
+<p>例如下面在PostgreSQL中创建一个事务：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">TRANSACTION</span>;</span><br><span class="line">    <span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> sale_price = sale_price - <span class="hljs-number">1000</span> <span class="hljs-keyword">WHERE</span> product_name = <span class="hljs-string">'运动T恤'</span>;</span><br><span class="line">    <span class="hljs-keyword">UPDATE</span> Product <span class="hljs-keyword">SET</span> sale_price = sale_price + <span class="hljs-number">1000</span> <span class="hljs-keyword">WHERE</span> product_name = <span class="hljs-string">'T恤衫'</span>;</span><br><span class="line"><span class="hljs-keyword">COMMIT</span>;</span><br></pre></td></tr></table></figure>
+<p>标准SQL中并没有定义事务的开始语句，因此此语句随DBMS的不同而不同，如PostgreSQL中规定的开始语句为“BEGIN TRANSACTION”，MySQL中的则为“START TRANSCTION”。事务的结束语句可为“COMMIT”或“ROLLBACK”，前者是按顺序执行事务中的DML语句并在最终提交，后者则是取消事务中所有对数据库的更新处理而恢复其原始状态。</p>
+<p>DBMS中的事务都需要遵循四大特性：</p>
+<ul>
+<li>原子性（Atomicity）：事务结束时，其中包含的更新处理要么全部执行，要么全部不执行</li>
+<li>一致性（Consistency）：事务中包含的处理要满足数据库提前设置的约束</li>
+<li>隔离性（Isolation）：不同事务间互不干扰</li>
+<li>持久性（Durability）：事务结束后，DBMS能保证该时间点的数据被保存，即使发生故障也有恢复手段</li>
+</ul>
+<p>取每个特性的首字符，这四大特性又称ACID特性。</p>
+<p>事务是将多条对数据库进行增删改的语句封装到一起，如果将一些常用的查询语句封装起来，就有了<strong>视图（VIEW）</strong>。查询语句执行后的结果是一张表，要保存这张表的话需要一定存储空间，将查询语句封装为视图，需要这张表的时候只需要调用该视图即可，这可以极大地节省存储空间。</p>
+<p>创建视图地语法如下：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> &lt;view_name&gt; (&lt;view_line_name_1&gt;, &lt;view_line_name_2&gt;, ...)</span><br><span class="line"><span class="hljs-keyword">AS</span> </span><br><span class="line"><span class="hljs-keyword">SELECT</span>语句;</span><br></pre></td></tr></table></figure>
+
+<p>例如将前面例子中用过的一条查询语句封装为ProductSum视图：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> ProductSum (product_type, cnt_product)</span><br><span class="line"><span class="hljs-keyword">AS</span> </span><br><span class="line"><span class="hljs-keyword">SELECT</span> product_type, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type;</span><br></pre></td></tr></table></figure>
+
+<p>视图中将SELECT语句的查询结果中包含的字段为其字段，并为它们设置别名，且视图的使用方法也与普通的表无异：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_type, cnt_product <span class="hljs-keyword">FROM</span> ProductSum;</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是，因为RDB中的记录本身都是无序的，所以不能在视图中使用ORDER BY语句进行排序。虽然对视图的操作与表无异，但无法随意使用更新语句对视图进行数据更新，因为视图的更新过程将对原表中数据产生直接影响。</p>
+<p>另外，可以使用如下语句删除某个视图：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">VIEW</span> &lt;view_name&gt;;</span><br></pre></td></tr></table></figure>
+<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><p>所谓子查询，是将SELECT语句进行多层嵌套，而直接以SELECT语句作为某些关键词的子句。如下面的例子：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> Product_type, cnt_product <span class="hljs-keyword">FROM</span> (</span><br><span class="line">    <span class="hljs-keyword">SELECT</span> Product_type, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> cnt_product <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type;</span><br><span class="line">) AS ProductSum;</span><br></pre></td></tr></table></figure>
+<p>其中内层的SELECT语句将首先被执行并得到查询结果，外层的查询将以这些结果为源数据进行二次查询。简单来说，子查询就是一次性视图，在SELECT语句执行结束后便消失，而不是像视图那样永久保存在磁盘上。在上例中，还使用了AS关键字为这个子查询命名。</p>
+<p>子查询可以进行无限嵌套，例如下面的SELECT语句中便嵌套了两层的SELECT语句：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_type, cnt_product <span class="hljs-keyword">FROM</span> (</span><br><span class="line">    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> (</span><br><span class="line">        <span class="hljs-keyword">SELECT</span> product_type, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> cnt_product <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type</span><br><span class="line">    ) <span class="hljs-keyword">AS</span> ProductSum <span class="hljs-keyword">WHERE</span> cnt_product = <span class="hljs-number">4</span></span><br><span class="line">) <span class="hljs-keyword">AS</span> ProductSum2;</span><br></pre></td></tr></table></figure>
+
+<p>返回结果为一行一列即单一值的子查询语句被称为标量子查询。不管是SELECT、WHERE子句还是GROUP BY、HAVING、ORDER BY子句，只要是能够用常数或列名的地方，都可以使用标量子查询语句。例如下面的例中WHERE子句的条件表达式：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_id, product_name, sale_price <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">WHERE</span> sale_price &gt; (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(sale_price) <span class="hljs-keyword">FROM</span> Product);</span><br></pre></td></tr></table></figure>
+
+<p>有时想要在GOROUP BY细分好的各组内进行一些比较操作，例如根据product_type将Product中的记录分组后，想要分别选出各组中价格高于该平均价格的商品，可能会想到如下语句：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> prodcut_id, product_name, sale_price <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">WHERE</span> sale_price &gt; (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(sale_price) <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type);</span><br></pre></td></tr></table></figure>
+
+<p>然而这是一个错误的SQL语句，其中的SELECT子查询语句不为标量，无法参与比较。要解决这类问题，需要用到关联子查询，如下所示：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> product_type, product_name, sale_price <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">AS</span> P1 <span class="hljs-keyword">WHERE</span> sale_price &gt; (</span><br><span class="line">    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(sale_price) <span class="hljs-keyword">FROM</span> Product <span class="hljs-keyword">AS</span> P2 <span class="hljs-keyword">WHERE</span> P1.product_type = P2.product_type <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product_type</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>子查询语句中，会根据product_type返回相应的平均价格，从而筛选中表中满足要求的记录。</p>
+<h4 id="集合与联结"><a href="#集合与联结" class="headerlink" title="集合与联结"></a>集合与联结</h4><h4 id="函数、谓词"><a href="#函数、谓词" class="headerlink" title="函数、谓词"></a>函数、谓词</h4><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
 <li><a href="https://book.douban.com/subject/27055712/" target="_blank" rel="noopener">SQL基础教程-豆瓣</a></li>
 <li><a href="https://mubu.com/doc/sxdwxvM3g0" target="_blank" rel="noopener">SQL基础教程（笔记）-幕布</a></li>
 </ol>
@@ -318,17 +397,10 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/04/Daily/daily_1/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">如何</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/05/CS/algs_3_ex/">
-                <span class="level-item">【Princeton】算法习题(3)：排序</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/04/Daily/through_our_lives/">
+                <span class="level-item">如何</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -529,25 +601,6 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/2019/11/04/Daily/daily_1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/09/28/c2bSjExyRprPiUa.png" alt="如何">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T16:00:00.000Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/Daily/daily_1/" class="has-link-black-ter is-size-6">如何</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/11/04/CS/sql_tutorial/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/11/04/yf4WdxAUhmMEcKv.png" alt="SQL基础教程">
@@ -560,6 +613,25 @@ var _hmt = _hmt || [];
                     <a href="/2019/11/04/CS/sql_tutorial/" class="has-link-black-ter is-size-6">SQL基础教程</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/04/Daily/through_our_lives/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/09/28/c2bSjExyRprPiUa.png" alt="如何">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T16:00:00.000Z">2019-11-04</time></div>
+                    <a href="/2019/11/04/Daily/through_our_lives/" class="has-link-black-ter is-size-6">如何</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -586,25 +658,6 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/2019/08/02/CS/algs_3/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
-                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/08/02/CS/cpp_ex/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/08/03/Ve3ET4YxibwtDkS.jpg" alt="C++编程练习">
@@ -617,6 +670,25 @@ var _hmt = _hmt || [];
                     <a href="/2019/08/02/CS/cpp_ex/" class="has-link-black-ter is-size-6">C++编程练习</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/02/CS/algs_3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
+                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                     </p>
                 </div>
             </div>
