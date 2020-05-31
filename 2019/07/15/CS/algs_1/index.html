@@ -8,25 +8,25 @@
 
 
     <meta name="description" content="在计算机科学（CS）中，算法（Algorithm）是描述一种有限、确定、有效，并且适合用计算机语言来实现的解决问题的方法，它是CS领域的基础与核心。 这里先通过一个动态连通性问题，来了解设计、分析算法的基本过程。">
-<meta name="keywords" content="CS,Coursera,Algorithms,Java">
+<meta name="keywords" content="CS,Coursera,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Princeton】算法(1)：Union-Find">
 <meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2019&#x2F;07&#x2F;15&#x2F;CS&#x2F;algs_1&#x2F;index.html">
 <meta property="og:site_name" content="Through Our Lives">
 <meta property="og:description" content="在计算机科学（CS）中，算法（Algorithm）是描述一种有限、确定、有效，并且适合用计算机语言来实现的解决问题的方法，它是CS领域的基础与核心。 这里先通过一个动态连通性问题，来了解设计、分析算法的基本过程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;03&#x2F;5c2dbad690a3b.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba5e8b89f5.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba6125bdb5.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba6296f73c.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba64787388.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;09&#x2F;5c35b8e0485b0.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba6663c16e.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba69620db5.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;03&#x2F;5ccba6d15fa0f.jpg">
-<meta property="og:updated_time" content="2019-08-01T07:54:44.189Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531173730.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531173630.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200530173903.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531174802.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531174829.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531174859.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531174916.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531174941.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531175001.png">
+<meta property="og:updated_time" content="2020-05-31T09:57:56.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;03&#x2F;5c2dbad690a3b.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531173730.png">
 
 
 
@@ -168,7 +168,7 @@ var _hmt = _hmt || [];
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(1)：Union-Find">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法(1)：Union-Find">
         </span>
     </div>
     
@@ -186,7 +186,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    23 分钟 读完 (大约 3514 个字)
+                    23 分钟 读完 (大约 3523 个字)
                 </span>
                 
                 
@@ -214,40 +214,40 @@ var _hmt = _hmt || [];
 <li>传递性：如果q和r相连，则p和r也相连</li>
 </ul>
 <p>由相连的对象相互连接组成的最大集合称为<strong>连通分量（Connected Components）</strong>，如下图所示的两个连通分量：</p>
-<p><img src="https://i.loli.net/2019/01/03/5c2dbad690a3b.png" alt="连通分量"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173730.png" alt="连通分量"></p>
 <p>要求设计一种数据结构来存储所有输入的整数对之间的连通信息，基于它设计可以高效地连通对象、查询对象的连通性的Union-Find算法。</p>
 <p>现实中，解决该问题的算法有广泛的应用范围。例如，用整数对来代表两台计算机，该算法就可以用来判断计算机之间通信线路是否畅通；用整数对来代表两个人，该算法就可以用来判断某个社交软件中多个人之间的朋友关系。</p>
 <p>根据问题的要求，为Union-Find算法设置如下几个API：</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba5e8b89f5.jpg" alt="Union-Find API"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173630.png" alt="Union-Find API"></p>
 <p>完成上述方法的设计后，可用以下用例来检查这些API的正确性：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">int</span> N = StdIn.readInt();</span><br><span class="line">  UF uf = <span class="hljs-keyword">new</span> UF(N);</span><br><span class="line">  <span class="hljs-keyword">while</span> (!StdIn.isEmpty()) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> p = StdIn.readInt();</span><br><span class="line">    <span class="hljs-keyword">int</span> q = StdIn.readInt();</span><br><span class="line">    <span class="hljs-keyword">if</span> (!uf.connected(p, q)) &#123;</span><br><span class="line">      uf.union(p, q);</span><br><span class="line">      StdOut.println(p + <span class="hljs-string">" "</span> + q);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="Quick-Find算法"><a href="#Quick-Find算法" class="headerlink" title="Quick-Find算法"></a>Quick-Find算法</h4><p>Quick-Find算法以数组id[]作为数据结构，一个对象对应数组中的一个索引。该算法的思想，是保证当且仅当id[p]的值等于id[q]时，索引p和q对应的对象才是连通的，也就是说，同一个连通分量中的所有对象在数组id[]中对应的值必须全部相同。如下图所示：</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba6125bdb5.jpg" alt="Quick-Find"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200530173903.png" alt="Quick-Find"></p>
 <p>此时，要实现connected方法，只要由索引值p、q，判断id[p]和id[q]是否相等；find方法只需要返回某个对象在数组id[]中对应的值；而每次执行union方法时，都需要遍历整个数组id[]，将已连通的分量全部赋上相同的值。</p>
 <p>Quick-Find具体实现为：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickFindUF</span> </span>&#123;</span><br><span class="line">   <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] id;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">QuickFindUF</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">      id = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];</span><br><span class="line">      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++) <span class="hljs-comment">// 初始化数组</span></span><br><span class="line">        id[i] = i;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">boolean</span> <span class="hljs-title">connected</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> id[p] == id[q];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">     <span class="hljs-keyword">return</span> id[p];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">     <span class="hljs-keyword">int</span> pid = find(p);</span><br><span class="line">     <span class="hljs-keyword">int</span> qid = find(q);</span><br><span class="line">     <span class="hljs-keyword">if</span> (pid == qid)</span><br><span class="line">       <span class="hljs-keyword">return</span>;</span><br><span class="line"></span><br><span class="line">     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; id.length; i++) <span class="hljs-comment">// 遍历整个数组</span></span><br><span class="line">       <span class="hljs-keyword">if</span> (id[i] == pid)</span><br><span class="line">         id[i] = qid;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Quick-Find中，每执行一次find只访问了一次数组，而执行一次union需要访问$(N+3)$到$(2N+1)$次数组。如果最后只得到一个连通分量，则至少需要调用$N-1$次union，总共至少需要访问$(N+3)(N-1) \sim N^2$次数组。</p>
 <p>由此可知，Quick-Find算法的执行过程是平方级别的，面对大量的输入时该算法无法高效进行处理。</p>
 <h4 id="Quick-Union算法"><a href="#Quick-Union算法" class="headerlink" title="Quick-Union算法"></a>Quick-Union算法</h4><p>Quick-Union主要提高了Quick-Find中union方法的速度。还是以一个数组id[]作为数据结构，但这个数组有了新的含义：一个对象还是对应id[]的一个索引，但id[]中存储的值代表了同一个连通分量中的另一个对象对应的索引值。在这里，id[]用父链接的形式代表了一片森林，且根节点及初始时各对象的链接到其本身。</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba6296f73c.jpg" alt="Quick-Union"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531174802.png" alt="Quick-Union"></p>
 <p>如图所示，每个对象都有它的根节点及父节点，3的父节点是4，2、4的父节点是9，而2、3、4的根节点都是9，9的父节点和根节点则是它本身，这样就形成一颗树。由多棵这样的树组成的集合则为森林。</p>
 <p>实现该算法，connected方法要做的，就是确定两个对象的根节点的值是否相同；find方法则确定对象的根节点；union方法将两个对象的根节点的值统一。</p>
 <p>Quick-Union具体实现为：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickUnionUF</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] id;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">QuickUnionUF</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">     id = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i ++)</span><br><span class="line">      id[i] = i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">     <span class="hljs-keyword">while</span> (p != id[p])</span><br><span class="line">       p = id[p]; <span class="hljs-comment">// 循环，直到找出根节点</span></span><br><span class="line">     <span class="hljs-keyword">return</span> p;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">connected</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> find(p) == find(q);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">     <span class="hljs-keyword">int</span> pRoot = find(p);</span><br><span class="line">     <span class="hljs-keyword">int</span> qRoot = find(q);</span><br><span class="line">     <span class="hljs-keyword">if</span> (pRoot == qRoot)</span><br><span class="line">       <span class="hljs-keyword">return</span>;</span><br><span class="line"></span><br><span class="line">     id[pRoot] = qRoot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Quick-Union算法的成本依赖于输入。最好情况下，find方法只要访问一次数组就能得到它的根节点，而最坏情况下，则需要访问$2N+1$次数组。遇到大型的问题，Quick-Union在部分情况下比Quick-Find快了一些，但极端情况下，id[]中某棵树的高度不断增加，导致find的代价不断变大，此时该算法的性能比Quick-Find还要糟糕。</p>
 <h4 id="加权Quick-Union算法"><a href="#加权Quick-Union算法" class="headerlink" title="加权Quick-Union算法"></a>加权Quick-Union算法</h4><p>Quick-Union算法的缺点在于一棵树的高度可能不断增长，而导致寻找根节点的代价不断变大。对此可采用的改进方法之一，便是进行<strong>加权</strong>。</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba64787388.jpg" alt="加权前后"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531174829.png" alt="加权前后"></p>
 <p>所谓加权，在原Quick-Union算法的基础上，跟踪每一棵树中对象的个数，确保总是将较小树的根节点作为较大树的子节点，避免将一棵大树连接在小树下面，从而有效缩短树的高度。</p>
 <p>要实现加权，只需要另外维护一个数组，来保存各根节点的分量数目，并在union方法增加部分代码，其具体实现如下：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span>  <span class="hljs-title">WeightedQuickUnionUF</span> </span>&#123;</span><br><span class="line">   <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] id;</span><br><span class="line">   <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] sz; <span class="hljs-comment">// 各根节点对应的分量数目</span></span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WeightedQuickUnionUF</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">      id = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];</span><br><span class="line">      sz = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[N];</span><br><span class="line">      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        id[i] = i;</span><br><span class="line">        sz[i] = <span class="hljs-number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">      <span class="hljs-keyword">while</span> (p != id[p])</span><br><span class="line">        p = id[p];</span><br><span class="line">      <span class="hljs-keyword">return</span> p;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">connected</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> find(p) == find(q);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">     <span class="hljs-keyword">int</span> pRoot = find(p);</span><br><span class="line">     <span class="hljs-keyword">int</span> qRoot = find(q);</span><br><span class="line"></span><br><span class="line">     <span class="hljs-keyword">if</span> (pRoot == qRoot)</span><br><span class="line">       <span class="hljs-keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="hljs-keyword">if</span> (sz[pRoot] &lt; sz[qRoot]) &#123;</span><br><span class="line">         id[pRoot] = qRoot;</span><br><span class="line">         sz[qRoot] += sz[pRoot];</span><br><span class="line">      &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">         id[qRoot] = pRoot;</span><br><span class="line">         sz[pRoot] += sz[qRoot];</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>将$N$个对象连结到多棵树上，形成的树中，高度最大为$\log N$。因此在加权Quick-Union中，对N个输入对，union过程最多需要访问$\log N$次数组，find寻找根节点时最多也只需要访问$\log N$次数组。面对大量输入时，该算法的性能就比较能接受了，且该算法实现起来也相对容易。</p>
-<p><img src="https://i.loli.net/2019/01/09/5c35b8e0485b0.png" alt="树的高度"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531174859.png" alt="树的高度"></p>
 <p>该算法还可以进一步改进：在加权Quick-Union的基础上，进一步进行<strong>路径压缩（Path Compression）</strong>。在找到某个对象的根节点后，将这个对象的节点直接连接到根节点，这样整个树中节点寻找根节点的路径就能得到极大的压缩。</p>
 <p>实际上，为了只添加少量代码，只将每个节点链接到其祖父节点上，虽然这样并没有将树完全展平，但只需要修改find方法中的一行代码，就将树基本展平，效果和完全展平相当。具体的修改如下：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">while</span>(i != id[i]) &#123;</span><br><span class="line">    id[i] = id[id[i]];</span><br><span class="line">    i = id[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>总结比较一下在N个对象上进行M次Union-Find操作时，以上几种算法的性能：</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba6663c16e.jpg" alt="比较"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531174916.png" alt="比较"></p>
 <p>下面是研究某个问题的算法时，需要遵循的基本步骤：</p>
 <ol>
 <li>完整而详细地定义问题，找出解决问题必需的基本抽象操作，定义一份API；</li>
@@ -268,11 +268,11 @@ var _hmt = _hmt || [];
 <p>分析可知，对于大量的输入，3-SUM程序中执行次数最多的将是if语句，且执行次数为：$$g(N) = C_N^3 = \frac{N(N-1)(N-2)}{6} = \frac{N^3}{6} - \frac{N^2}{2} + \frac{N}{3} $$。</p>
 <p>表达式中，其他项相比首项都要小很多，于是可以用$g(N) \sim af(N)$的近似方式，忽略较小的项以简化式子，同时以此对算法的开销作大致衡量。其中$f(N)$称为$g(N)$的增长数量级，$a$用来进一步修正偏差，它的值取决于计算机的具体型号。那么对上例即有：$$g(N) \sim \frac16 N^3$$</p>
 <p>对程序中执行最为频繁的语句，其执行次数$g(N)$的增长数量级$f(N)$可用来表示程序运行时间的增长数量级。在分析各种算法性能的过程中，常遇到的增长数量级有下面几类：</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba69620db5.jpg" alt="函数"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531174941.png" alt="函数"></p>
 <p>使用<strong>二分查找（Binary Search）</strong>来解决前面的3-SUM问题，其增长数量级能够从$N^3$降到$N^2 \log N$。</p>
 <p>除了算法的增长阶数外，不同的输入模型也会造成算性能的剧烈变化。因此在进行算法分析时，常需要考虑一个算法运行时间的<strong>最好情况</strong>和<strong>最坏情况</strong>。最好情况是算法代价的<strong>下界（low bound）</strong>，程序运行的时间总是大于等于该值，最坏情况是算法代价的<strong>上界（upper bound</strong>，程序运行的时间总是小于等于该值。综合两种情况，就可以得到用以衡量一般情况的算法的平均性能。</p>
 <p>常用$\Theta$、$O$和$\Omega$这几个符号来描述性能的界限：</p>
-<p><img src="https://i.loli.net/2019/05/03/5ccba6d15fa0f.jpg" alt="三个符号"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531175001.png" alt="三个符号"></p>
 <ul>
 <li>$O$用以描述算法性能的渐进上界，例如$O(N^2)$就表示N增长时，程序运行时间小于某个常数乘以$N^2$</li>
 <li>$\Omega$用以描述最坏情况下的性能下限，例如$\Omega(N^2)$就表示N增长时，程序运行时间比某个常数乘以$N^2$要大</li>
@@ -299,7 +299,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithms/" rel="tag">Algorithms</a>, <a class="has-link-grey -link" href="/tags/CS/" rel="tag">CS</a>, <a class="has-link-grey -link" href="/tags/Coursera/" rel="tag">Coursera</a>, <a class="has-link-grey -link" href="/tags/Java/" rel="tag">Java</a>
+                    <a class="has-link-grey -link" href="/tags/CS/" rel="tag">CS</a>, <a class="has-link-grey -link" href="/tags/Coursera/" rel="tag">Coursera</a>, <a class="has-link-grey -link" href="/tags/Java/" rel="tag">Java</a>
                 </div>
             </div>
         </div>
@@ -350,9 +350,9 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/30/CS/algs_2/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/17/CS/algs_1_ex/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">【Princeton】算法(2)：栈和队列</span>
+                <span class="level-item">【Princeton】算法习题(1)：Union-Find</span>
             </a>
         </div>
         
@@ -430,7 +430,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        32
                     </p>
                 </div>
             </div>
@@ -450,7 +450,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -544,7 +544,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">数据结构与算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
@@ -574,7 +574,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Algorithms/" style="font-size: 11.67px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.67px;">CNN</a> <a href="/tags/CS/" style="font-size: 15px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 18.33px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 16.67px;">EE</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.67px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 10px;">Weekly</a>
+        <a href="/tags/Algorithms/" style="font-size: 12.22px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 11.11px;">Weekly</a>
     </div>
 </div>
 
@@ -591,9 +591,47 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2020/05/31/CS/algs_3_ex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法习题(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-30T16:00:00.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/CS/algs_3_ex/" class="has-link-black-ter is-size-6">【Princeton】算法习题(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/29/Weekly/weekly-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/1588510243560.jpg" alt="『my life will..』2 宝贝 (in the night)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T16:00:00.000Z">2020-05-29</time></div>
+                    <a href="/2020/05/29/Weekly/weekly-2/" class="has-link-black-ter is-size-6">『my life will..』2 宝贝 (in the night)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/05/CS/leetcode_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/httpsraw.githubusercontent.comHugsy19Picbedmasterimg20200530171752.png.png" alt="【leetcode】验证二叉搜索树">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/leetcode.png" alt="【leetcode】验证二叉搜索树">
                 </p>
             </a>
             
@@ -602,7 +640,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-04T16:00:00.000Z">2020-05-05</time></div>
                     <a href="/2020/05/05/CS/leetcode_1/" class="has-link-black-ter is-size-6">【leetcode】验证二叉搜索树</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                     </p>
                 </div>
             </div>
@@ -646,44 +684,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/02/CS/algs_3/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
-                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/30/CS/algs_2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(2)：栈和队列">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-29T16:00:00.000Z">2019-07-30</time></div>
-                    <a href="/2019/07/30/CS/algs_2/" class="has-link-black-ter is-size-6">【Princeton】算法(2)：栈和队列</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -702,7 +702,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -746,7 +746,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -899,7 +899,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithms/">
                         <span class="tag">Algorithms</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -918,16 +918,23 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CS/">
                         <span class="tag">CS</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Coursera/">
                         <span class="tag">Coursera</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">19</span>
                     </a>
                 </div>
                 
@@ -948,7 +955,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1011,7 +1018,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Weekly/">
                         <span class="tag">Weekly</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

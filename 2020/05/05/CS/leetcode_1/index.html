@@ -8,7 +8,7 @@
 
 
     <meta name="description" content="leetcode刷题">
-<meta name="keywords" content="CS">
+<meta name="keywords" content="CS,CPP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【leetcode】验证二叉搜索树">
 <meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2020&#x2F;05&#x2F;05&#x2F;CS&#x2F;leetcode_1&#x2F;index.html">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200530173707.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200530173803.png">
-<meta property="og:updated_time" content="2020-05-30T09:45:08.405Z">
+<meta property="og:updated_time" content="2020-05-31T09:58:24.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200530173707.png">
 
@@ -139,6 +139,10 @@ var _hmt = _hmt || [];
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
                     <i class="fas fa-search"></i>
@@ -157,7 +161,7 @@ var _hmt = _hmt || [];
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/httpsraw.githubusercontent.comHugsy19Picbedmasterimg20200530171752.png.png" alt="【leetcode】验证二叉搜索树">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/leetcode.png" alt="【leetcode】验证二叉搜索树">
         </span>
     </div>
     
@@ -166,6 +170,10 @@ var _hmt = _hmt || [];
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-05-04T16:00:00.000Z">2020-05-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
@@ -212,7 +220,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/CS/" rel="tag">CS</a>
+                    <a class="has-link-grey -link" href="/tags/CPP/" rel="tag">CPP</a>, <a class="has-link-grey -link" href="/tags/CS/" rel="tag">CS</a>
                 </div>
             </div>
         </div>
@@ -261,6 +269,13 @@ var _hmt = _hmt || [];
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/05/29/Weekly/weekly-2/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">『my life will..』2 宝贝 (in the night)</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -336,7 +351,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        32
                     </p>
                 </div>
             </div>
@@ -356,7 +371,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -396,6 +411,33 @@ var _hmt = _hmt || [];
 </div>
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目">
+        <span class="has-mr-6">1</span>
+        <span>题目</span>
+        </a></li><li>
+        <a class="is-flex" href="#示例">
+        <span class="has-mr-6">2</span>
+        <span>示例</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析">
+        <span class="has-mr-6">3</span>
+        <span>分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#程序">
+        <span class="has-mr-6">4</span>
+        <span>程序</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 <div class="card widget">
@@ -411,7 +453,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">数据结构与算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
@@ -441,7 +483,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Algorithms/" style="font-size: 11.67px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.67px;">CNN</a> <a href="/tags/CS/" style="font-size: 15px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 18.33px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 16.67px;">EE</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.67px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 10px;">Weekly</a>
+        <a href="/tags/Algorithms/" style="font-size: 12.22px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 11.11px;">Weekly</a>
     </div>
 </div>
 
@@ -458,9 +500,47 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2020/05/31/CS/algs_3_ex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法习题(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-30T16:00:00.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/CS/algs_3_ex/" class="has-link-black-ter is-size-6">【Princeton】算法习题(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/29/Weekly/weekly-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/1588510243560.jpg" alt="『my life will..』2 宝贝 (in the night)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T16:00:00.000Z">2020-05-29</time></div>
+                    <a href="/2020/05/29/Weekly/weekly-2/" class="has-link-black-ter is-size-6">『my life will..』2 宝贝 (in the night)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/05/CS/leetcode_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/httpsraw.githubusercontent.comHugsy19Picbedmasterimg20200530171752.png.png" alt="【leetcode】验证二叉搜索树">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/leetcode.png" alt="【leetcode】验证二叉搜索树">
                 </p>
             </a>
             
@@ -469,7 +549,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-04T16:00:00.000Z">2020-05-05</time></div>
                     <a href="/2020/05/05/CS/leetcode_1/" class="has-link-black-ter is-size-6">【leetcode】验证二叉搜索树</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                     </p>
                 </div>
             </div>
@@ -513,44 +593,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/02/CS/algs_3/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
-                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/30/CS/algs_2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(2)：栈和队列">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-29T16:00:00.000Z">2019-07-30</time></div>
-                    <a href="/2019/07/30/CS/algs_2/" class="has-link-black-ter is-size-6">【Princeton】算法(2)：栈和队列</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -569,7 +611,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -613,7 +655,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -766,7 +808,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithms/">
                         <span class="tag">Algorithms</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -785,16 +827,23 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CS/">
                         <span class="tag">CS</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Coursera/">
                         <span class="tag">Coursera</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">19</span>
                     </a>
                 </div>
                 
@@ -815,7 +864,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -878,7 +927,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Weekly/">
                         <span class="tag">Weekly</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

@@ -2,26 +2,26 @@
 <html  lang="zh">
 <head>
     <meta charset="utf-8">
-<title>【Princeton】算法习题(1)：Union-Find - Sky Inside the Eyewall</title>
+<title>【Princeton】算法习题(1)：Union-Find - Through Our Lives</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
 
     <meta name="description" content="week1的面试题（Interview Question）、编程作业（Percolation）及配套书籍中的部分课后习题详解（仅供参考）。">
-<meta name="keywords" content="Java,CS,Coursera,Algorithms">
+<meta name="keywords" content="CS,Coursera,Algorithms,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Princeton】算法习题(1)：Union-Find">
 <meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2019&#x2F;07&#x2F;17&#x2F;CS&#x2F;algs_1_ex&#x2F;index.html">
-<meta property="og:site_name" content="Sky Inside the Eyewall">
+<meta property="og:site_name" content="Through Our Lives">
 <meta property="og:description" content="week1的面试题（Interview Question）、编程作业（Percolation）及配套书籍中的部分课后习题详解（仅供参考）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;09&#x2F;5c35c036e511a.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;09&#x2F;5c35c001165ed.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;09&#x2F;5c35c0c5d8933.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;06&#x2F;21&#x2F;5d0c3ddf3fa3f55427.jpg">
-<meta property="og:updated_time" content="2019-08-01T08:57:24.432Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531181659.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531181723.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531181753.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531181817.png">
+<meta property="og:updated_time" content="2020-05-31T10:18:24.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;01&#x2F;09&#x2F;5c35c036e511a.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Hugsy19&#x2F;Picbed&#x2F;master&#x2F;img&#x2F;20200531181659.png">
 
 
 
@@ -131,7 +131,7 @@ var _hmt = _hmt || [];
                 href="/tags/Math/">Math</a>
                 
                 <a class="navbar-item"
-                href="/tags/Daily/">Daily</a>
+                href="/tags/Weekly/">Weekly</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -163,7 +163,7 @@ var _hmt = _hmt || [];
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法习题(1)：Union-Find">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法习题(1)：Union-Find">
         </span>
     </div>
     
@@ -255,9 +255,9 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <h3 id="编程作业：渗透问题"><a href="#编程作业：渗透问题" class="headerlink" title="编程作业：渗透问题"></a>编程作业：渗透问题</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>给定一个由$N \times N$个方格组成的方形水槽，其中每个方格是随机开启或关闭。相邻的开启方格可形成一条通路。如果存在一条从水槽顶端到底端的通路，则称该水槽是<strong>渗透（Percolation）</strong>的。</p>
-<p><img src="https://i.loli.net/2019/01/09/5c35c036e511a.png" alt="渗透与否"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531181659.png" alt="渗透与否"></p>
 <p>假设其中的各方格开启的概率为$p$，该问题想要研究$p$的大小与整个系统渗透的概率之间的关系。经过实验，当水槽的大小分别为$20\times20$、$100\times100$时，可以得到以下面的两个曲线：</p>
-<p><img src="https://i.loli.net/2019/01/09/5c35c001165ed.png" alt="曲线"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531181723.png" alt="曲线"></p>
 <p>要求编程建立一个模型，来验证当整个系统渗透时，方格的开启概率$p$的取值区间。</p>
 <ul>
 <li><a href="http://coursera.cs.princeton.edu/algs4/assignments/percolation.html" target="_blank" rel="noopener">具体要求</a></li>
@@ -265,9 +265,9 @@ var _hmt = _hmt || [];
 </ul>
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>用Union-Find算法来解决该问题，将各方格抽象为节点，并用使用二维数组进行索引，二维数组索引值从$1$开始。</p>
 <p>为了方便判断整个系统是否渗透，可以在顶部和底部分别添加一个虚节点，它们分别与系统的顶层及底层所有已开启的节点连接。如此，只要判断顶部和底部的虚节点是否连通，即可知整个系统是否渗透。</p>
-<p><img src="https://i.loli.net/2019/01/09/5c35c0c5d8933.png" alt="渗透模型"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531181753.png" alt="渗透模型"></p>
 <p>注意到，由于底部的虚节点与底层所有已开启的节点都是连通的，因此在整个系统渗透后，将产生如下图所示的“倒灌（backwash）”问题：</p>
-<p><img src="https://i.loli.net/2019/06/21/5d0c3ddf3fa3f55427.jpg" alt="backwash"></p>
+<p><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531181817.png" alt="backwash"></p>
 <p>该问题会导致对系统中某个节点开启与否的检查结果变得不准确，解决的一个简单办法是同时维护两个水槽系统，一个包含顶部及底部虚节点，另一个只包含顶部虚节点。</p>
 <p>根据提示，抽象好整个系统后，可用蒙特卡洛（Monte Carlo）法进行分析：</p>
 <ol>
@@ -433,7 +433,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        32
                     </p>
                 </div>
             </div>
@@ -443,7 +443,7 @@ var _hmt = _hmt || [];
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        3
                     </p>
                 </div>
             </div>
@@ -453,7 +453,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        19
+                        18
                     </p>
                 </div>
             </div>
@@ -547,7 +547,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">数据结构与算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
@@ -558,20 +558,12 @@ var _hmt = _hmt || [];
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">
-            <span class="level-start">
-                <span class="level-item">编程语言</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
             <span class="level-start">
                 <span class="level-item">读书笔记</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -585,7 +577,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Algorithms/" style="font-size: 13.33px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Daily/" style="font-size: 10px;">Daily</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 12.22px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Math/" style="font-size: 11.11px;">Math</a> <a href="/tags/Python/" style="font-size: 12.22px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a>
+        <a href="/tags/Algorithms/" style="font-size: 12.22px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 11.11px;">Weekly</a>
     </div>
 </div>
 
@@ -599,6 +591,82 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/05/31/CS/algs_3_ex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法习题(3)：排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-30T16:00:00.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/CS/algs_3_ex/" class="has-link-black-ter is-size-6">【Princeton】算法习题(3)：排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/29/Weekly/weekly-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/1588510243560.jpg" alt="『my life will..』2 宝贝 (in the night)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T16:00:00.000Z">2020-05-29</time></div>
+                    <a href="/2020/05/29/Weekly/weekly-2/" class="has-link-black-ter is-size-6">『my life will..』2 宝贝 (in the night)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/05/CS/leetcode_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/leetcode.png" alt="【leetcode】验证二叉搜索树">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-04T16:00:00.000Z">2020-05-05</time></div>
+                    <a href="/2020/05/05/CS/leetcode_1/" class="has-link-black-ter is-size-6">【leetcode】验证二叉搜索树</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/25/Weekly/weekly-1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/09/28/c2bSjExyRprPiUa.png" alt="『my life will..』1 Scream">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-24T16:00:00.000Z">2020-04-25</time></div>
+                    <a href="/2020/04/25/Weekly/weekly-1/" class="has-link-black-ter is-size-6">『my life will..』1 Scream</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -619,82 +687,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/04/Daily/through_our_lives/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/09/28/c2bSjExyRprPiUa.png" alt="如何">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T16:00:00.000Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/Daily/through_our_lives/" class="has-link-black-ter is-size-6">如何</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/05/CS/algs_3_ex/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法习题(3)：排序">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T16:00:00.000Z">2019-08-05</time></div>
-                    <a href="/2019/08/05/CS/algs_3_ex/" class="has-link-black-ter is-size-6">【Princeton】算法习题(3)：排序</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/02/CS/algs_3/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d0790530109962946.jpg" alt="【Princeton】算法(3)：排序">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
-                    <a href="/2019/08/02/CS/algs_3/" class="has-link-black-ter is-size-6">【Princeton】算法(3)：排序</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/02/CS/cpp_ex/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/08/03/Ve3ET4YxibwtDkS.jpg" alt="C++编程练习">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T16:00:00.000Z">2019-08-02</time></div>
-                    <a href="/2019/08/02/CS/cpp_ex/" class="has-link-black-ter is-size-6">C++编程练习</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -708,12 +700,34 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/11/">
                 <span class="level-start">
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -724,7 +738,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -746,7 +760,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -888,7 +902,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithms/">
                         <span class="tag">Algorithms</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -924,13 +938,6 @@ var _hmt = _hmt || [];
                     <a class="tags has-addons" href="/tags/Coursera/">
                         <span class="tag">Coursera</span>
                         <span class="tag is-grey">19</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Daily/">
-                        <span class="tag">Daily</span>
-                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -984,13 +991,6 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Math/">
-                        <span class="tag">Math</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
                         <span class="tag is-grey">4</span>
@@ -1015,6 +1015,13 @@ var _hmt = _hmt || [];
                     <a class="tags has-addons" href="/tags/TensorFlow/">
                         <span class="tag">TensorFlow</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Weekly/">
+                        <span class="tag">Weekly</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1043,7 +1050,7 @@ var _hmt = _hmt || [];
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Hugsy&nbsp;
+                &copy; 2020 Hugsy&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
