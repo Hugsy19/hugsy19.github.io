@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Through Our Lives">
 <meta property="og:description" content="week2的前半部分面试题（Interview Question）、编程作业（Deques and Randomized Queues）及配套书籍中的相关部分课后习题详解（仅供参考）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-07T07:23:20.266Z">
+<meta property="og:updated_time" content="2020-06-09T13:04:40.766Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2243 个字)
+                    15 分钟 读完 (大约 2250 个字)
                 </span>
                 
                 
@@ -197,10 +197,10 @@ var _hmt = _hmt || [];
             <p>week2的前半部分面试题（Interview Question）、编程作业（Deques and Randomized Queues）及配套书籍中的相关部分课后习题详解（仅供参考）。</p>
 <a id="more"></a>
 <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><ol>
-<li><p>用两个堆栈实现一个队列，而使队列中各操作的成本均为堆栈操作的均摊常量。</p>
+<li><p>双栈队列<br>用两个堆栈实现一个队列，而使队列中各操作的成本均为堆栈操作的均摊常量。</p>
 <p>用堆栈A和B实现队列，入队时将元素直接压入栈A；出队时，栈B为空且栈A不为空，则将栈A中的元素依次全部压入栈B中再进行出栈操作，栈B不为空则直接从B出栈。具体实现如下：</p>
  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.util.LinkedList;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StackQueue</span>&lt;<span class="hljs-title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Item&gt; stackA;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Item&gt; stackB;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StackQueue</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        stackA = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        stackB = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackA.isEmpty() &amp;&amp; stackB.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(Item item)</span> </span>&#123;</span><br><span class="line">        stackA.push(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackA.size() + stackB.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Item <span class="hljs-title">dequeue</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (stackB.isEmpty()) &#123;</span><br><span class="line">            <span class="hljs-keyword">if</span> (stackA.isEmpty())</span><br><span class="line">                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"Queue is Empty"</span>);</span><br><span class="line">            <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                <span class="hljs-keyword">while</span> (!stackA.isEmpty())</span><br><span class="line">                    stackB.push(stackA.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackB.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>设计一种能够高效地完成入栈、出栈以及返回最大值等操作的数据结构。</p>
+<li><p>最大栈<br>设计一种能够高效地完成入栈、出栈以及返回最大值等操作的数据结构。</p>
 <p>除了A外，另使用一个堆栈B来存储最大值，入栈时，如果栈A为空或入栈元素大于B的栈顶元素，则将该元素同时压入栈B；出栈时，如果A和B的栈顶元素相同，那么该元素需要同时从两个栈中出栈。具体的实现如下：</p>
  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.util.LinkedList;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxStack</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Integer&gt; stackA;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Integer&gt; stackB;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MaxStack</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; stackA = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;Integer&gt; stackB = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackA.isEmpty() &amp;&amp; stackB.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackA.size() + stackB.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(Integer i)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (stackB.isEmpty() || i &gt;= stackB.peek())</span><br><span class="line">            stackB.push(i);</span><br><span class="line"></span><br><span class="line">        stackA.push(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (stackB.isEmpty())</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"Stack is Empty!!"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> max = stackB.peek();</span><br><span class="line">        <span class="hljs-keyword">if</span> (stackA.peek() == max)</span><br><span class="line">            stackB.pop();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> stackA.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">max</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> stackB.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>解释为什么Java中禁止创建泛型数组。</p>
@@ -493,7 +493,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">数据结构与算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
@@ -523,7 +523,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Algorithms/" style="font-size: 12.22px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 11.11px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 10px;">Weekly</a>
+        <a href="/tags/Algorithms/" style="font-size: 12.22px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/CS/" style="font-size: 16.67px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.78px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 14.44px;">EE</a> <a href="/tags/Java/" style="font-size: 15.56px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.33px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.89px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.11px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Weekly/" style="font-size: 11.11px;">Weekly</a>
     </div>
 </div>
 
@@ -540,18 +540,18 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/2020/06/02/CS/leetcode_2/" class="media-left">
+            <a href="/2020/07/05/Weekly/weekly-2/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/leetcode.png" alt="【leetcode】求1+2+…+n">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/1593958949739.jpg" alt="『my life will..』2 宝贝 (in the night)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-01T16:00:00.000Z">2020-06-02</time></div>
-                    <a href="/2020/06/02/CS/leetcode_2/" class="has-link-black-ter is-size-6">【leetcode】求1+2+…+n</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-04T16:00:00.000Z">2020-07-05</time></div>
+                    <a href="/2020/07/05/Weekly/weekly-2/" class="has-link-black-ter is-size-6">『my life will..』2 宝贝 (in the night)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        
                     </p>
                 </div>
             </div>
@@ -646,9 +646,9 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/06/">
+            <a class="level is-marginless" href="/archives/2020/07/">
                 <span class="level-start">
-                    <span class="level-item">六月 2020</span>
+                    <span class="level-item">七月 2020</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -880,14 +880,14 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CPP/">
                         <span class="tag">CPP</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CS/">
                         <span class="tag">CS</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -978,7 +978,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Weekly/">
                         <span class="tag">Weekly</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
