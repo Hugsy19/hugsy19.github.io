@@ -2,33 +2,21 @@
 <html  lang="zh">
 <head>
     <meta charset="utf-8">
-<title>【Andrew Ng】深度学习(3)：优化神经网络(1) - My Life Will..</title>
+<title>My Life Will...（VOL.1） - My Life Will..</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
 
-    <meta name="description" content="想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。 本文涉及优化深层神经网络中的数据划分，模型估计，预防过拟合，数据集标准化，权重初始化，梯度检验等内容。">
-<meta name="keywords" content="Coursera,ML,Deep Learning,Python">
+    <meta name="description" content="每日总结201215">
+<meta name="keywords" content="Daily">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Andrew Ng】深度学习(3)：优化神经网络(1)">
-<meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2017&#x2F;09&#x2F;28&#x2F;ML&#x2F;deep_learning_3&#x2F;index.html">
+<meta property="og:title" content="My Life Will...（VOL.1）">
+<meta property="og:url" content="http:&#x2F;&#x2F;hugsy.top&#x2F;2020&#x2F;12&#x2F;15&#x2F;Weekly&#x2F;daily_201215&#x2F;index.html">
 <meta property="og:site_name" content="My Life Will..">
-<meta property="og:description" content="想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。 本文涉及优化深层神经网络中的数据划分，模型估计，预防过拟合，数据集标准化，权重初始化，梯度检验等内容。">
+<meta property="og:description" content="每日总结201215">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xje7ndkj20pt09zq44.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjdw5ksj20oq0bh0vr.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjdlp35j20pr0bgwiv.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjcx912j20n10cqdh2.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjcoozpj20c308yjrf.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjckx23j20ch092wek.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjcftu7j20d909vmxa.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjc4jazj20c40cbwff.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xjbq2p9j20bk0cjab1.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk56957vvij21wx1xptgf.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk5695oxwzj21wx23h11b.jpg">
-<meta property="og:updated_time" content="2019-06-17T14:01:16.126Z">
+<meta property="og:updated_time" content="2020-12-15T16:29:36.528Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;ws1.sinaimg.cn&#x2F;large&#x2F;82e16446ly1fk3xje7ndkj20pt09zq44.jpg">
 
 
 
@@ -114,7 +102,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="【Andrew Ng】深度学习(3)：优化神经网络(1)" height="28">
+                <img src="/images/logo.svg" alt="My Life Will...（VOL.1）" height="28">
             
             </a>
         </div>
@@ -148,10 +136,6 @@ var _hmt = _hmt || [];
             <div class="navbar-end">
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
                     <i class="fas fa-search"></i>
@@ -170,7 +154,7 @@ var _hmt = _hmt || [];
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/17/5d079ccf2314243451.jpg" alt="【Andrew Ng】深度学习(3)：优化神经网络(1)">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/Alba.png" alt="My Life Will...（VOL.1）">
         </span>
     </div>
     
@@ -178,13 +162,13 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-09-27T16:00:00.000Z">2017-09-28</time>
+                <time class="level-item has-text-grey" datetime="2020-12-14T16:00:00.000Z">2020-12-15</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    25 分钟 读完 (大约 3781 个字)
+                    3 分钟 读完 (大约 524 个字)
                 </span>
                 
                 
@@ -198,83 +182,15 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                【Andrew Ng】深度学习(3)：优化神经网络(1)
+                My Life Will...（VOL.1）
             
         </h1>
         <div class="content">
-            <p>想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。</p>
-<p>本文涉及优化深层神经网络中的数据划分，模型估计，预防过拟合，数据集标准化，权重初始化，梯度检验等内容。</p>
+            <p>每日总结201215</p>
 <a id="more"></a>
-
-<h3 id="数据划分"><a href="#数据划分" class="headerlink" title="数据划分"></a>数据划分</h3><p>想要建立一个神经网络模型，首先，就是要设置好整个数据集中的<strong>训练集（Training Sets）</strong>、<strong>开发集（Development Sets）</strong>和<strong>测试集（Test Sets）</strong>。</p>
-<p>采用训练集进行训练时，通过改变几个超参数的值，将会得到几种不同的模型。开发集又称为<strong>交叉验证集（Hold-out Cross Validation Sets）</strong>，它用来找出建立的几个不同模型中表现最好的模型。之后将这个模型运用到测试集上进行测试，对算法的好坏程度做无偏估计。通常，会直接省去最后测试集，将开发集当做“测试集”。一个需要注意的问题是，需要保证训练集和测试集的来源一致，否则会导致最后的结果存在较大的偏差。</p>
-<h3 id="模型估计"><a href="#模型估计" class="headerlink" title="模型估计"></a>模型估计</h3><p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xje7ndkj20pt09zq44.jpg" alt="分类问题"><br>如图中的左图，对图中的数据采用一个简单的模型，例如线性拟合，并不能很好地对这些数据进行分类，分类后存在较大的<strong>偏差（Bias）</strong>，称这个分类模型<strong>欠拟合（Underfitting）</strong>。右图中，采用复杂的模型进行分类，例如深度神经网络模型，当模型复杂度过高时变容易出现<strong>过拟合（Overfitting）</strong>，使得分类后存在较大的<strong>方差（Variance）</strong>。中间的图中，采用一个恰当的模型，才能对数据做出一个差不多的分类。</p>
-<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjdw5ksj20oq0bh0vr.jpg" alt="偏差和方差"></p>
-<p>通常采用开发集来诊断模型中是否存在偏差或者时方差：</p>
-<ul>
-<li>当训练出一个模型后，发现训练集的错误率较小，而开发集的错误率却较大，这个模型可能出现了过拟合，存在较大方差;</li>
-<li>发现训练集和开发集的错误率都都较大时，且两者相当，这个模型就可能出现了欠拟合，存在较大偏差；</li>
-<li>发现训练集的错误率较大时，且开发集的错误率远较训练集大时，这个模型就有些糟糕了，方差和偏差都较大。</li>
-<li>只有当训练集和开发集的错误率都较小，且两者的相差也较小，这个模型才会是一个好的模型，方差和偏差都较小。</li>
-</ul>
-<p>模型存在较大偏差时，可采用增加神经网络的隐含层数、隐含层中的节点数，训练更长时间等方法来预防欠拟合。而存在较大方差时，则可以采用引入更多训练样本、对样本数据<strong>正则化（Regularization）</strong>等方法来预防过拟合。</p>
-<h3 id="预防过拟合"><a href="#预防过拟合" class="headerlink" title="预防过拟合"></a>预防过拟合</h3><h4 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h4><p>向Logistic回归的成本函数中加入L2正则化（也称“L2范数”）项：$${J(w,b) = \frac{1}{m} \sum_{i=1}^m \mathcal{L}({\hat y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m}||w||_2^2}$$<br>其中：$$||w||_2^2 = \sum_{j=1}^n{w_j^2} = w^T w$$<br>L2正则化是最常用的正则化类型,也存在L1正则化项：$$\frac{\lambda}{m}||w||_1 = \frac{\lambda}{m}\sum_{j=1}^n |w_j|$$<br>由于L1正则化最后得到w向量中将存在大量的0，使模型变得稀疏化,所以一般都使用L2正则化。其中的参数$\lambda$称为正则化参数，这个参数通常通过开发集来设置。<br>向神经网络的成本函数加入正则化项：<br>$${J(w^{[1]},b^{[1]},…,w^{[L]},b^{[L]}) = \frac{1}{m} \sum_{i=1}^m \mathcal{L}({\hat y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m} \sum\limits_{l=1}^L ||w^{[l]}}||^2_F$$</p>
-<p>因为w是一个$n^{[l]} \times n^{[l-1]}$矩阵所以：$${||w^{[l]}||^2_F = \sum\limits_{i=1}^{n^{[l-1]}} \sum\limits_{j=1}^{n^{[l]}} (w_{ij}^{[l]})^2}$$<br>这被称为<strong>弗罗贝尼乌斯范数（Frobenius Norm）</strong>,所以神经网络的中的正则化项被称为弗罗贝尼乌斯范数矩阵。</p>
-<p>加入正则化项后，反向传播时：$$dw^{[l]} = \frac{\partial \mathcal{L}}{\partial w^{[l]}} + \frac{\lambda}{m} w^{[l]}$$<br>更新参数时：$$ w^{[l]} := w^{[l]} - \alpha \frac{\partial \mathcal{L}}{\partial w^{[l]}} - \alpha \frac{\lambda}{m} w^{[l]}$$<br>有了新定义的$dw^{[l]}$，参数$w^{[L]}$在更新时会多减去一项$\alpha \frac{\lambda}{m} w^{[l]}$，所以L2正则化项也被称为<strong>权值衰减（Weight Decay）</strong>。</p>
-<p>参数$\lambda$用来调整式中两项的相对重要程度，较小$\lambda$偏向于最后使原本的成本函数最小化，较大的$\lambda$偏向于最后使权值$w$最小化。当$\lambda$较大时，权值$w^{[L]}$便会趋近于$0$，相当于消除深度神经网络中隐藏单元的部分作用。另一方面，在权值$w^{[L]}$变小之下，输入样本$X$随机的变化不会对神经网络模造成过大的影响，神经网络受局部噪音的影响的可能性变小。这就是正则化能够降低模型方差的原因。</p>
-<h4 id="随机失活正则化"><a href="#随机失活正则化" class="headerlink" title="随机失活正则化"></a>随机失活正则化</h4><p><strong>随机失活（DropOut）</strong>正则化，就是在一个神经网络中对每层的每个节点预先设置一个被消除的概率，之后在训练随机决定将其中的某些节点给消除掉，得到一个被缩减的神经网络，以此来到达降低方差的目的。DropOut正则化较多地被使用在<strong>计算机视觉（Computer Vision）</strong>领域。</p>
-<p>使用Python编程时可以用<strong>反向随机失活（Inverted DropOut）</strong>来实现DropOut正则化：</p>
-<p>对于一个神经网络第3层</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keep.prob = <span class="hljs-number">0.8</span></span><br><span class="line">d3 = np.random.randn(a3.shape[<span class="hljs-number">0</span>],a3.shape[<span class="hljs-number">1</span>]) &lt; keep.prob</span><br><span class="line">a3 = np.multiply(a3,d3)</span><br><span class="line">a3 /= keep.prob</span><br><span class="line">z4 = np.dot(w4,a3) + b4</span><br></pre></td></tr></table></figure>
-<p>其中的d3是一个随机生成，与第3层大小相同的的布尔矩阵，矩阵中的值为0或1。而keep.prob ≤ 1，它可以随着各层节点数的变化而变化，决定着失去的节点的个数。</p>
-<p>例如，将keep.prob设置为0.8时，矩阵d3中便会有20%的值会是0。而将矩阵a3和d3相乘后，便意味着这一层中有20%节点会被消除。需要再除以keep_prob的原因，是因为后一步求z4中将用到a3，而a3有20%的值被清零了，为了不影响下一层z4的最后的预期输出值，就需要这个步骤来修正损失的值，这一步就称为反向随机失活技术，它保证了a3的预期值不会因为节点的消除而收到影响，也保证了进行测试时采用的是DropOut前的神经网络。</p>
-<p>与之前的L2正则化一样，利用DropOut，可以简化神经网络的部分结构，从而达到预防过拟合的作用。另外，当输入众多节点时，每个节点都存在被删除的可能，这样可以减少神经网络对某一个节点的依赖性，也就是对某一特征的依赖，扩散输入节点的权重，收缩权重的平方范数。</p>
-<h4 id="数据扩增法"><a href="#数据扩增法" class="headerlink" title="数据扩增法"></a>数据扩增法</h4><p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjdlp35j20pr0bgwiv.jpg" alt="数据扩增法"></p>
-<p><strong>数据扩增（Data Augmentation）</strong>是在无法获取额外的训练样本下，对已有的数据做一些简单的变换。例如对一张图片进行翻转、放大扭曲，以此引入更多的训练样本。</p>
-<h4 id="早停止法"><a href="#早停止法" class="headerlink" title="早停止法"></a>早停止法</h4><p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjcx912j20n10cqdh2.jpg" alt="早停止法"></p>
-<p><strong>早停止（Early Stopping）</strong>是分别将训练集和开发集进行梯度下降时成本变化曲线画在同一个坐标轴内，在箭头所指两者开始发生较大偏差时就及时进行纠正，停止训练。在中间箭头处，参数w将是一个不大不小的值，理想状态下就能避免过拟合的发生。然而这种方法一方面没有很好得降低成本函数，又想以此来避免过拟合，一个方法解决两个问题，哪个都不能很好解决。</p>
-<h3 id="标准化数据集"><a href="#标准化数据集" class="headerlink" title="标准化数据集"></a>标准化数据集</h3><p>对训练及测试集进行标准化的过程为：$$ \bar{x} = \frac{1}{m} \sum_{i=1}^m x^{(i)} $$ $$ x^{(i)} := x^{(i)} - \bar{x} $$ $$ \sigma^2 = \frac{1}{m} \sum_{i=1}^m {x^{(i)}}^2$$ $$x^{(i)}:= \frac{x^{(i)}}{\sigma^2} $$<br>原始数据为：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjcoozpj20c308yjrf.jpg" alt="原始数据"></p>
-<p>经过前两步，x减去它们的平均值后：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjckx23j20ch092wek.jpg" alt="减去平均值"></p>
-<p>经过后两步，x除以它们的方差后：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjcftu7j20d909vmxa.jpg" alt="除以方差"></p>
-<p>数据集未进行标准化时，成本函数的图像及梯度下降过程将是：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjc4jazj20c40cbwff.jpg" alt="未进行标准化"></p>
-<p>而标准化后，将变为：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk3xjbq2p9j20bk0cjab1.jpg" alt="标准化后"></p>
-<h3 id="初始化权重"><a href="#初始化权重" class="headerlink" title="初始化权重"></a>初始化权重</h3><p>在之前的建立神经网络的过程中，提到权重w不能为0，而将它初始化为一个随机的值。然而在一个深层神经网络中，当w的值被初始化过大时，进入深层时呈指数型增长，造成<strong>梯度爆炸</strong>；过小时又会呈指数级衰减，造成<strong>梯度消失</strong>。</p>
-<p>Python中将w进行随机初始化时，使用numpy库中的np.random.randn()方法，randn是从均值为0的单位标准正态分布（也称“高斯分布”）进行取样。随着对神经网络中的某一层输入的数据量n的增长，输出数据的分布中，方差也在增大。结果证明，可以除以输入数据量n的平方根来调整其数值范围，这样神经元输出的方差就归一化到1了，不会过大导致到指数级爆炸或过小而指数级衰减。也就是将权重初始化为：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = np.random.randn(layers_dims[l],layers_dims[l-1]) \* np.sqrt(1.0/layers_dims[l-1])</span><br></pre></td></tr></table></figure>
-
-<p>这样保证了网络中所有神经元起始时有近似同样的输出分布。<br>当激活函数为ReLU函数时，权重最好初始化为：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = np.random.randn(layers_dims[l],layers_dims[l-1]) \* np.sqrt(2.0/layers_dims[l-1])</span><br></pre></td></tr></table></figure>
-<p>以上结论的证明过程见参考资料。</p>
-<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><p>梯度检验的实现原理，是根据导数的定义，对成本函数求导，有：$$ J’(\theta) = \frac{\partial J(\theta)}{\partial \theta}= \lim_{\epsilon\rightarrow 0}\frac{J(\theta+\epsilon)-J(\theta-\epsilon)}{2\epsilon}$$</p>
-<p>则梯度检验公式：$$J’(\theta) = \frac{J(\theta+\epsilon)-J(\theta-\epsilon)}{2\epsilon}$$</p>
-<p>其中当$\epsilon$越小时，结果越接近真实的导数也就是梯度值。可以使用这种方法，来判断反向传播进行梯度下降时，是否出现了错误。</p>
-<p>梯度检验的过程，是对成本函数的每个参数$\theta_{[i]}$加入一个很小的$\epsilon$，求得一个梯度逼近值$d\theta_{approx[i]}$：<br>$$d\theta_{approx[i]} = \frac{J(\theta_{[1]},\theta_{[2]},…,\theta_{[i]}+\epsilon)-J(\theta_{[1]},\theta_{[2]},…,\theta_{[i]}-\epsilon)}{2\epsilon}$$</p>
-<p>以解析方式求得$J’(\theta)$在$\theta$时的梯度值$d\theta$,进而再求得它们之间的欧几里得距离：<br>$$\frac{||d\theta_{approx[i]}-d\theta||_2}{||d \theta_{approx[i]}||_2+||dθ||_2}$$</p>
-<p>其中$||x||<em>2$表示向量x的2范数（各种范数的定义见参考资料）：<br>$$||x||_2 = \sum\limits\</em>{i=1}^N |x_i|^2$$</p>
-<p>当计算的距离结果与$\epsilon$的值相近时，即可认为这个梯度值计算正确，否则就需要返回去检查代码中是否存在bug。</p>
-<p>需要注意的是，不要在训练模型时进行梯度检验，当成本函数中加入了正则项时，也需要带上正则项进行检验，且不要在使用随机失活后使用梯度检验。</p>
-<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><h4 id="三种参数初始化"><a href="#三种参数初始化" class="headerlink" title="三种参数初始化"></a>三种参数初始化</h4><p>1.zeros\random\Xavier初始化</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#参数w,b初始化为0</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize_parameters_zeros</span><span class="hljs-params">(layers_dims)</span>:</span></span><br><span class="line"></span><br><span class="line">    parameters = &#123;&#125;</span><br><span class="line">    L = len(layers_dims)           </span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, L):</span><br><span class="line">        parameters[<span class="hljs-string">'W'</span> + str(l)] = np.zeros((layers_dims[l],layers_dims[l<span class="hljs-number">-1</span>]))</span><br><span class="line">        parameters[<span class="hljs-string">'b'</span> + str(l)] = np.zeros((layers_dims[l],<span class="hljs-number">1</span>))</span><br><span class="line">    <span class="hljs-keyword">return</span> parameters</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#参数w初始化为random</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize_parameters_random</span><span class="hljs-params">(layers_dims)</span>:</span></span><br><span class="line"></span><br><span class="line">    np.random.seed(<span class="hljs-number">3</span>)              </span><br><span class="line">    parameters = &#123;&#125;</span><br><span class="line">    L = len(layers_dims)           </span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, L):</span><br><span class="line">        parameters[<span class="hljs-string">'W'</span> + str(l)] = np.random.randn(layers_dims[l],layers_dims[l<span class="hljs-number">-1</span>]) * <span class="hljs-number">10</span></span><br><span class="line">        parameters[<span class="hljs-string">'b'</span> + str(l)] = np.zeros((layers_dims[l],<span class="hljs-number">1</span>))</span><br><span class="line">    <span class="hljs-keyword">return</span> parameters</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#参数w进行Xavier初始化</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize_parameters_he</span><span class="hljs-params">(layers_dims)</span>:</span></span><br><span class="line"></span><br><span class="line">    np.random.seed(<span class="hljs-number">3</span>)</span><br><span class="line">    parameters = &#123;&#125;</span><br><span class="line">    L = len(layers_dims) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, L + <span class="hljs-number">1</span>):</span><br><span class="line">        parameters[<span class="hljs-string">'W'</span> + str(l)] = np.random.randn(layers_dims[l],layers_dims[l<span class="hljs-number">-1</span>]) * np.sqrt(<span class="hljs-number">1.0</span>/(layers_dims[l<span class="hljs-number">-1</span>]))</span><br><span class="line">        parameters[<span class="hljs-string">'b'</span> + str(l)] = np.zeros((layers_dims[l],<span class="hljs-number">1</span>))</span><br><span class="line">    <span class="hljs-keyword">return</span> parameters</span><br></pre></td></tr></table></figure>
-<p>2.效果比较</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">layers = [train_X.shape[<span class="hljs-number">0</span>], <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>] <span class="hljs-comment">#设置神经网络层数及节点数</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#参数初始化为0</span></span><br><span class="line">parameters_init_zeros = model(train_X, train_Y, layers_dims = layers, initialization = <span class="hljs-string">"zeros"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#初始化random</span></span><br><span class="line">parameters_init_random = model(train_X, train_Y, layers_dims = layers, initialization = <span class="hljs-string">"random"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#Xavier初始化</span></span><br><span class="line">parameters_init_he = model(train_X, train_Y, layers_dims = layers, initialization = <span class="hljs-string">"he"</span>)</span><br></pre></td></tr></table></figure>
-<p>结果为：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk56957vvij21wx1xptgf.jpg" alt="zeros\random\Xavier初始化"></p>
-<h4 id="无-L2-DropOut正则化"><a href="#无-L2-DropOut正则化" class="headerlink" title="无\L2\DropOut正则化"></a>无\L2\DropOut正则化</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">layers = [train_x.shape[<span class="hljs-number">0</span>], <span class="hljs-number">20</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>] <span class="hljs-comment">#设置神经网络层数及节点数</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#不进行正则化</span></span><br><span class="line">parameters_no_reg = model(train_x, train_y, layers_dims = layers, learning_rate = <span class="hljs-number">0.3</span>, num_iterations = <span class="hljs-number">30000</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#采用L2正则化</span></span><br><span class="line">parameters_L2_reg = model(train_x, train_y, layers_dims = layers, learning_rate = <span class="hljs-number">0.3</span>, num_iterations = <span class="hljs-number">30000</span>, lambd = <span class="hljs-number">0.7</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#采用DropOut正则化</span></span><br><span class="line">parameters_dropout_reg = model(train_x, train_y, layers_dims = layers, learning_rate = <span class="hljs-number">0.3</span>, num_iterations = <span class="hljs-number">30000</span>, keep_prob = <span class="hljs-number">0.86</span>)</span><br></pre></td></tr></table></figure>
-<p>结果为：<br><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk5695oxwzj21wx23h11b.jpg" alt="无\L2\DropOut正则化"></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
-<li><a href="http://mooc.study.163.com/course/deeplearning_ai-2001281003#/info" target="_blank" rel="noopener">吴恩达-改善深层神经网络-网易云课堂</a></li>
-<li><a href="https://www.coursera.org/learn/deep-neural-network/" target="_blank" rel="noopener">Andrew Ng-Improving Deep Neural Networks-Coursera</a></li>
-<li><a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">deeplearning.ai</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/21560667?refer=intelligentunit" target="_blank" rel="noopener">神经网络权重初始化-知乎专栏</a></li>
-<li><a href="https://zhihu.com/question/20473040/answer/102907063" target="_blank" rel="noopener">范数的定义-知乎回答</a></li>
-<li><a href="https://github.com/BinWeber/Machine-Learning" target="_blank" rel="noopener">课程代码与资料-GitHub</a></li>
-</ol>
-<p>注：本文涉及的图片及资料均整理翻译自Andrew Ng的Deep Learning系列课程，版权归其所有。翻译整理水平有限，如有不妥的地方欢迎指出。</p>
-<hr>
-<p>更新历史：</p>
-<ul>
-<li>2017.10.02 完成初稿</li>
-<li>2018.02.13 调整部分内容</li>
-</ul>
+<h3 id="Algs4-amp-amp-C"><a href="#Algs4-amp-amp-C" class="headerlink" title="Algs4 &amp;&amp; C++"></a>Algs4 &amp;&amp; C++</h3><p>用C++初步实现了优先队列：</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;functional&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::allocator;</span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::function;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PriorityQueue</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    PriorityQueue(function&lt;<span class="hljs-keyword">bool</span>(<span class="hljs-keyword">const</span> T&amp;, <span class="hljs-keyword">const</span> T&amp;)&gt; cmp = <span class="hljs-built_in">std</span>::less&lt;T&gt;()) : beg(<span class="hljs-literal">nullptr</span>), ed(<span class="hljs-literal">nullptr</span>), cap(<span class="hljs-literal">nullptr</span>), cmp(cmp) &#123; &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">const</span> T&amp;)</span></span>;</span><br><span class="line">    <span class="hljs-function">T <span class="hljs-title">del</span><span class="hljs-params">()</span></span>;</span><br><span class="line">    <span class="hljs-keyword">size_t</span> size() &#123; <span class="hljs-keyword">size_t</span> sz = ed - beg; <span class="hljs-keyword">return</span> sz &gt; <span class="hljs-number">0</span> ? sz - <span class="hljs-number">1</span> : <span class="hljs-number">0</span>; &#125;</span><br><span class="line">    <span class="hljs-keyword">size_t</span> capacity() &#123; <span class="hljs-keyword">size_t</span> sz = cap - beg; <span class="hljs-keyword">return</span> sz &gt; <span class="hljs-number">0</span> ? sz - <span class="hljs-number">1</span> : <span class="hljs-number">0</span>; &#125;</span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    T *beg, *ed, *cap;</span><br><span class="line">    function&lt;<span class="hljs-keyword">bool</span>(<span class="hljs-keyword">const</span> T&amp;, <span class="hljs-keyword">const</span> T&amp;)&gt; cmp;</span><br><span class="line">    <span class="hljs-keyword">static</span> allocator&lt;T&gt; alloc;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">resize</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span>&amp;)</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">free</span><span class="hljs-params">()</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swim</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> k)</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sink</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> k)</span></span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">exch</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> &amp;i, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> &amp;j)</span> </span>&#123; T tmp = beg[i]; beg[i] = beg[j]; beg[j] = tmp; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line">allocator&lt;T&gt; PriorityQueue&lt;T&gt;::alloc;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-keyword">void</span> PriorityQueue&lt;T&gt;::resize(<span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> &amp;n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">auto</span> newmem = alloc.allocate(n);</span><br><span class="line">    <span class="hljs-keyword">auto</span> dest = newmem + <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">auto</span> src = beg + <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i != size(); ++i)</span><br><span class="line">        alloc.construct(dest++, <span class="hljs-built_in">std</span>::move(*src++));</span><br><span class="line">    beg = newmem;</span><br><span class="line">    ed = dest;</span><br><span class="line">    cap = beg + n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-keyword">void</span> PriorityQueue&lt;T&gt;::<span class="hljs-built_in">free</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (beg) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> p = ed; p != beg;)</span><br><span class="line">            alloc.destroy(--ed);</span><br><span class="line">        alloc.deallocate(beg, cap - beg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-keyword">void</span> PriorityQueue&lt;T&gt;::swim(<span class="hljs-keyword">size_t</span> k)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">while</span> (k &gt; <span class="hljs-number">1</span> &amp;&amp; cmp(beg[k/<span class="hljs-number">2</span>], beg[k])) &#123;</span><br><span class="line">        exch(k/<span class="hljs-number">2</span>, k);</span><br><span class="line">        k = k/<span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-keyword">void</span> PriorityQueue&lt;T&gt;::sink(<span class="hljs-keyword">size_t</span> k)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">size_t</span> sz = size();</span><br><span class="line">    <span class="hljs-keyword">while</span> (<span class="hljs-number">2</span>*k &lt;= sz) &#123;</span><br><span class="line">        <span class="hljs-keyword">size_t</span> j = <span class="hljs-number">2</span>*k;</span><br><span class="line">        <span class="hljs-keyword">if</span> (j &lt; sz &amp;&amp; cmp(beg[j], beg[j+<span class="hljs-number">1</span>])) j++;</span><br><span class="line">        <span class="hljs-keyword">if</span> (!cmp(beg[k], beg[j])) <span class="hljs-keyword">break</span>;</span><br><span class="line">        exch(k, j);</span><br><span class="line">        k = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line"><span class="hljs-keyword">void</span> PriorityQueue&lt;T&gt;::insert(<span class="hljs-keyword">const</span> T &amp;data)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">size_t</span> sz = size();</span><br><span class="line">    <span class="hljs-keyword">if</span> (sz == capacity())</span><br><span class="line">        resize(sz &gt; <span class="hljs-number">0</span> ? sz*<span class="hljs-number">2</span> : <span class="hljs-number">2</span>);</span><br><span class="line">    alloc.construct(ed++, data);</span><br><span class="line">    swim(size());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line">T PriorityQueue&lt;T&gt;::del()</span><br><span class="line">&#123;</span><br><span class="line">    T ret = beg[<span class="hljs-number">1</span>];</span><br><span class="line">    exch(<span class="hljs-number">1</span>, size());</span><br><span class="line">    alloc.destroy(--ed);</span><br><span class="line">    sink(<span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>今天决定，以这种每日总结的方式为新起点，重新开始更新博客、沉下来学习&amp;总结新知识。中午在酷安上刷到一句话，受不了自律的苦，就只能去受平庸的苦。工作一年了，早早谋划要在这一年内把该学的学了，该读的书读了，然而到上个月把C++ Primer粗读完一遍，一切才开始有那么点起色。毕业后的这一年多时间里，自己并没有什么改观，只是拖着看似沉重的步子，不经意地往前迈，平淡日子里的温水青蛙，一天天上着毫无趣味的班，熬着毫无意义的夜。时间不早了，不多废话，半夜里的各种行事都过于感性，这个决定应该是理性时刻做下的。</p>
 
         </div>
         
@@ -282,7 +198,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Coursera/" rel="tag">Coursera</a>, <a class="has-link-grey -link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a>, <a class="has-link-grey -link" href="/tags/ML/" rel="tag">ML</a>, <a class="has-link-grey -link" href="/tags/Python/" rel="tag">Python</a>
+                    <a class="has-link-grey -link" href="/tags/Daily/" rel="tag">Daily</a>
                 </div>
             </div>
         </div>
@@ -332,17 +248,10 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/10/06/ML/deep_learning_4/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">【Andrew Ng】深度学习(4)：优化神经网络(2)</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/25/ML/deep_learning_2/">
-                <span class="level-item">【Andrew Ng】深度学习(2)：神经网络</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/31/CS/algs_3_ex/">
+                <span class="level-item">【Princeton】算法习题(3)：排序</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -473,73 +382,6 @@ var _hmt = _hmt || [];
 </div>
         
             
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#数据划分">
-        <span class="has-mr-6">1</span>
-        <span>数据划分</span>
-        </a></li><li>
-        <a class="is-flex" href="#模型估计">
-        <span class="has-mr-6">2</span>
-        <span>模型估计</span>
-        </a></li><li>
-        <a class="is-flex" href="#预防过拟合">
-        <span class="has-mr-6">3</span>
-        <span>预防过拟合</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#L2正则化">
-        <span class="has-mr-6">3.1</span>
-        <span>L2正则化</span>
-        </a></li><li>
-        <a class="is-flex" href="#随机失活正则化">
-        <span class="has-mr-6">3.2</span>
-        <span>随机失活正则化</span>
-        </a></li><li>
-        <a class="is-flex" href="#数据扩增法">
-        <span class="has-mr-6">3.3</span>
-        <span>数据扩增法</span>
-        </a></li><li>
-        <a class="is-flex" href="#早停止法">
-        <span class="has-mr-6">3.4</span>
-        <span>早停止法</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#标准化数据集">
-        <span class="has-mr-6">4</span>
-        <span>标准化数据集</span>
-        </a></li><li>
-        <a class="is-flex" href="#初始化权重">
-        <span class="has-mr-6">5</span>
-        <span>初始化权重</span>
-        </a></li><li>
-        <a class="is-flex" href="#梯度检验">
-        <span class="has-mr-6">6</span>
-        <span>梯度检验</span>
-        </a></li><li>
-        <a class="is-flex" href="#Python实现">
-        <span class="has-mr-6">7</span>
-        <span>Python实现</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#三种参数初始化">
-        <span class="has-mr-6">7.1</span>
-        <span>三种参数初始化</span>
-        </a></li><li>
-        <a class="is-flex" href="#无-L2-DropOut正则化">
-        <span class="has-mr-6">7.2</span>
-        <span>无\L2\DropOut正则化</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#参考资料">
-        <span class="has-mr-6">8</span>
-        <span>参考资料</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
         
             
 <div class="card widget">
@@ -1047,7 +889,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="【Andrew Ng】深度学习(3)：优化神经网络(1)" height="28">
+                    <img src="/images/logo.svg" alt="My Life Will...（VOL.1）" height="28">
                 
                 </a>
                 <p class="is-size-7">

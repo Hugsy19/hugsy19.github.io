@@ -223,7 +223,7 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="I-O口结构及功能"><a href="#I-O口结构及功能" class="headerlink" title="I/O口结构及功能"></a>I/O口结构及功能</h3><p>51单片机的32个I/O引脚，组成P0到P3四个8位的并行双向I/O口，内部的<strong>特殊功能寄存器（Special Function Register，SFR）</strong>P0-P3分别是它们的端口锁存器，此外每个口还分别包含一个输出驱动器和输入缓冲器。四个并行口可以按字节操作，也可以按位操作。</p>
 <h4 id="P0"><a href="#P0" class="headerlink" title="P0"></a>P0</h4><p>可作一般I/O口使用，应用系统采用外部总线结构时，也可以分时复用作为双向<strong>数据总线（Data Bus）</strong>和低8位<strong>地址总线（Address Bus）</strong>。</p>
-<img src="https://i.loli.net/2019/06/21/5d0c44c31b28512402.jpg" width = "620" height = "300" />
+<img src="https://i.loli.net/2019/06/21/5d0c44c31b28512402.jpg" width="620" height="300">
 
 <p>上图为P0口某一位的结构原理图。</p>
 <p>当P0作I/O口时，CPU发出控制信号C=0，封锁与门，使场效应管V2截至，同时将下面的数据选择器（Multiplexer，MUX）拨到下方，将锁存器的$\overline Q$端与场效应管（Field Effect Transistor）V1的栅极接通。</p>
@@ -231,14 +231,14 @@ var _hmt = _hmt || [];
 <p>要注意的是，P0口作为I/O口输出时，由于输出级为漏极开路电路，需要外接<strong>上拉电阻</strong>，才能输出高电平；输入后读取数据时，V1导通将输入的高电平拉为低电平造成误读，所以在进行输入操作前，要先<strong>向端口输出锁存器写“1”</strong>。</p>
 <p>当P0口作地址/数据总线时，CPU发出控制信号C=1。由P0输出地址/数据信息时，与门打开，MUX将CPU内部地址/数据总线反向后与V1的栅极接通，V1和V2两个FET管构成推拉式输出电路，负载能力大大加强；输入数据时，是由下面的三态输入缓冲器进入内部数据的。</p>
 <h4 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h4><p>四个I/O口中功能最简单，可做一般I/O口使用。其某一位的结构原理图如下。</p>
-<img src="https://i.loli.net/2019/06/24/5d10413983d4263808.jpg" width = "620" height = "300" />
+<img src="https://i.loli.net/2019/06/24/5d10413983d4263808.jpg" width="620" height="300">
 
 <p>其内部已有上拉电阻，可直接输出高电平，驱动拉电流负载。和P0一样，端口输入后读取数据时，要先向端口输出锁存器写“1”。</p>
 <h4 id="P2"><a href="#P2" class="headerlink" title="P2"></a>P2</h4><p>可作一般I/O口使用，在应用系统采用外部总线结构时，仅用作高8位地址总线。其某一位的结构原理如下图：</p>
 <p><img src="https://i.loli.net/2019/06/21/5d0c44e3a7cc083470.jpg" alt="P2口"></p>
 <p>MUX打向左边时，作一般I/O口使用，此时于前面介绍的I/O口工作原理基本一致。Q输出为0时V1导通，外部引脚输出低电平；输出1时V1截止，由于存在内部上拉电阻，外部引脚输出高电平。输入后也可分为读引脚状态和读锁存器状态。而且端口输入后读取数据时，要先向端口输出锁存器写“1”。</p>
 <h4 id="P3"><a href="#P3" class="headerlink" title="P3"></a>P3</h4><p>可作一般I/O口使用外，每个引脚都具有第二功能。其某一位的结构原理如下图：</p>
-<img src="https://i.loli.net/2019/06/21/5d0c44ff789c857779.jpg" width = "620" height = "300" alt="P3口" />
+<img src="https://i.loli.net/2019/06/21/5d0c44ff789c857779.jpg" width="620" height="300" alt="P3口">
 
 <p>作一般I/O口用，原理同P2。使用引脚的第二功能时，对应的锁存器里必须为“1”，否则图中的与非门输出始终为1，V1导通，引脚始终在低电平，不能正常工作。</p>
 <p>每个引脚的第二功能如下表：</p>
@@ -524,7 +524,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        30
                     </p>
                 </div>
             </div>
@@ -544,7 +544,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -704,7 +704,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Algorithms/" style="font-size: 12.5px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.25px;">CNN</a> <a href="/tags/CS/" style="font-size: 16.25px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Deep-Learning/" style="font-size: 17.5px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 15px;">EE</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.75px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.75px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.25px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.75px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a>
+        <a href="/tags/Algorithms/" style="font-size: 12.5px;">Algorithms</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CNN/" style="font-size: 11.25px;">CNN</a> <a href="/tags/CS/" style="font-size: 16.25px;">CS</a> <a href="/tags/Coursera/" style="font-size: 20px;">Coursera</a> <a href="/tags/Daily/" style="font-size: 10px;">Daily</a> <a href="/tags/Deep-Learning/" style="font-size: 17.5px;">Deep Learning</a> <a href="/tags/EE/" style="font-size: 15px;">EE</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MCU/" style="font-size: 13.75px;">MCU</a> <a href="/tags/ML/" style="font-size: 18.75px;">ML</a> <a href="/tags/Machine-Learning/" style="font-size: 11.25px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 13.75px;">Python</a> <a href="/tags/Raspi/" style="font-size: 10px;">Raspi</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a>
     </div>
 </div>
 
@@ -718,6 +718,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/12/15/Weekly/daily_201215/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/Alba.png" alt="My Life Will...（VOL.1）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-12-14T16:00:00.000Z">2020-12-15</time></div>
+                    <a href="/2020/12/15/Weekly/daily_201215/" class="has-link-black-ter is-size-6">My Life Will...（VOL.1）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -795,25 +814,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/07/30/CS/algs_2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20200531173232.png" alt="【Princeton】算法(2)：栈和队列">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-29T16:00:00.000Z">2019-07-30</time></div>
-                    <a href="/2019/07/30/CS/algs_2/" class="has-link-black-ter is-size-6">【Princeton】算法(2)：栈和队列</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -825,6 +825,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -1047,6 +1058,13 @@ var _hmt = _hmt || [];
                     <a class="tags has-addons" href="/tags/Coursera/">
                         <span class="tag">Coursera</span>
                         <span class="tag is-grey">19</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Daily/">
+                        <span class="tag">Daily</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
