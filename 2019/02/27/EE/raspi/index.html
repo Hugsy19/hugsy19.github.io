@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>树莓派：基本配置 - Cornfield Chase</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#B481BB"><meta name="application-name" content="Hugsy&#039;s Blog"><meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="msapplication-TileColor" content="#B481BB"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hugsy&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="description" content="入手一块树莓派3B+，准备用它完成毕业设计，顺便深入学习一波Linux。这里先学习官方Raspbian系统的烧录和基本配置过程。"><meta property="og:type" content="blog"><meta property="og:title" content="树莓派：基本配置"><meta property="og:url" content="https://hugsy.top/2019/02/27/EE/raspi/"><meta property="og:site_name" content="Cornfield Chase"><meta property="og:description" content="入手一块树莓派3B+，准备用它完成毕业设计，顺便深入学习一波Linux。这里先学习官方Raspbian系统的烧录和基本配置过程。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://i.loli.net/2019/06/17/5d079fac51c7638424.jpg"><meta property="article:published_time" content="2019-02-26T16:00:00.000Z"><meta property="article:modified_time" content="2019-07-15T02:36:29.252Z"><meta property="article:author" content="Hugsy"><meta property="article:tag" content="EE"><meta property="article:tag" content="Raspi"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://i.loli.net/2019/06/17/5d079fac51c7638424.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hugsy.top/2019/02/27/EE/raspi/"},"headline":"树莓派：基本配置","image":["https://i.loli.net/2019/06/17/5d079fac51c7638424.jpg"],"datePublished":"2019-02-26T16:00:00.000Z","dateModified":"2019-07-15T02:36:29.252Z","author":{"@type":"Person","name":"Hugsy"},"description":"入手一块树莓派3B+，准备用它完成毕业设计，顺便深入学习一波Linux。这里先学习官方Raspbian系统的烧录和基本配置过程。"}</script><link rel="canonical" href="https://hugsy.top/2019/02/27/EE/raspi/"><link rel="alternate" href="/atom.xml" title="Cornfield Chase" type="application/atom+xml"><link rel="icon" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7b65ce26b5ae8dae153d7b4d53214ba4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/tags/CS/">CS</a><a class="navbar-item" href="/tags/EE/">EE</a><a class="navbar-item" href="/tags/ML/">ML</a><a class="navbar-item" href="/tags/Weekly/">Weekly</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-26T16:00:00.000Z" title="2/27/2019, 12:00:00 AM">2019-02-27</time>发表</span><span class="level-item"><time dateTime="2019-07-15T02:36:29.252Z" title="7/15/2019, 10:36:29 AM">2019-07-15</time>更新</span><span class="level-item">19 分钟读完 (大约2889个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">树莓派：基本配置</h1><div class="content"><p>入手一块树莓派3B+，准备用它完成毕业设计，顺便深入学习一波Linux。这里先学习官方Raspbian系统的烧录和基本配置过程。</p>
+<span id="more"></span>
+<h3 id="系统烧录"><a href="#系统烧录" class="headerlink" title="系统烧录"></a>系统烧录</h3><p>树莓派要用SD卡启动，所以最好有一张16G以上的内存卡，将系统烧录在其中，它也将作为树莓派的硬盘。</p>
+<p>基于开源特性，树莓派支持很多系统，如Ubuntu、Chrome OS、Android、Window IOT甚至是与PC功能一致的Window 10 ARM。官方提供的系统是32位的基于Debian的Raspbian，虽然从3B开始就有了64位的CPU，且据说64位的系统将使树莓派的性能最高提升30倍，但官方一直都没有要发布64位Raspbian的意思。第三方的64位的系统就留着以后折腾，现在先装上官方出品的稳定Raspbian。</p>
+<p>首先到<a target="_blank" rel="noopener" href="https://www.raspberrypi.org/downloads/raspbian/">树莓派官网</a>上下载Raspbian系统镜像，里面有三个版本可选：<br><img src="https://i.loli.net/2019/06/21/5d0cb7321d61962979.jpg" alt="Raspbian版本"></p>
+<p>第一个是带有桌面环境和一些推荐安装的软件的版本，第二个则不带有推荐安装的软件，第三个不带桌面环境。根据自己的需要，选择下载。下载期间，安装好<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1OefcTX8wOKZcWa_5zHNOHA">SDFormatter</a>和<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/13lAU9mI3agbYoNm0XLYdMQ">Win32DiskImager</a>软件，并使用SDFormatter将SD卡进行格式化：<br><img src="https://i.loli.net/2019/06/21/5d0cb74f5d1e965114.jpg" alt="SDFormatter"></p>
+<p>下载完成相应的压缩包并将系统镜像文件（.img）解压出来后，使用Win32DiskImager选择镜像文件并Write到SD卡：<br><img src="https://i.loli.net/2019/06/21/5d0cb7732c9b233389.jpg" alt="Win32DiskImager"></p>
+<p>系统写入完成后，系统就烧录到了SD卡中。SD卡的空间将被分成两部分，一部分是Windows文件系统下无法识别的Linux磁盘分，另一部分是系统的开机引导分区boot，所以不要理会Windows的格式化提示而将烧录到SD的系统又给格式化了。</p>
+<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><p>烧录完系统后，如果身边有网线以及支持HDMI输入的显示器（部分高端笔记本也支持），则可以直接将弹出SD卡并放入树莓派的SD卡卡槽中，启动系统。否则，先不急着弹出SD卡，而是进行一些简单的网络配置，以方便远登录我们的树莓派。</p>
+<p>首先开启系统的ssh，只需要在boot分区下，新建一个文件，并重命名为”ssh“，不带任何后缀名：<br><img src="https://i.loli.net/2019/06/21/5d0cb78c6f67737457.jpg" alt="ssh"></p>
+<p>ssh（Secure Shell）是专为远程会话和其他网络服务提供安全性的应用层协议，可以用它来远程访问树莓派上Raspbian系统的命令行。在Windows上大家都推荐使用带有ssh功能的<a target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTy</a>来连接树莓派，个人发现<a target="_blank" rel="noopener" href="https://gitforwindows.org/">git</a>也可以用来建立ssh连接，且操作上更为方便，建议下载使用。</p>
+<p>接下来配置树莓派的wifi网络，还是在boot分区下，新建文件并重命名为“wpa_supplicant.conf”，使用编辑器打开并填写内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">country&#x3D;CN</span><br><span class="line">ctrl_interface&#x3D;DIR&#x3D;&#x2F;var&#x2F;run&#x2F;wpa_supplicant GROUP&#x3D;netdev</span><br><span class="line">update_config&#x3D;1</span><br><span class="line"></span><br><span class="line">network&#x3D;&#123;</span><br><span class="line">ssid&#x3D;&quot;wifi名称-1&quot;</span><br><span class="line">psk&#x3D;&quot;密码-1&quot;</span><br><span class="line">key_mgmt&#x3D;WPA-PSK</span><br><span class="line">priority&#x3D;1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">network&#x3D;&#123;</span><br><span class="line">ssid&#x3D;&quot;wifi名称-2&quot;</span><br><span class="line">key_mgmt&#x3D;NONE</span><br><span class="line">priority&#x3D;2</span><br><span class="line">scan_ssid&#x3D;1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中network中各参数的含义如下：</p>
+<ul>
+<li>ssid：网络名称</li>
+<li>psk：密码</li>
+<li>key_mgmt：加密方式，一般为“WPA—PSK”，无密码则为“NONE”</li>
+<li>priority：连接优先级，数字越大优先级越高</li>
+<li>scan_ssid：连接隐藏的wifi时需要将其指定为“1”</li>
+</ul>
+<p>想要通过PC远程登录树莓派，PC和树莓派需要连接在相同的局域网中。对于笔记本，在连接到其他有线/无线网络后可开启移动热点，并在“wpa_supplicant.conf”中填写该热点的相关信息；对于不带无线网卡的台式PC，则另外需要一个wifi路由器，设置树莓派开机自动连接到该热点并用网线将PC连接到路由器上。<br><img src="https://i.loli.net/2019/06/21/5d0cb7a3114fa43509.jpg" alt="win10移动热点"></p>
+<p>完成以上配置后，就可以将SD卡弹出，并放入树莓派的SD卡卡槽中。</p>
+<h3 id="ssh登录"><a href="#ssh登录" class="headerlink" title="ssh登录"></a>ssh登录</h3><p>树莓派采用的是Micro USB电源接口，3B+上标识的是5V/2.5A。其实在不挂载大功率设备的情况下，可以直接用手机的充电头或PC的USB接口进行供电。</p>
+<p>树莓派上有两个指示灯，接入电源后，电源相关的红色的指示灯将常亮，否则说明电源方面出现供电不足等问题。绿色的是内存卡读取指示灯，闪烁时说明系统在读取内存卡。</p>
+<p>在同一局域网下想用ssh远程登录树莓派，首先需要知道树莓派IP地址。如果让树莓派开机自动连接的是笔记本开启的移动热点，Windows10下直接在“移动热点”的设置界面下即可获得树莓派的IP地址，其设备名称为“raspberrypi”：<br><img src="https://i.loli.net/2019/06/21/5d0cb7c7b4b1957327.jpg" alt="树莓派IP地址"></p>
+<p>如果树莓派连接的是路由器，则需要用浏览器访问路由器的管理界面（访问地址一般为“192.168.1.1”，因路由器不同而异），查看连接到路由器的所有设备信息，找到名为”raspberrypi”的设备并记下它的IP地址。</p>
+<p>因为树莓派的IP地址是通过<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/DHCP/218195?fr=aladdin">DHCP协议</a>自动分配到的，所以每次重新打开移动热点/路由器时该IP地址都会发生变化，后面会讲到静态IP的设置方法。</p>
+<p>获得树莓派的IP地址后，就可以打开安装好的git bash，输入命令：</p>
+<blockquote>
+<p>ssh pi@树莓派IP地址</p>
+</blockquote>
+<p>其中，“pi”是树莓派的默认用户名。随后根据提示，输入”yes”确认连接密钥，输入初始密码“raspberry”（输入时不会显示），即可ssh远程登录到Raspbian的命令行：<br><img src="https://i.loli.net/2019/06/21/5d0cb7db1dde892463.png" alt="Git Bash"></p>
+<p>ssh远程登录到命令行后，就可以通过raspi-config对系统进行一些基本的设置。使用如下命令打开raspi-config:</p>
+<blockquote>
+<p>sudo raspi-config</p>
+</blockquote>
+<p>随后进入如下界面：<br><img src="https://i.loli.net/2019/06/21/5d0cb80972ed472014.jpg" alt="raspi-config"></p>
+<p>首先依次操作：Boot Options -&gt; Splash Screen -&gt; Yes，打开欢迎界面。</p>
+<p>随后再：Interfacing Options -&gt; VNC -&gt; Yes，打开VNC服务，方便之后远程登录桌面。</p>
+<p>接着：Adcanced Options -&gt; Expend Filesystem，将树莓派的分区扩展到整个SD卡。</p>
+<p>完成这几项设置后，就可以退出raspi-config，并选择确认进行重启。</p>
+<h3 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h3><p>在没有显示器的情况下，就要通过远程访问Raspbian桌面。Windows下进行远程桌面连接，一种方法是先通过ssh连接在Raspbian上安装xrdp软件并进行一些设置，这样就可以用Windows自带的远程桌面软件（mstsc）实现远程桌面连接。另外一种方法是使用官方推荐的VNC方式连接到远程桌面。</p>
+<p>使用VNC方式进行远程桌面连接需要用到<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a>软件，它支持包含树莓派在内的多种平台，甚是方便。<br><img src="https://i.loli.net/2019/06/21/5d0cb81d6761a14837.jpg" alt="支持平台"></p>
+<p>在官网上下载安装好该软件后，输入树莓派的IP地址，按提示输入用户名和密码：<br><img src="https://i.loli.net/2019/06/21/5d0cb8393b99557266.jpg" alt="VNC Viewer"></p>
+<p>即可远程登录Raspbian桌面：<br><img src="https://i.loli.net/2019/06/21/5d0cb8549bd3222613.jpg" alt="Raspbian桌面"></p>
+<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><h4 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h4><p>在使用欢迎程序进行设定前，由于官方源在国内的速度不够理想，所以最好将树莓派的源更换为国内的清华大学镜像源。打开终端，输入：</p>
+<blockquote>
+<p>sudo leafpad /etc/apt/sources.list</p>
+</blockquote>
+<p>编辑sources.list，注释掉原来的内容，并加入以下内容：</p>
+<blockquote>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi</p>
+</blockquote>
+<p>再输入：</p>
+<blockquote>
+<p>sudo leafpad /etc/apt/sources.list.d/raspi.list</p>
+</blockquote>
+<p>编辑raspi.list，注释掉原来的内容，并加入以下内容：</p>
+<blockquote>
+<p>deb <a target="_blank" rel="noopener" href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui</p>
+</blockquote>
+<p>最后在终端执行apt-get update、upgrade即可。</p>
+<h4 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h4><p>如果按前面的设置开启了欢迎界面，那么第一次登录到Raspbian桌面是将会进入到欢迎界面。其中可以方便地更改“pi”账户的密码，以及设置国家、语言等，它将自动下载相应的语言包，按提示一步一步完成即可重启系统即可显示中文。</p>
+<p>之后，可以通过终端再次进入raspi-config，通过：Advanced Options -&gt; Resolution 选择你满意的桌面显示分辨率，重启后即完成相关设置。</p>
+<h4 id="解锁root"><a href="#解锁root" class="headerlink" title="解锁root"></a>解锁root</h4><p>可以设置root密码，以获得root用户权限。root账户默认没有密码，但是账户是锁定的。输入命令：</p>
+<blockquote>
+<p>sudo passwd root</p>
+</blockquote>
+<p>之后两次输入想要设置的root密码，再输入命令：</p>
+<blockquote>
+<p>sudo passwd –unlock root</p>
+</blockquote>
+<p>即可解锁root账户。</p>
+<h4 id="静态IP"><a href="#静态IP" class="headerlink" title="静态IP"></a>静态IP</h4><p>树莓派连接到无线网时，默认由路由器采用DHCP协议自动分配IP地址，且每次路由器重启后树莓派分配到的IP地址都会发生变化。要设置静态IP地址，只要在终端中输入：</p>
+<blockquote>
+<p>sudo leafpad /etc/dhcpcd.conf</p>
+</blockquote>
+<p>编辑dhcpcd.conf，在其中添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface eth0</span><br><span class="line"></span><br><span class="line">static ip_address&#x3D;192.168.x.x&#x2F;24</span><br><span class="line">static routers&#x3D;192.168.x.1</span><br><span class="line">static domain_name_servers&#x3D;192.168.x.1</span><br><span class="line"></span><br><span class="line">interface wlan0</span><br><span class="line"></span><br><span class="line">static ip_address&#x3D;192.168.x.x&#x2F;24</span><br><span class="line">static routers&#x3D;192.168.x.1</span><br><span class="line">static domain_name_servers&#x3D;192.168.x.1</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li>ip_address：静态ip地址</li>
+<li>router：网关地址</li>
+<li>domain_name_servers：DNS地址</li>
+</ul>
+<p>其中上面的连接有线网下的静态IP，下面则是无线网下的。其中的x需要根据具体情况设置，<strong>静态IP一定要和路由器的网段一致</strong>，否则无法连接到网络。</p>
+<p>例如，我的树莓派连接的是笔记本开的移动热点，获知该移动热点的网段为192.168.137.x后，我将静态IP设置如下；<br><img src="https://i.loli.net/2019/06/21/5d0cb871edb2317664.jpg" alt="静态IP"></p>
+<p>这样就能够通过一个固定的IP地址来访问远程桌面，另外在Windows10开启移动热点后的已连接的设备中，不会显示IP地址固定的设备的信息。</p>
+<p>到这里，树莓派的开发环境也就基本配置完成了。</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0cb8828888d60591.jpg" alt="桌面"></p>
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2019.2.28 完成初稿</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>树莓派：基本配置</p><p><a href="https://hugsy.top/2019/02/27/EE/raspi/">https://hugsy.top/2019/02/27/EE/raspi/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Hugsy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-02-27</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-07-15</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/EE/">EE</a><a class="link-muted mr-2" rel="tag" href="/tags/Raspi/">Raspi</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180700.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180901.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/03/02/ML/machine_learning_1/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">【Andrew Ng】机器学习(1)：线性回归</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/06/24/EE/android_shannon/"><span class="level-item">【Android】香农APP</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "2e55a0bfa691dac018795a867ae49f12",
+            repo: "Comment",
+            owner: "Hugsy19",
+            clientID: "a321e46c668dc3d86c4f",
+            clientSecret: "bf18f6dc879ef2ea68fc63d4387e8dddeaa1f0a2",
+            admin: ["Hugsy19"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a><p class="is-size-7"><span>&copy; 2021 Hugsy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

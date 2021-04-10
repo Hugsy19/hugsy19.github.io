@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>【Andrew Ng】机器学习(1)：线性回归 - Cornfield Chase</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#B481BB"><meta name="application-name" content="Hugsy&#039;s Blog"><meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="msapplication-TileColor" content="#B481BB"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hugsy&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="description" content="这里介绍机器学习的基本概念以及线性回归模型。"><meta property="og:type" content="blog"><meta property="og:title" content="【Andrew Ng】机器学习(1)：线性回归"><meta property="og:url" content="https://hugsy.top/2019/03/02/ML/machine_learning_1/"><meta property="og:site_name" content="Cornfield Chase"><meta property="og:description" content="这里介绍机器学习的基本概念以及线性回归模型。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://i.loli.net/2019/06/11/5cff98001678862269.jpg"><meta property="article:published_time" content="2019-03-01T16:00:00.000Z"><meta property="article:modified_time" content="2019-07-04T10:54:05.353Z"><meta property="article:author" content="Hugsy"><meta property="article:tag" content="ML"><meta property="article:tag" content="Coursera"><meta property="article:tag" content="Machine Learning"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://i.loli.net/2019/06/11/5cff98001678862269.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hugsy.top/2019/03/02/ML/machine_learning_1/"},"headline":"【Andrew Ng】机器学习(1)：线性回归","image":["https://i.loli.net/2019/06/11/5cff98001678862269.jpg"],"datePublished":"2019-03-01T16:00:00.000Z","dateModified":"2019-07-04T10:54:05.353Z","author":{"@type":"Person","name":"Hugsy"},"description":"这里介绍机器学习的基本概念以及线性回归模型。"}</script><link rel="canonical" href="https://hugsy.top/2019/03/02/ML/machine_learning_1/"><link rel="alternate" href="/atom.xml" title="Cornfield Chase" type="application/atom+xml"><link rel="icon" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7b65ce26b5ae8dae153d7b4d53214ba4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/tags/CS/">CS</a><a class="navbar-item" href="/tags/EE/">EE</a><a class="navbar-item" href="/tags/ML/">ML</a><a class="navbar-item" href="/tags/Weekly/">Weekly</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-01T16:00:00.000Z" title="3/2/2019, 12:00:00 AM">2019-03-02</time>发表</span><span class="level-item"><time dateTime="2019-07-04T10:54:05.353Z" title="7/4/2019, 6:54:05 PM">2019-07-04</time>更新</span><span class="level-item">30 分钟读完 (大约4572个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">【Andrew Ng】机器学习(1)：线性回归</h1><div class="content"><p>这里介绍机器学习的基本概念以及线性回归模型。</p>
+<span id="more"></span>
+
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>1959年，IBM科学家Arthur Samuel开发了一个跳棋程序。通过这个程序，塞缪尔驳倒了普罗维登斯提出的机器无法超越人类，像人类一样写代码和学习的模式。他创造了“机器学习（machine learning）”，并将它定义为<strong>“可以提供计算机能力而无需显式编程的研究领域”</strong>。</p>
+<p>1998年，卡内基梅隆大学的Tom MitChell给出了一种更为形式化的定义：<strong>假设用P来估计计算机程序在某任务类T上的性能，若一个程序通过利用经验E在任务T上获得了性能改善，我们则称关于T和P，该程序对E进行了学习。</strong></p>
+<p>通常，大部分机器学习问题都可以划分为<strong>监督学习（Supervised Learning）</strong>和<strong>无监督学习（Unsupervised Learning）</strong>两类：</p>
+<ul>
+<li><p><strong>监督学习</strong>：给定的数据集中已经包含了正确的输出结果，希望机器能够根据这些数据集学习一个模型，使模型能够对任意的输入，对其对应的输出做出一个好的预测。监督学习具体又可以分为：</p>
+<ul>
+<li><strong>回归（Regression）</strong>：将输入的变量映射到某个连续函数。<br>例如，根据一些房子面积与其价格的对应数据，训练一个模型来预测某面积之下的房价：<br><img src="http://ww1.sinaimg.cn/large/82e16446ly1fyk945jcgtj20jp09labx.jpg" alt="房价预测"></li>
+<li><strong>分类（Classification）</strong>：将输入变量映射成离散的类别。<br>例如，根据一些肿瘤大小与年龄的对应数据，训练一个模型来对良性、恶性肿瘤进行判断：<br><img src="https://i.loli.net/2018/12/26/5c2345682ee7c.png" alt="肿瘤判断"></li>
+</ul>
+</li>
+<li><p><strong>无监督学习</strong>：给定的数据集中不包含任何输出结果，希望机器通过算法自行分析而得出结果。无监督学习具体可以分为：</p>
+<ul>
+<li><p><strong>聚类（Clusterng）</strong>：将数据集归结为几个簇<br>例如，将各种新闻聚合成一个个新闻专题。</p>
+</li>
+<li><p><strong>非聚类（Non-clustering)</strong><br>例如，将鸡尾酒会上的音乐声和人声分离。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="单变量线性回归"><a href="#单变量线性回归" class="headerlink" title="单变量线性回归"></a>单变量线性回归</h3><p>了解一些基本概念后，这里通过解决如下问题，来学习机器学习中最基础的<strong>线性回归（linear regression）</strong>模型。</p>
+<p>假如收集到如下“房价”因“房子面积”的变化而变化的数据：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0e5wrmtxqj20ls063dgy.jpg" alt="房价预测数据"></p>
+<p>要通过这些数据解决一个“房价预测”问题，即由任意给定的“房子面积”预测出相应的“房价”。显然，这是一个监督学习下的回归问题。</p>
+<p>要解决该问题，我们就要根据已有的数据建立合适的机器学习模型。</p>
+<h4 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h4><p>这里首先对一些后面将反复用到的符号的含义约定如下：</p>
+<ul>
+<li>$m$：训练样本（training example）的数量</li>
+<li>$x^{(i)}$：第$i$个输入变量（即“训练样本”）</li>
+<li>$y^{(i)}$：第$i$个输出变量（也称“目标变量”）</li>
+<li>$(x^{(i)},y^{(i)})$：第$i$个训练样本，当$i = 1，\cdots , m$时称为一个训练集（training set）</li>
+<li>$X$：输入空间（input space，也称“样本空间”）</li>
+<li>$Y$：输出空间（output space，也称“标记空间”）</li>
+<li>$\theta_i$：要通过学习得到的第$i$个参数</li>
+</ul>
+<p>“房价预测”问题中，共有$m$个训练样本，输入变量$x$为“房子面积”，输出变量$y$是“真实房价”，且$x^{(1)} = 2104,y^{(1)} = 460$，$(x^{(1)}，y^{(1)})$组成第一个训练样本，$x^{(1)},\cdots,x^{(m)}$形成样本空间$X$，$y^{(1)},\cdots,y^{(m)}$则形成标记空间$Y$。</p>
+<h4 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h4><p>在解决监督学习问题，我们的目标是：给定一个训练集，希望从中学得一个由$X$到$Y$的<strong>假设函数（hypothesis function）</strong>$h(x)$，使得对于任意的输入$x$，都能通过$h(x)$准确预测出相应的输出$y$，如下图所示：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0e5ppfxajj20az078t8s.jpg" alt="监督学习"></p>
+<p>问题中，如果将假设函数简单地设定为一个线性函数：$$h_\theta(x) = \theta_0 + \theta_1x $$<br>那么我们的目标，就是根据给定的训练样本，获得假设函数中的两个参数值，而获得能过够通过房子面积预测房价的线性回归模型。<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0e5vy6x5gj20la07wjtf.jpg" alt="线性回归模型"></p>
+<h4 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h4><p>在模型的训练过程中，我们需要综合所有的训练样本，训练出表现最优的模型。对于习得的一个假设函数$h(x)$，我们用<strong>成本函数（cost function）</strong>来评估其预测的准确度，且评估的过程，是将假设函数的预测结果与对应的真实标记进行比较。<strong>均方误差（mean squared error）</strong>就是一种回归问题中常用的成本函数，其表达式为：$$E(h, D) = \frac{1}{m} \sum_{i=1}^m (h(x^{(i)}) - y^{(i)})^2$$</p>
+<p>根据成本函数的定义可知，模型预测的准确度越高，相应成本函数的值将越接近$0$。所以有了成本函数后，就有了训练模型过程中的目标–最小化成本函数。</p>
+<p>由此，将“房价预测”问题的成本函数定义如下：<br>$$J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2$$</p>
+<p>其中为方便之后的计算，上式中取均方误差的一半。该成本函数$J$是关于两个参数$\theta_0$、$\theta_1$的函数，其在空间坐标系的图像如下：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0vmbelgwbj20r40gothv.jpg" alt="成本函数图像"></p>
+<p>进一步画出该成本函数的等高线图（contour plot），可知一条等高线将对应一个训练过程中学习到的模型：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0vmh8t3ufj20ic09qjtj.jpg" alt="等高线图"></p>
+<p>落在等高线包围的中心点上时，$J$将取得最小值，对应将获得最优的$h(x)$:<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0vmkoaix4j20hy08qwgd.jpg" alt="最优模型"></p>
+<h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><p>通常采用<strong>梯度下降法（Gradient Denscent）</strong>来最小化成本函数，而得到假设函数中参数值。</p>
+<p>在数学中，梯度指的是一个函数在某一点上一个向量，且该点上的方向导数沿着该向量取得最大值，即在该点处，函数沿着该向量的方向变化最快。由此，只要给成本函数预设一个初始值，使其沿梯度方向迭代下降，便能一步步将其最小化。更为直观的解释如下：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0vqqbu88qj20ft08en06.jpg" alt="梯度详解"></p>
+<p>假设某个成本函数的图像如上，在图像上任取一点后，使其不断沿着梯度方向下降，最后定能落入一个局部的最小值上。注意到，当存在多个极小值时，选取的初始位置不同，梯度下降后将得到多种结果，这里暂且不考虑此问题。</p>
+<p>要得到所谓的梯度，其实就是对函数进行求导。成本函数往往是个多元函数，对其求导的过程是求取其关于各参数的偏导数。对“房价预测”问题的成本函数$J$，就有其关于$\theta_0$的偏导数$\frac{\partial}{\partial \theta_0} J$以及关于$\theta_1$的偏导数$\frac{\partial}{\partial \theta_1} J$。</p>
+<p>实现梯度下降的具体算法为：通过下式迭代更新参数值，直到它们收敛为止：$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_n) \ \ \ j = 0, \cdots, n$$</p>
+<p>其中的“:=”意为“赋值”，$\alpha$是称为<strong>“学习率（learning rate）”</strong>，用以控制梯度下降时的“步伐”大小，它的预设值不能过大或小，训练过程中可以将它进行动态调整，使得越接近最小值点时下降的“步伐”越小，以准确地落到最小值点上。要注意，一次迭代过程中各参数的值是<strong>同时进行更新的</strong>。</p>
+<p>例如“房价预测”问题中，$n$的值为1，且成本函数是一个凸函数，全局只有一个极小值点。训练时参数的更新过程将如下：<br>$$temp0 := \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1)$$ $$temp1 := \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1)$$ $$\theta_0 := temp0$$ $$\theta_1 := temp1$$<br>其中，由初等函数的导数可得：<br>$$\frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1) = \frac{1}{m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})$$ $$\frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1) = \frac{1}{m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})x^{(i)} $$<br>训练该线性回归模型的过程，将如下动图所示：<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g0wmjwx98ag20xw0fkb29.gif" alt="训练过程"></p>
+<p>注意到，使用梯度下降法训练该模型时，每一次学习过程都使用了全部的训练数据。采用这种方式进行梯度下降的过程，又称<strong>“批梯度下降（batch gredient descent）”</strong>。</p>
+<p>训练结束后，能够根据“房子面积”而预测“房价”的一个简单的线性回归模型就建立好了。</p>
+<h3 id="多变量线性回归"><a href="#多变量线性回归" class="headerlink" title="多变量线性回归"></a>多变量线性回归</h3><p>在解决前面的“房价预测”问题时，只由“房子面积”这一种<strong>特征（feature）</strong>来预测“房价”，建立的是一个单变量线性回归模型。然而我们直到，“房价”不单单因“房子面积”而异，往往还会受到“楼层数量”、“房间数量”等其他特征所影响。<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g103re5xm9j20pk09fjt0.jpg" alt="更多房价预测数据"></p>
+<p>考虑更多影响“房价”的房子特征，假如收集到了如上数据。我们将根据这些数据，建立一个多变量线性回归模型。</p>
+<h4 id="符号约定-1"><a href="#符号约定-1" class="headerlink" title="符号约定"></a>符号约定</h4><p>在原单变量模型的基础上，继续约定如下符号的含义：</p>
+<ul>
+<li>$n$：特征的数量</li>
+<li>$x^{(i)}_j$：第$i$个训练样本的第$j$种特征的值</li>
+</ul>
+<p>对上表中的训练数据，“房子面积”用$x_1$表示，“房间数量”用$x_2$表示，“楼层数”用$x_3$“表示，“房龄”则用$x_4$表示。每个训练样本中包含了$n=4$种特征，要使用一个由$x_j$组成的$n$维向量进行表示，如第2个训练样本表示为$x^{(2)}= \begin{bmatrix}  x^{(2)}_1 \\ x^{(2)}_2 \\ x^{(2)}_3 \\ x^{(2)}_4 \\ \end{bmatrix} = \begin{bmatrix} 1416 \\ 3 \\ 2 \\ 40 \\ \end{bmatrix}$。</p>
+<h4 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h4><p>在训练机器学习模型的实际过程中，我们需要掌握一些技巧。<strong>特征放缩（feature scaling）</strong>便是其中之一，它可以有效地使梯度下降的过程变得更快。</p>
+<p>所谓的特征放缩，是分别将训练数据中各个特征的值放缩到一个较小的统一区间内，该范围通常取$[-1,1]$，即使得$-1 \leq x_i \leq 1$。<br><img src="https://ws1.sinaimg.cn/large/82e16446gy1g117hj7tfwj20w00efac1.jpg" alt="特征放缩"></p>
+<p>如上图所示，进行特征放缩后，成本函数的等高线图将从椭圆变成圆形，而加快梯度下降的速度。</p>
+<p>通常采用下式进行特征缩放：$$x_i := \frac{x_i}{max(x_i)-min(x_i)} $$<br>类似的还有<strong>均值归一化（mean normalization）</strong>，它能使放缩后的均值为$0$，其表达式为：$$x_i := \frac{x_i - mean(x_i)}{max(x_i)-min(x_i)} $$</p>
+<h4 id="模型表示"><a href="#模型表示" class="headerlink" title="模型表示"></a>模型表示</h4><p>既然考虑了多种特征，那么假设函数也会变得更为复杂。多变量线性回归中，我们将假设函数设为：$$h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + \cdots + \theta_nx_n$$</p>
+<p>上式看成两个$n+1$维列向量$x$、$\theta$间的矩阵运算，可将它更为简洁地表示为：$$ h_\theta(x) = \theta^{T}x = [\theta_0, \theta_1, \cdots , \theta_n] \begin{bmatrix} x_0 \\ x_1 \\ \cdots \\ x_n \\ \end{bmatrix} $$</p>
+<p>其中$x_0 = 1$。</p>
+<p>由此，“房价预测”问题的假设函数为：$$h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_4 + \theta_4x_4$$ $$ = [\theta_0, \theta_1, \theta_2, \theta_3, \theta_4] \begin{bmatrix} 1 \\ x_1 \\ x_2 \\ x_3 \\ x_4 \\ \end{bmatrix} $$</p>
+<h4 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h4><p>依然采用均方误差作为成本函数并使用梯度下降法进行模型训练的话，参数更新的过程将为：迭代运算下式，直到个参数值收敛为止: $$ \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1,\cdots, \theta_n) \ \ \ j = 0, \cdots, n $$</p>
+<p>该方法需要经过多次迭代运算，才能得到最优的参数值。对于线性回归模型，另外可采用<strong>正规方程法（normal equation）</strong>进行参数学习，而一次性计算出模型中各参数的最优值。</p>
+<p>前面的式子中，成本函数的具体表达式为：$$ J(\theta_0, \theta_1,\cdots, \theta_n) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})$$</p>
+<p>要最小化该式，即求出使$J(\theta_0, \theta_1,\cdots, \theta_n)$最小的$\theta_0, \theta_1,\cdots, \theta_n$值，就要令函数$J$关于各参数$\theta$的偏导等于$0$，如此得到的$\theta$将使$J$取得最小值。</p>
+<p>具体地，将有：$$\frac{\partial}{\partial \theta_0} J(\theta_0, \theta_1,\cdots, \theta_n) = \frac{1}{m} \sum_{i=1}^m ((h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}<em>0) = 0$$ $$\frac{\partial}{\partial \theta_1} J(\theta_0, \theta_1,\cdots, \theta_n) = \frac{1}{m} \sum</em>{i=1}^m ((h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}<em>1) = 0$$ $$\vdots$$ $$\frac{\partial}{\partial \theta_n} J(\theta_0, \theta_1,\cdots, \theta_n) = \frac{1}{m} \sum</em>{i=1}^m ((h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_n) = 0$$</p>
+<p>根据前面所述，有下式：$$x^{(i)}= \begin{bmatrix}  x^{(i)}_0 \\ x^{(i)}_1 \\ \cdots \\ x^{(i)}_n \\ \end{bmatrix} \ \ \ i = 1,\cdots,m $$ $$ y = \begin{bmatrix}  y^{(1)} \\ x^{(2)} \\ \vdots \\ y^{(m)} \\ \end{bmatrix} ,\ \ \ \theta = \begin{bmatrix}  \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \\ \end{bmatrix} $$ $$h_\theta(x^{(i)}) = \theta^T(x^{(i)}) = (x^{(i)})^T\theta$$</p>
+<p>此外，约定一个大小为$m \times (n+1)$的矩阵$X$：$$X= \begin{bmatrix}  (x^{(1)})^T \\ (x^{(2)})^T \\ \cdots \\ (x^{(m)})^T \\ \end{bmatrix} = \begin{bmatrix}  x^{(1)}_0 &amp;  x^{(1)}_1 &amp; \cdots &amp; x^{(1)}_n\\ x^{(2)}_0 &amp;  x^{(2)}_1 &amp; \cdots &amp; x^{(2)}_n \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x^{(m)}_0 &amp;  x^{(m)}_1 &amp; \cdots &amp; x^{(m)}_n \\ \end{bmatrix}$$</p>
+<p>由此，可将最小化成本函数时的累加过程转换为矩阵运算，例如有：$$\frac{1}{m} \sum_{i=1}^m ((h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_0) = \frac{1}{m}[x^{(1)}<em>0, x^{(2)}<em>0, \cdots, x^{(m)}_0] \begin{bmatrix} h_\theta(x^{(1)}) - y^{(1)} \\ h</em>{\theta}(x^{(2)}) - y^{(2)} \\ \vdots \\ h</em>{\theta}(x^{(m)}) - y^{(m)} \\ \end{bmatrix} $$ </p>
+<p>而：$$\begin{bmatrix}  h_{\theta}(x^{(1)}) - y^{(1)} \\ h_{\theta}(x^{(2)}) - y^{(2)} \\ \vdots \\ h_{\theta}(x^{(m)}) - y^{(m)} \\ \end{bmatrix} = \begin{bmatrix}  (x^{(1)})^T \\ (x^{(2)})^T \\ \vdots \\ (x^{(m)})^T\\ \end{bmatrix} \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \\ \end{bmatrix} - \begin{bmatrix} y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(m)} \\ \end{bmatrix}$$ $$ = X\theta - y$$</p>
+<p>则有：$$\frac{1}{m} \sum_{i=1}^m ((h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_0) = \frac{1}{m}[x^{(1)}<em>0, x^{(2)}<em>0, \cdots, x^{(m)}_0] (X\theta - y) = 0$$ $$\frac{1}{m} \sum</em>{i=1}^m ((h</em>{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_1) = \frac{1}{m}[x^{(1)}<em>1, x^{(2)}<em>1, \cdots, x^{(m)}_1] (X\theta - y) = 0$$ $$\vdots $$ $$\frac{1}{m} \sum</em>{i=1}^m ((h</em>{\theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_n) = \frac{1}{m}[x^{(1)}_n, x^{(2)}_n, \cdots, x^{(m)}_n] (X\theta - y) = 0$$ </p>
+<p>将上式进一步矩阵化有：$$\frac{1}{m}\begin{bmatrix}  x^{(1)}_0 &amp;  x^{(1)}_1 &amp; \cdots &amp; x^{(1)}_n\\ x^{(2)}_0 &amp;  x^{(2)}_1 &amp; \cdots &amp; x^{(2)}_n \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x^{(m)}_0 &amp;  x^{(m)}_1 &amp; \cdots &amp; x^{(m)}_n \\ \end{bmatrix}^T(X\theta -y) = \frac{1}{m}X^T(X\theta - y) = 0$$ </p>
+<p>并进一步整理上式，就能得到可一步计算出线性回归模型中$\theta$值的正规方程：$$ \theta = (X^TX)^{-1}X^Ty $$</p>
+<p>值得一提的时，上式中$X^TX$为奇异矩阵或非方阵时，它将不存在逆矩阵，造成该问题的原因可能是训练样本的特征类型中存在冗余特征，也可能是特征数量$n$大于等于训练样本数量$m$，要解决该问题可以某些特征或将样本进行<strong>正则化（regularization）</strong>。但在MATLAB中，始终可以用pinv()求得$X^TX$的逆矩阵或伪逆矩阵。</p>
+<p>在“房价预测”中，有：$$X= \begin{bmatrix}  1 &amp; 2104 &amp; 5 &amp; 1 &amp; 45 \\ 1 &amp; 1406 &amp; 3 &amp; 2 &amp; 40 \\ 1 &amp; 1534 &amp; 3 &amp; 2 &amp; 30  \\ 1 &amp; 852 &amp; 2 &amp; 1 &amp; 36 \\ \end{bmatrix} y = \begin{bmatrix}  460 \\ 232 \\ 315 \\ 178 \\ \end{bmatrix}$$ </p>
+<p>据此，就可以通过简单的矩阵运算而得到$\theta$的值。</p>
+<p>采用梯度下降法训练模型时：</p>
+<ul>
+<li>需要调参（$alpha$）</li>
+<li>需要多次迭代计算</li>
+<li>当样本的特征（$n$）很多时也能保持较好的性能</li>
+<li>除线性回归模型外还适用于逻辑回归等其他模型</li>
+</ul>
+<p>而对正规方程：</p>
+<ul>
+<li>不需要调参</li>
+<li>一次性完成计算</li>
+<li>当$n$比较大时，$(X^TX)^{-1}$的运算量较大，性能较差</li>
+<li>只适用于线性回归模型<br>因此，在训练模型的过程中要根据实际的情况，选择学习参数的方法。</li>
+</ul>
+<h3 id="编程作业"><a href="#编程作业" class="headerlink" title="编程作业"></a>编程作业</h3><p>见如下github链接，程序仅供参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/BinWeber/Machine_Learning/tree/master/Machine_Learning_Ng/ex1/python">machine_learning-ex1-python</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/BinWeber/Machine_Learning/tree/master/Machine_Learning_Ng/ex1/octave">machine_learning-ex1-octave</a></li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning/">Andrew Ng-Machine Learning-Coursera</a></li>
+<li><a target="_blank" rel="noopener" href="https://study.163.com/course/introduction/1004570029.htm">吴恩达-机器学习-网易云课堂</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_14845119/article/details/51317160">机器学习简史-CSDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangbaodan1/article/details/81013056">Normal equation公式推导-CSDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/22757336">掰开揉碎推导Normal Equation-知乎</a></li>
+</ol>
+<p>注：本文涉及的图片及资料均整理翻译自Andrew Ng的Machine Learning课程及上述书籍、博客资料，版权归各作者所有。翻译整理水平有限，如有不妥的地方欢迎指出。</p>
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2019.03.18 完成初稿</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>【Andrew Ng】机器学习(1)：线性回归</p><p><a href="https://hugsy.top/2019/03/02/ML/machine_learning_1/">https://hugsy.top/2019/03/02/ML/machine_learning_1/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Hugsy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-02</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-07-04</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/ML/">ML</a><a class="link-muted mr-2" rel="tag" href="/tags/Coursera/">Coursera</a><a class="link-muted mr-2" rel="tag" href="/tags/Machine-Learning/">Machine Learning</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180700.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180901.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/03/21/ML/machine_learning_2/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">【Andrew Ng】机器学习(2)：Logistic回归</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/02/27/EE/raspi/"><span class="level-item">树莓派：基本配置</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "b5a929ba3c435cceb0e232e11fd90f77",
+            repo: "Comment",
+            owner: "Hugsy19",
+            clientID: "a321e46c668dc3d86c4f",
+            clientSecret: "bf18f6dc879ef2ea68fc63d4387e8dddeaa1f0a2",
+            admin: ["Hugsy19"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a><p class="is-size-7"><span>&copy; 2021 Hugsy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

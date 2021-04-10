@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>单片机原理(2)：程序设计 - Cornfield Chase</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#B481BB"><meta name="application-name" content="Hugsy&#039;s Blog"><meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="msapplication-TileColor" content="#B481BB"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hugsy&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="description" content="指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。 51系列单片机一般使用汇编语言（Assembly Language）直接编程，其指令系统中，有进行数据传送、算术运算、逻辑运算、位操作、控制传递等功能的111条基本指令。此外也可以"><meta property="og:type" content="blog"><meta property="og:title" content="单片机原理(2)：程序设计"><meta property="og:url" content="https://hugsy.top/2017/11/22/EE/msc51_2/"><meta property="og:site_name" content="Cornfield Chase"><meta property="og:description" content="指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。 51系列单片机一般使用汇编语言（Assembly Language）直接编程，其指令系统中，有进行数据传送、算术运算、逻辑运算、位操作、控制传递等功能的111条基本指令。此外也可以"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://i.loli.net/2019/06/17/5d079f251036726534.jpg"><meta property="article:published_time" content="2017-11-21T16:00:00.000Z"><meta property="article:modified_time" content="2019-06-21T02:51:36.263Z"><meta property="article:author" content="Hugsy"><meta property="article:tag" content="EE"><meta property="article:tag" content="MCU"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://i.loli.net/2019/06/17/5d079f251036726534.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hugsy.top/2017/11/22/EE/msc51_2/"},"headline":"单片机原理(2)：程序设计","image":["https://i.loli.net/2019/06/17/5d079f251036726534.jpg"],"datePublished":"2017-11-21T16:00:00.000Z","dateModified":"2019-06-21T02:51:36.263Z","author":{"@type":"Person","name":"Hugsy"},"description":"指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。 51系列单片机一般使用汇编语言（Assembly Language）直接编程，其指令系统中，有进行数据传送、算术运算、逻辑运算、位操作、控制传递等功能的111条基本指令。此外也可以"}</script><link rel="canonical" href="https://hugsy.top/2017/11/22/EE/msc51_2/"><link rel="alternate" href="/atom.xml" title="Cornfield Chase" type="application/atom+xml"><link rel="icon" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7b65ce26b5ae8dae153d7b4d53214ba4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/tags/CS/">CS</a><a class="navbar-item" href="/tags/EE/">EE</a><a class="navbar-item" href="/tags/ML/">ML</a><a class="navbar-item" href="/tags/Weekly/">Weekly</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-11-21T16:00:00.000Z" title="11/22/2017, 12:00:00 AM">2017-11-22</time>发表</span><span class="level-item"><time dateTime="2019-06-21T02:51:36.263Z" title="6/21/2019, 10:51:36 AM">2019-06-21</time>更新</span><span class="level-item">23 分钟读完 (大约3454个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">单片机原理(2)：程序设计</h1><div class="content"><p>指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。</p>
+<p>51系列单片机一般使用汇编语言（Assembly Language）直接编程，其指令系统中，有进行数据传送、算术运算、逻辑运算、位操作、控制传递等功能的111条基本指令。此外也可以采用C语言进行程序设计。</p>
+<span id="more"></span>
+
+<h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><p>寻址方式是CPU寻找操作数或操作数地址的方法，存放在不同位置的数据具有需要采用不同的方式进行寻址，不同类型计算机的寻址方式也不同，它是计算机重要的性能指标之一。MSC-51单片机有7种寻址方式。</p>
+<h4 id="立即寻址"><a href="#立即寻址" class="headerlink" title="立即寻址"></a>立即寻址</h4><p>指令中直接给出参与操作的数据，称立即数，用data表示。在汇编语言中，为标明立即数，为data加前缀”#”。立即数可以是8位和16位二进制数，分别用#data和#data16表示。</p>
+<p>汇编指令格式：MOV A, #data</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV A, #30H   ;8位立即数30H放入累加器ACC中</span><br><span class="line">MOV DPTR, #2000H   ;16位立即数2000H放入数据指针DPTR</span><br></pre></td></tr></table></figure>
+
+<h4 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h4><p>指令中直接给出参与操作的数据的地址，直接地址一般用direct表示。</p>
+<p>汇编指令格式：MOV A, direct</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV A, 80H   ;将80H单元，即P0口的内容放入累加器ACC中</span><br></pre></td></tr></table></figure>
+
+<h4 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h4><p>参与操作的数据存放在寄存器中，汇编指令中直接以寄存器名来表示参与操作的数据地址，寄存器包括工作寄存器R0～R7、累加器ACC、寄存器B、数据指针DPTR。</p>
+<p>汇编语言格式：MOV A, Rn   ;n=0~7</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV A, R1   ;将R1中的内容放入累加器ACC中</span><br></pre></td></tr></table></figure>
+
+<h4 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h4><p>二次寻址，寻址中寄存器的内容为操作数所存放的地址。第一次寻址得到寄存器的内容为(R0)、(R1)或(DPTR)，第二次寻址是将第一次寻址得到的寄存器内容作为地址，在其中存、取参与操作的数据。汇编语言中，寄存器前缀@是寄存器间接寻址的标志，有@R0、@R1、@DPTR等。</p>
+<p>汇编语言格式：MOV A, @R0/R1/DPTR</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV A, @DPTR   ;将DPTR所指示的地址单元中的内容放入累加器ACC中</span><br></pre></td></tr></table></figure>
+
+<h4 id="变址寻址"><a href="#变址寻址" class="headerlink" title="变址寻址"></a>变址寻址</h4><p>由两个寄存器提供地址。若由ACC、PC提供，在汇编语言指令中寻址地址表示为@A+PC；若由ACC和DPTR提供，在汇编语言指令中寻址地址为@A+DPTR。其中，PC或DPTR被称为<strong>基址寄存器</strong>，A被称为<strong>变址寄存器</strong>，基址与变址相加为16位无符号加法。</p>
+<p>若变址寄存器ACC中的内容加基址寄存器DPTR(或PC)中内容时，低8位有进位，则该进位直接加到高位，不影响进位标志。因变址寻址指令多用于查表，故常称为查表指令。</p>
+<p>汇编语言格式：MOV A, @A+DPTP</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV A, @A+DPTR   ;将A+DPTR所指示的地址单元中的内容放入累加器ACC中</span><br></pre></td></tr></table></figure>
+
+<h4 id="相对寻址"><a href="#相对寻址" class="headerlink" title="相对寻址"></a>相对寻址</h4><p>以<strong>相对寻址指令的下一条指令的程序计数器PC的内容</strong>为基值，加上指令机器代码中的“相对地址”，形成新的PC值（要转移的指令地址）。指令机器代码中“相对地址”指的是用一个带符号的8位二进制补码表示的偏移字节数，其取值范围为-128～+127，负数表示向后转移，正数表示向前转移。rel代表一个8位带符号的偏移量，要转移的指令地址=(PC)+相对寻址指令字节数+rel，“( )”代表存储单元的内容。</p>
+<p>汇编语言格式：SJMP rel</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SJMP 08H  ;指令代码为双字节，该指令将转到地址为(PC) + 02H + 08H</span><br></pre></td></tr></table></figure>
+<h4 id="位寻址"><a href="#位寻址" class="headerlink" title="位寻址"></a>位寻址</h4><p>参与操作的数据为“位”，而不是字节，是对片内RAM中的位寻址区20H~2FH、SFR中11个可位寻址单元的位进行操作。bit代表内数据存储器RAM或SFR的直接寻址位。</p>
+<p>汇编语言格式：MOV C, bit</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV C, 00H   ;或者写成</span><br><span class="line">MOV C, 20H.0   ;将字节地址20H的D0位内容放到位累加器C中</span><br></pre></td></tr></table></figure>
+
+<p>位寻址的位地址与直接寻址的字节地址形式完全一致，主要由操作码进行区分。</p>
+<p>所有寻址方式的寻址范围总结如下表：</p>
+<table>
+<thead>
+<tr>
+<th>寻址方式</th>
+<th>寻址存储器范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>立即寻址</td>
+<td>程序存储器ROM</td>
+</tr>
+<tr>
+<td>直接寻址</td>
+<td>片内RAM低128KB，特殊功能寄存器SFR</td>
+</tr>
+<tr>
+<td>寄存器寻址</td>
+<td>工作寄存器R0~R7，A，C，DPTR，AB</td>
+</tr>
+<tr>
+<td>寄存器间接寻址</td>
+<td>片内RAM低128KB，片外RAM</td>
+</tr>
+<tr>
+<td>变址寻址</td>
+<td>程序存储器ROM （@A+DPTR，@A+PC）</td>
+</tr>
+<tr>
+<td>相对寻址</td>
+<td>程序存储器ROM（相对寻址指令的下一指令PC值加 -128~+127）</td>
+</tr>
+<tr>
+<td>位寻址</td>
+<td>片内RAM的20H到2FH字节地址的所有位，可位寻址SFR</td>
+</tr>
+</tbody></table>
+<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><h4 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MOV (Move)</strong></td>
+<td>传送内部RAM和SFR的数据</td>
+</tr>
+<tr>
+<td><strong>MOVX (Move External RAM)</strong></td>
+<td>传送外部RAM的数据<strong>（外部RAM只能和累加器ACC之间进行传送数据）</strong></td>
+</tr>
+<tr>
+<td><strong>MOVC (Move Code)</strong></td>
+<td>读取并传送ROM数据表格中的数据</td>
+</tr>
+<tr>
+<td><strong>PUSH (Push onto Stack)</strong></td>
+<td>入栈</td>
+</tr>
+<tr>
+<td><strong>POP (Pop from Stack)</strong></td>
+<td>出栈</td>
+</tr>
+<tr>
+<td><strong>XCH (Exchange)</strong></td>
+<td>全字节交换</td>
+</tr>
+<tr>
+<td><strong>XCHD (Exchange low-order Digit)</strong></td>
+<td>低半字节交换</td>
+</tr>
+<tr>
+<td><strong>SWAP</strong></td>
+<td>高、低字节互换</td>
+</tr>
+</tbody></table>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MOV DPTR, #2000H   ;外部RAM单元地址2000H传入DPTR</span><br><span class="line">MOVX A, @DPTR   ;外部RAM 2000H单元的数据送入A</span><br><span class="line">MOVC A, @A + PC   ;ROM A+PC单元的数据送入A</span><br><span class="line">PUSH A   ;将A中的数据放入堆栈</span><br><span class="line">POP A    ;将堆栈顶层的数据放入A</span><br><span class="line">XCH A, R0   ;交换A和R0中的数据</span><br><span class="line">XCHD A, R0   ;交换A和R0中的低4字节数据</span><br><span class="line">SWAP A   ;交换A的高、低4字节数据</span><br></pre></td></tr></table></figure>
+
+<h4 id="算数运算指令"><a href="#算数运算指令" class="headerlink" title="算数运算指令"></a>算数运算指令</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ADD (Addition)</strong></td>
+<td>加法</td>
+</tr>
+<tr>
+<td><strong>ADDC (Add with Carry)</strong></td>
+<td>带进位加法</td>
+</tr>
+<tr>
+<td><strong>SUBB (Subtract with Borrow)</strong></td>
+<td>带借位减法</td>
+</tr>
+<tr>
+<td><strong>INC (Increment)</strong></td>
+<td>加1</td>
+</tr>
+<tr>
+<td><strong>DEC (Decrement)</strong></td>
+<td>减1</td>
+</tr>
+<tr>
+<td><strong>MUL (Multiply)</strong></td>
+<td>乘法</td>
+</tr>
+<tr>
+<td><strong>DIV (Divide)</strong></td>
+<td>除法</td>
+</tr>
+<tr>
+<td><strong>DA (Decimal Adjust)</strong></td>
+<td>十进制调整</td>
+</tr>
+</tbody></table>
+<h4 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ANL (AND Logic)</strong></td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td><strong>ORL (OR Logic)</strong></td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td><strong>XRL (Exclusive-OR Logic)</strong></td>
+<td>逻辑异或</td>
+</tr>
+<tr>
+<td><strong>CLR (Clear)</strong></td>
+<td>清零</td>
+</tr>
+<tr>
+<td><strong>CPL (Complement)</strong></td>
+<td>取反</td>
+</tr>
+<tr>
+<td><strong>RL (Rotate Left)</strong></td>
+<td>循环左移</td>
+</tr>
+<tr>
+<td><strong>RLC (Rotate Left throught the Carry flag)</strong></td>
+<td>带进位循环左移</td>
+</tr>
+<tr>
+<td><strong>RR (Rotate Right)</strong></td>
+<td>循环右移</td>
+</tr>
+<tr>
+<td><strong>RRC (Rotate Right throught the Carry flag)</strong></td>
+<td>带进位循环右移</td>
+</tr>
+</tbody></table>
+<h4 id="控制转移指令"><a href="#控制转移指令" class="headerlink" title="控制转移指令"></a>控制转移指令</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SJMP (Short Jump)</strong></td>
+<td>短转移，后接偏移量rel</td>
+</tr>
+<tr>
+<td><strong>AJMP (Absolute Jump)</strong></td>
+<td>绝对转移，最大转移范围为2KB</td>
+</tr>
+<tr>
+<td><strong>LJMP (Long Jump)</strong></td>
+<td>长转移，转移目的地址在0~64KB空间范围</td>
+</tr>
+<tr>
+<td><strong>ACALL (Absolute subroutine Call)</strong></td>
+<td>子程序绝对调用，最大调用范围为2KB</td>
+</tr>
+<tr>
+<td><strong>LCALL (Long subroutine Call)</strong></td>
+<td>子程序长调用，调用64KB空间范围内的子程序</td>
+</tr>
+<tr>
+<td><strong>RET (Return from subroutine)</strong></td>
+<td>子程序返回</td>
+</tr>
+<tr>
+<td><strong>RETI (Return from Interruptio)</strong></td>
+<td>中断返回</td>
+</tr>
+<tr>
+<td><strong>CJNE (Compare Jump if Not Equal)</strong></td>
+<td>比较不相等则转移</td>
+</tr>
+<tr>
+<td><strong>DJNZ (Decrement Jump if Not Zero)</strong></td>
+<td>减１后不为０则转移</td>
+</tr>
+<tr>
+<td><strong>JZ (Jump if Zero)</strong></td>
+<td>结果为０则转移</td>
+</tr>
+<tr>
+<td><strong>JNZ (Jump if Not Zero)</strong></td>
+<td>结果不为０则转移</td>
+</tr>
+<tr>
+<td><strong>JC (Jump if the Carry flag is set)</strong></td>
+<td>有进位则转移</td>
+</tr>
+<tr>
+<td><strong>JNC (Jump if Not Carry)</strong></td>
+<td>无进位则转移</td>
+</tr>
+<tr>
+<td><strong>JB (Jump if the Bit is set)</strong></td>
+<td>位为１则转移</td>
+</tr>
+<tr>
+<td><strong>JNB (Jump if the Bit is Not set)</strong></td>
+<td>位为０则转移</td>
+</tr>
+<tr>
+<td><strong>JBC(Jump if the Bit is set and Clear the bit)</strong></td>
+<td>位为１则转移，并清除该位</td>
+</tr>
+<tr>
+<td><strong>NOP (No Operation)</strong></td>
+<td>空操作</td>
+</tr>
+</tbody></table>
+<h4 id="位操作指令"><a href="#位操作指令" class="headerlink" title="位操作指令"></a>位操作指令</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SETB (Set Bit)</strong></td>
+<td>将某个位置1</td>
+</tr>
+</tbody></table>
+<h4 id="伪指令"><a href="#伪指令" class="headerlink" title="伪指令"></a>伪指令</h4><p>伪指令在汇编时不产生机器码，不影响程序执行，仅指明在汇编时执行一些特殊的操作。</p>
+<p><strong>ORG   16位地址</strong>：起始指令，用在原程序或数据块的开始，指明此语句后面目标程序或数据块存放的起始地址。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORG 1000H   ;后面目标程序或数据块存放的起始地址为1000H</span><br></pre></td></tr></table></figure>
+
+<p><strong>[标号:]DB 字节数据项表</strong>：字节定义，将项表中的字节数据存放到从标号开始的连续字节单元中。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SEG: DB 32, &#39;A&#39;, 25H   ;SEG~SEG+2地址单元依此存放20H、41H、25H</span><br></pre></td></tr></table></figure>
+
+<p><strong>[标号:]DW   双字节数据项表</strong>：字定义，定义16位地址表，16地址按低位地址存低位字。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TAB: DW 1234H, 25H   ;TAB~TAB+3地址单元依此存放12H、34H、00H、25H</span><br></pre></td></tr></table></figure>
+
+<p><strong>[标号:]DS   数值表达式</strong>：保留字节，指示在程序存储器中保留与标号为起始地址的若干字节单元，单元个数由数值表达式指定。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L1: DS 32   ;L1地址开始保留32个存储单元</span><br></pre></td></tr></table></figure>
+
+<p><strong>名字 EQU 表达式</strong>：等值指令，用与给一个表达式赋值或给字符串起名字。之后名字可用做程序地址，数据地址或立即数地址使用。名字必须是一字母开头的字母数字串。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPACE EQU 10H   ;程序中出现SPACE的地方都用10H代替</span><br></pre></td></tr></table></figure>
+
+<p><strong>名字 DATA 直接字节地址</strong>：给8位内部RAM单元起个名字，名字必须是一字母开头的字母数字串，同一单元可起多个名字。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR DATA 80H   ;内部RAM 80H单元名为ERROR</span><br></pre></td></tr></table></figure>
+
+<p><strong>名字 XDATA 直接字节地址</strong>：给8位外部RAM起个名字，名字规定同DATA伪指令。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IO_PORT XDATA 0CF04H   ;外部RAM 0CF04H单元名为IO_PORT</span><br></pre></td></tr></table></figure>
+
+<p><strong>名字 BIT 位指令</strong>：给一可位寻址的位单元起名，规定同DATA伪指令。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SWT BIT 30H   ; 30H单元名为SWT</span><br></pre></td></tr></table></figure>
+
+<p><strong>[标号：] END</strong>：结束指令，指出源程序到此结束。</p>
+<h3 id="C语言编程"><a href="#C语言编程" class="headerlink" title="C语言编程"></a>C语言编程</h3><p>51单片机采用C语言编程后，通过C51编译器进行编译后产生目标代码，下载到单片机内部即可运行。编程时，不同存储器的寻址和数据类型等细节问题都由编译器解决，无需像使用汇编语言那样都必须考虑到，而且其中还有丰富的子程序库可以直接调用，大大减小编程工作量。此外，编程过程中还可以将C语言和汇编语言交叉使用，提高开发效率。</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>C51中定义的数据类型比C语言多几种扩展数据类型：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c4619ca92556474.jpg" alt="数据类型"></p>
+<p><strong>bit</strong>用于定义为变量的名字，编译器会对其分配地址，位变量分配在内部RAM的20H～2FH单元相应的位区域，位地址范围是00～7FH，共128个。</p>
+<p><strong>sbit</strong>用于定义位变量的名字和地址，地址是确定的且不用编译器分配。它是SFR中的可以进行位寻址的确定位，也可是内部RAM的20H～2FH单元中确定的位。</p>
+<p><strong>sfr</strong>用于访问一个内存单元，利用它可以访问51单片机内部的所有SFR，一般用来声明SFR。</p>
+<h4 id="存储器类型"><a href="#存储器类型" class="headerlink" title="存储器类型"></a>存储器类型</h4><p>C51是面向8051单片机的程序语言，应用程序中使用的任何变量或常量必须以一定的存储器类型定位于单片机的相应的存储区域中，因此在定义变量类型时，还需要定义它的存储器类型：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c462e004a213517.jpg" alt="存储器类型"></p>
+<p>对于单片机来说，访问片内RAM比访问片外RAM的速度要快得多，所以对于经常使用的变量应该置于片内RAM中，要用bdata、data、idata来定义；对于不经常使用的变量或规模较大的变量应该置于片外RAM中，要用pdata、xdata来定义。</p>
+<h4 id="中断函数"><a href="#中断函数" class="headerlink" title="中断函数"></a>中断函数</h4><p>使用C51编写中断程序时，需要遵循如下格式：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>  函数名(<span class="keyword">void</span>)  interrupt  中断号 [<span class="keyword">using</span> 工作寄存器组号] &#123;    </span><br><span class="line">              ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，51单片机中的每个中断的中断号定义如下表：</p>
+<table>
+<thead>
+<tr>
+<th>中断号</th>
+<th>中断源</th>
+<th>中断入口地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>外部中断0</td>
+<td>0003H</td>
+</tr>
+<tr>
+<td>1</td>
+<td>定时器0</td>
+<td>000BH</td>
+</tr>
+<tr>
+<td>2</td>
+<td>外部中断1</td>
+<td>0013H</td>
+</tr>
+<tr>
+<td>3</td>
+<td>定时器1</td>
+<td>0018H</td>
+</tr>
+<tr>
+<td>4</td>
+<td>串口中断</td>
+<td>0023H</td>
+</tr>
+</tbody></table>
+<p>后面用using声明RAM中的工作寄存器组号为0~4，用于暂存当前工作状态，也可以不予声明，使用默认组。</p>
+<p>中断函数不带有任何参数，不能有返回值，不能被其他程序调用，同时还要做到尽量精简。</p>
+<h4 id="插入汇编"><a href="#插入汇编" class="headerlink" title="插入汇编"></a>插入汇编</h4><p>想要在C程序里插入汇编代码，只要在汇编代码段前声明<strong>#pragma asm</strong>，段后声明<strong>#pragma endasm</strong>即可，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#pragma asm</span><br><span class="line">    汇编语句行1</span><br><span class="line">    汇编语句行2</span><br><span class="line">    ……</span><br><span class="line">#pragma endasm</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2017.11.23 完成初稿</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>单片机原理(2)：程序设计</p><p><a href="https://hugsy.top/2017/11/22/EE/msc51_2/">https://hugsy.top/2017/11/22/EE/msc51_2/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Hugsy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-11-22</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-06-21</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/EE/">EE</a><a class="link-muted mr-2" rel="tag" href="/tags/MCU/">MCU</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180700.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180901.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/11/24/EE/msc51_3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">单片机原理(3)：中断、定时/计数、串行通信</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/11/19/EE/msc51_1/"><span class="level-item">单片机原理(1)：基本结构</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "7d66ce267fca68bf77474e9442fbae78",
+            repo: "Comment",
+            owner: "Hugsy19",
+            clientID: "a321e46c668dc3d86c4f",
+            clientSecret: "bf18f6dc879ef2ea68fc63d4387e8dddeaa1f0a2",
+            admin: ["Hugsy19"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a><p class="is-size-7"><span>&copy; 2021 Hugsy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

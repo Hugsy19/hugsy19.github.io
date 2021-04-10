@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>【Andrew Ng】深度学习(4)：优化神经网络(2) - Cornfield Chase</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#B481BB"><meta name="application-name" content="Hugsy&#039;s Blog"><meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="msapplication-TileColor" content="#B481BB"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hugsy&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="description" content="想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。 本文涉及优化深层神经网络中的几种梯度下降法，梯度下降中的Momentum、RMSProp、Adam优化算法及学习率衰减，批标准化等内容。"><meta property="og:type" content="blog"><meta property="og:title" content="【Andrew Ng】深度学习(4)：优化神经网络(2)"><meta property="og:url" content="https://hugsy.top/2017/10/06/ML/deep_learning_4/"><meta property="og:site_name" content="Cornfield Chase"><meta property="og:description" content="想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。 本文涉及优化深层神经网络中的几种梯度下降法，梯度下降中的Momentum、RMSProp、Adam优化算法及学习率衰减，批标准化等内容。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://i.loli.net/2019/06/17/5d079ccf2314243451.jpg"><meta property="article:published_time" content="2017-10-05T16:00:00.000Z"><meta property="article:modified_time" content="2019-06-17T14:01:21.497Z"><meta property="article:author" content="Hugsy"><meta property="article:tag" content="ML"><meta property="article:tag" content="Coursera"><meta property="article:tag" content="Deep Learning"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://i.loli.net/2019/06/17/5d079ccf2314243451.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hugsy.top/2017/10/06/ML/deep_learning_4/"},"headline":"【Andrew Ng】深度学习(4)：优化神经网络(2)","image":["https://i.loli.net/2019/06/17/5d079ccf2314243451.jpg"],"datePublished":"2017-10-05T16:00:00.000Z","dateModified":"2019-06-17T14:01:21.497Z","author":{"@type":"Person","name":"Hugsy"},"description":"想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。 本文涉及优化深层神经网络中的几种梯度下降法，梯度下降中的Momentum、RMSProp、Adam优化算法及学习率衰减，批标准化等内容。"}</script><link rel="canonical" href="https://hugsy.top/2017/10/06/ML/deep_learning_4/"><link rel="alternate" href="/atom.xml" title="Cornfield Chase" type="application/atom+xml"><link rel="icon" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7b65ce26b5ae8dae153d7b4d53214ba4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/tags/CS/">CS</a><a class="navbar-item" href="/tags/EE/">EE</a><a class="navbar-item" href="/tags/ML/">ML</a><a class="navbar-item" href="/tags/Weekly/">Weekly</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-10-05T16:00:00.000Z" title="10/6/2017, 12:00:00 AM">2017-10-06</time>发表</span><span class="level-item"><time dateTime="2019-06-17T14:01:21.497Z" title="6/17/2019, 10:01:21 PM">2019-06-17</time>更新</span><span class="level-item">20 分钟读完 (大约3057个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">【Andrew Ng】深度学习(4)：优化神经网络(2)</h1><div class="content"><p>想提高一个深层神经网络的训练效率，需从各个方面入手，优化整个运算过程，同时预防其中可能发生的各种问题。</p>
+<p>本文涉及优化深层神经网络中的几种梯度下降法，梯度下降中的Momentum、RMSProp、Adam优化算法及学习率衰减，批标准化等内容。</p>
+<span id="more"></span>
+
+<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><h4 id="批梯度下降法（BGD）"><a href="#批梯度下降法（BGD）" class="headerlink" title="批梯度下降法（BGD）"></a>批梯度下降法（BGD）</h4><p><strong>批梯度下降法（Batch Gradient Descent，BGD）</strong>是最常用的梯度下降形式，前面的Logistic回归及深层神经网络的构建中所用到的梯度下降都是这种形式。其在更新参数时使用所有的样本来进行更新，具体过程为：$${X = [x^{(1)},x^{(2)},…,x^{(m)}]}$$ $$z^{[1]} = w^{[1]}X + b^{[1]}$$ $$a^{[1]} = g^{[1]}(z^{[1]})$$ $$… \ …$$ $$z^{[l]} = w^{[l]}a^{[l-1]} + b^{[l]}$$ $$a^{[l]} = g^{[l]}(z^{[l]})$$ $$ {J(\theta) = \frac{1}{m} \sum_{i=1}^m \mathcal{L}({\hat y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m} \sum\limits_{l=1}^L ||w^{[l]}}||^2_F$$ $$ {\theta_j:= \theta_j -\alpha\frac{\partial J(\theta)}{\partial \theta_j}} $$<br>示例图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk8n1qto83j20j209sq3s.jpg" alt="BGD"></p>
+<p>优点：最小化所有训练样本的损失函数，得到全局最优解；易于并行实现。<br>缺点：当样本数目很多时，训练过程会很慢。</p>
+<h4 id="随机梯度下降法（SGD）"><a href="#随机梯度下降法（SGD）" class="headerlink" title="随机梯度下降法（SGD）"></a>随机梯度下降法（SGD）</h4><p><strong>随机梯度下降法（Stochastic Gradient Descent，SGD）</strong>与批梯度下降原理类似，区别在于每次通过一个样本来迭代更新。其具体过程为：$${X = [x^{(1)},x^{(2)},…,x^{(m)}]}$$ $$ for\ \ \ i=1,2,…,m\ \{ \ \ \ \ \ \ \ \ \ \ \ \ $$ $$z^{[1]} = w^{[1]}x^{(i)} + b^{[1]}$$ $$a^{[1]} = g^{[1]}(z^{[1]})$$ $$… \ …$$ $$z^{[l]} = w^{[l]}a^{[l-1]} + b^{[l]}$$ $$a^{[l]} = g^{[l]}(z^{[l]})$$ $$ {J(\theta) = \mathcal{L}({\hat y}^{(i)}, y^{(i)}) + \frac{\lambda}{2} \sum\limits_{l=1}^L ||w^{[l]}}||^2_F$$ $$ \theta_j:= \theta_j -\alpha\frac{\partial J(\theta)}{\partial \theta_j} \} $$<br>示例图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk8n7rb8tvj20i709twfq.jpg" alt="SGD"></p>
+<p>优点：训练速度快。<br>缺点：最小化每条样本的损失函数，最终的结果往往是在全局最优解附近，不是全局最优；不易于并行实现。</p>
+<h4 id="小批量梯度下降法（MBDG）"><a href="#小批量梯度下降法（MBDG）" class="headerlink" title="小批量梯度下降法（MBDG）"></a>小批量梯度下降法（MBDG）</h4><p><strong>小批量梯度下降法（Mini-Batch Gradient Descent，MBGD）</strong>是批量梯度下降法和随机梯度下降法的折衷,对用m个训练样本，，每次采用t（1 &lt; t &lt; m）个样本进行迭代更新。具体过程为：$${X = [x^{\{1\}},x^{\{2\}},…,x^{\{k = \frac{m}{t}\}}]}$$ 其中： $$x^{\{1\}} = x^{(1)},x^{(2)},…,x^{(t)}$$ $$x^{\{2\}} = x^{(t+1)},x^{(t+2)},…,x^{(2t)}$$ $$… \ …$$之后：$$ for\ \ \ i=1,2,…,k\ \{ \ \ \ \ \ \ \ \ \ \ \ \ $$ $$z^{[1]} = w^{[1]}x^{\{i\}} + b^{[1]}$$ $$a^{[1]} = g^{[1]}(z^{[1]})$$ $$… \ …$$ $$z^{[l]} = w^{[l]}a^{[l-1]} + b^{[l]}$$ $$a^{[l]} = g^{[l]}(z^{[l]})$$ $$ {J(\theta) = \frac{1}{k} \sum_{i=1}^k \mathcal{L}({\hat y}^{(i)}, y^{(i)}) + \frac{\lambda}{2k} \sum\limits_{l=1}^L ||w^{[l]}}||^2_F$$ $$ \theta_j:= \theta_j -\alpha\frac{\partial J(\theta)}{\partial \theta_j} \} $$<br>示例图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk8n62qc2rj20hr08zjsc.jpg" alt="MBGD"></p>
+<p>样本数t的值根据实际的样本数量来调整，为了和计算机的信息存储方式相适应，可将t的值设置为2的幂次。将所有的训练样本完整过一遍称为一个<strong>epoch</strong>。</p>
+<h3 id="梯度下降优化"><a href="#梯度下降优化" class="headerlink" title="梯度下降优化"></a>梯度下降优化</h3><h4 id="指数加权平均"><a href="#指数加权平均" class="headerlink" title="指数加权平均"></a>指数加权平均</h4><p><strong>指数加权平均（Exponentially Weight Average）</strong>是一种常用的序列数据处理方式，其计算公式为：$$S_t = \begin{cases} Y_1, &amp; t=1 \\ \beta S_{t-1} + (1-\beta)Y_{t}, &amp; t&gt;1 \end{cases}$$<br>其中$Y_t$为t下的实际值，$S_t$为t下加权平均后的值，$\beta$为权重值。<br>给定一个时间序列，例如伦敦一年每天的气温值：</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk9ig3abvhj20oa077jsf.jpg" alt="气温时间图"></p>
+<p>其中蓝色的点代表了真实的数据值。<br>对于一个即时的温度值，取权重值$\beta$为0.9，则有：$$ v_0 = 0 $$ $$v_1 = 0.9v_0 + 0.1\theta_1$$ $$… \ … $$ $$v_{100} = 0.1\theta_{100}+0.1 \times 0.9\theta_{99} +0.1 \times 0.9^2\theta_{98} \ …$$ $$ v_t =  0.9v_{t-1} + 0.1\theta_t $$<br>根据：$$\lim_{\epsilon \to 0} (1-\epsilon)^{\frac{1}{\epsilon}} = \frac{1}{e} \approx 0.368$$</p>
+<p>$\beta=1 - \epsilon = 0.9$时相当于把过去 $\frac{1}{\epsilon} = 10$天的气温值指数加权平均后，作为当日的气温，且只取10天前的气温值的$0.368$，也就是$\frac{1}{3}$多一些。</p>
+<p>由此求得的值即得到图中的红色曲线，它反应了温度变化的大致趋势。</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk9j8j981jj20k00a1q4f.jpg" alt="EWA曲线"></p>
+<p>当取权重值$\beta=0.98$时，可以得到图中更为平滑的绿色曲线。而当取权重值$\beta=0.5$时，得到图中噪点更多的黄色曲线。$\beta$越大相当于求取平均利用的天数就越多，曲线自然就会越平滑而且越滞后。</p>
+<p>当进行指数加权平均计算时，第一个值$v_o$被初始化为$0$，这样将在前期的运算用产生一定的偏差。为了矫正偏差，需要在每一次迭代后用以下式子进行偏差修正：$$v_t := \frac{v_t}{1-\beta^t}$$</p>
+<h4 id="Momentum梯度下降"><a href="#Momentum梯度下降" class="headerlink" title="Momentum梯度下降"></a>Momentum梯度下降</h4><p><strong>动量梯度下降（Gradient Descent with Momentum）</strong>是计算梯度的指数加权平均数，并利用该值来更新参数值。具体过程为：$$v_{dw} = \beta v_{dw} + (1-\beta)dw$$ $$v_{db} = \beta v_{db} + (1-\beta)db$$ $$w := w-\alpha v_{dw}$$ $$ b := b-\alpha v_{db}$$<br>其中的动量衰减参数$\beta$一般取0.9。</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk9mtb1xvcj20m204tq3q.jpg" alt="Momentum"></p>
+<p>进行一般的梯度下降将会得到图中的蓝色曲线，而使用Momentum梯度下降时，通过累加减少了抵达最小值路径上的摆动，加快了收敛，得到图中红色的曲线。</p>
+<p>当前后梯度方向一致时，Momentum梯度下降能够加速学习；前后梯度方向不一致时,Momentum梯度下降能够抑制震荡。</p>
+<h4 id="RMSProp算法"><a href="#RMSProp算法" class="headerlink" title="RMSProp算法"></a>RMSProp算法</h4><p>**RMSProp(Root Mean Square Prop，均方根支)**算法在对梯度进行指数加权平均的基础上，引入平方和平方根。具体过程为：$$s_{dw} = \beta s_{dw} + (1-\beta)dw^2$$ $$s_{db} = \beta s_{db} + (1-\beta)db^2$$ $$w := w-\alpha \frac{dw}{\sqrt{s_{dw}+\epsilon}}$$ $$b := b-\alpha \frac{db}{\sqrt{s_{db}+\epsilon}}$$<br>其中的$\epsilon=10^{-8}$，用以提高数值稳定度，防止分母太小。</p>
+<p>当$dw$或$db$较大时，$dw^{2}$、$db^{2}$会较大，造成$s_{dw}$、 $s_{db}$也会较大，最终使$\frac{dw}{\sqrt{s_{dw}}}$、 $\frac{db}{\sqrt{s_{db}}}$较小，减小了抵达最小值路径上的摆动。</p>
+<h4 id="Adam优化算法"><a href="#Adam优化算法" class="headerlink" title="Adam优化算法"></a>Adam优化算法</h4><p>**Adam(Adaptive Moment Estimation，自适应矩估计)**优化算法适用于很多不同的深度学习网络结构，它本质上是将Momentum梯度下降和RMSProp算法结合起来。具体过程为：$$v_{dw} = \beta_1 v_{dw} + (1-\beta_1)dw, \ v_{db} = \beta_1 v_{db} + (1-\beta_1)db$$ $$s_{dw} = \beta_2 s_{dw} + (1-\beta_2)dw^2,\ s_{db} = \beta_2 s_{db} + (1-\beta_2)db^2$$ $$v^{corrected}_{dw} = \frac{v_{dw}}{(1-\beta_1^t)},\ v^{corrected}_{db} = \frac{v_{db}}{(1-\beta_1^t)}$$ $$s^{corrected}_{dw} = \frac{s_{dw}}{(1-\beta_2^t)},\ s^{corrected}_{db} = \frac{s_{db}}{(1-\beta_2^t)}$$ $$w := w-\alpha \frac{v^{corrected}_{dw}}{\sqrt{s^{corrected}_{dw}}+\epsilon}$$ $$b := b-\alpha \frac{v^{corrected}_{db}}{\sqrt{s^{corrected}_{db}}+\epsilon}$$<br>其中的学习率$\alpha$需要进行调参，超参数$\beta_1$被称为第一阶矩，一般取0.9，$\beta_2$被称为第二阶矩，一般取0.999，$\epsilon$一般取$10^{-8}$。</p>
+<h4 id="学习率衰减"><a href="#学习率衰减" class="headerlink" title="学习率衰减"></a>学习率衰减</h4><p>随着时间推移，慢慢减少学习率$\alpha$的大小。在初期$\alpha$较大时，迈出的步长较大，能以较快的速度进行梯度下降，而后期逐步减小$\alpha$的值，减小步长，有助于算法的收敛，更容易接近最优解。<br>常用到的几种学习率衰减方法有：$$\alpha = \frac{1}{1+\text{decay_rate }* \text{epoch_num}} * \alpha_0$$ $$\alpha = 0.95^{\text{epoch_num}} * \alpha_0$$ $$\alpha = \frac{k}{\sqrt{\text{epoch_num}} }* \alpha_0$$<br>其中的decay_rate为衰减率，epoch_num为将所有的训练样本完整过一遍的次数。</p>
+<h3 id="批标准化"><a href="#批标准化" class="headerlink" title="批标准化"></a>批标准化</h3><p><strong>批标准化（Batch Normalization，BN）</strong>和之前的数据集标准化类似，是将分散的数据进行统一的一种做法。具有统一规格的数据，能让机器更容易学习到数据中的规律。</p>
+<p>对于含有$m$个节点的某一层神经网络，对$z$进行操作的步骤为：$$\mu = \frac{1}{m} \sum_{i=1}^m z^{(i)}$$ $$\sigma^2 = \frac{1}{m} \sum_{i=1}^m (z^{(i)}-\mu)^2$$ $$z_{norm}^{(i)} = \frac{z^{(i)}-\mu}{\sqrt{\sigma^2+\epsilon}}$$ $$\tilde{z}^{(i)} = \gamma z_{norm}^{(i)}+\beta$$<br>其中的$\gamma$、$\beta$并不是超参数，而是两个需要学习的参数，神经网络自己去学着使用和修改这两个扩展参数。这样神经网络就能自己慢慢琢磨出前面的标准化操作到底有没有起到优化的作用。如果没有起到作用，就使用 $\gamma$和$\beta$来抵消一些之前进行过的标准化的操作。例如当$\gamma = \sqrt{\sigma^2+\epsilon}, \beta = \mu$，就抵消掉了之前的正则化操作。</p>
+<p><img src="https://ws1.sinaimg.cn/large/82e16446ly1fk9r4pxdodj20ik05smxu.jpg" alt="Batch Norm"></p>
+<p>将图中的神经网络中的$z^{[1]}$、$z^{[2]}$进行批标准化后，$z^{[1]}$、$z^{[2]}$将变成$\tilde{z}^{[1]}$、$\tilde{z}^{[2]}$。</p>
+<p>当前的获得的经验无法适应新样本、新环境时，便会发生“Covariate Shift”现象。对于一个神经网络，前面权重值的不断变化就会带来后面权重值的不断变化，批标准化减缓了隐藏层权重分布变化的程度。采用批标准化之后，尽管每一层的z还是在不断变化，但是它们的均值和方差将基本保持不变，这就使得后面的数据及数据分布更加稳定，减少了前面层与后面层的耦合，使得每一层不过多依赖前面的网络层，最终加快整个神经网络的训练。</p>
+<p>批标准化还有附带的有正则化的效果：当使用小批量梯度下降时，对每个小批量进行批标准化时，会给这个小批量中最后求得的$z$带来一些干扰，产生类似与DropOut的正则化效果，但效果不是很显著。当这个小批量的数量越大时，正则化的效果越弱。</p>
+<p>需要注意的是，<strong>批标准化并不是一种正则化的手段</strong>，正则化效果只是其顺带的小副作用。另外，在训练时用到了批标准化，则在测试时也必须用到批标准化。</p>
+<p>训练时，输入的是小批量的训练样本，而测试时，测试样本是一个一个输入的。这里就又要用到指数加权平均，在训练过程中，求得每个小批量的均值和方差的数加权平均值，之后将最终的结果保存并应用到测试过程中。</p>
+<h3 id="Softmax回归"><a href="#Softmax回归" class="headerlink" title="Softmax回归"></a>Softmax回归</h3><p>Softmax回归模型是Logistic回归模型在多分类问题上的推广，在多分类问题中，输出y的值不再是一个数，而是一个多维列向量，有多少种分类是就有多少维数。激活函数使用的是softmax函数：$$\sigma(z)_{j}=\frac{exp(z_{j})}{\sum_{i=1}^m exp(z_{i})}$$<br>损失函数也变为：$$\mathcal{L}(a^l, y) =  - \sum^m_{i=1}y_i \log a^l$$</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a target="_blank" rel="noopener" href="http://mooc.study.163.com/course/deeplearning_ai-2001281003#/info">吴恩达-改善深层神经网络-网易云课堂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/deep-neural-network/">Andrew Ng-Improving Deep Neural Networks-Coursera</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.deeplearning.ai/">deeplearning.ai</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/maybe2030/p/5089753.html">梯度下降法的三种形式-博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24810318">什么是批标准化-知乎专栏</a></li>
+<li><a target="_blank" rel="noopener" href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92">Softmax回归-Ufldl</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/BinWeber/Machine-Learning">课程代码与资料-GitHub</a></li>
+</ol>
+<p>注：本文涉及的图片及资料均整理翻译自Andrew Ng的Deep Learning系列课程，版权归其所有。翻译整理水平有限，如有不妥的地方欢迎指出。</p>
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2017.10.07 完成初稿</li>
+<li>2018.02.13 调整部分内容</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>【Andrew Ng】深度学习(4)：优化神经网络(2)</p><p><a href="https://hugsy.top/2017/10/06/ML/deep_learning_4/">https://hugsy.top/2017/10/06/ML/deep_learning_4/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Hugsy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-10-06</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-06-17</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/ML/">ML</a><a class="link-muted mr-2" rel="tag" href="/tags/Coursera/">Coursera</a><a class="link-muted mr-2" rel="tag" href="/tags/Deep-Learning/">Deep Learning</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180700.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180901.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/10/14/ML/deep_learning_5/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">【Andrew Ng】深度学习(5)：TensorFlow</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/09/28/ML/deep_learning_3/"><span class="level-item">【Andrew Ng】深度学习(3)：优化神经网络(1)</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "baa274f077753cfdcf0a13dbfabc3b8a",
+            repo: "Comment",
+            owner: "Hugsy19",
+            clientID: "a321e46c668dc3d86c4f",
+            clientSecret: "bf18f6dc879ef2ea68fc63d4387e8dddeaa1f0a2",
+            admin: ["Hugsy19"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a><p class="is-size-7"><span>&copy; 2021 Hugsy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

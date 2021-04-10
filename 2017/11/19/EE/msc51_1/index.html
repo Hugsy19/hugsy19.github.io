@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>单片机原理(1)：基本结构 - Cornfield Chase</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#B481BB"><meta name="application-name" content="Hugsy&#039;s Blog"><meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="msapplication-TileColor" content="#B481BB"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hugsy&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><meta name="description" content="单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I&amp;#x2F;O口、定时&amp;#x2F;计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。 单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Di"><meta property="og:type" content="blog"><meta property="og:title" content="单片机原理(1)：基本结构"><meta property="og:url" content="https://hugsy.top/2017/11/19/EE/msc51_1/"><meta property="og:site_name" content="Cornfield Chase"><meta property="og:description" content="单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I&amp;#x2F;O口、定时&amp;#x2F;计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。 单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Di"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://i.loli.net/2019/06/17/5d079f251036726534.jpg"><meta property="article:published_time" content="2017-11-18T16:00:00.000Z"><meta property="article:modified_time" content="2019-06-24T03:21:19.419Z"><meta property="article:author" content="Hugsy"><meta property="article:tag" content="EE"><meta property="article:tag" content="MCU"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://i.loli.net/2019/06/17/5d079f251036726534.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hugsy.top/2017/11/19/EE/msc51_1/"},"headline":"单片机原理(1)：基本结构","image":["https://i.loli.net/2019/06/17/5d079f251036726534.jpg"],"datePublished":"2017-11-18T16:00:00.000Z","dateModified":"2019-06-24T03:21:19.419Z","author":{"@type":"Person","name":"Hugsy"},"description":"单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I&#x2F;O口、定时&#x2F;计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。 单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Di"}</script><link rel="canonical" href="https://hugsy.top/2017/11/19/EE/msc51_1/"><link rel="alternate" href="/atom.xml" title="Cornfield Chase" type="application/atom+xml"><link rel="icon" href="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7b65ce26b5ae8dae153d7b4d53214ba4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/tags/CS/">CS</a><a class="navbar-item" href="/tags/EE/">EE</a><a class="navbar-item" href="/tags/ML/">ML</a><a class="navbar-item" href="/tags/Weekly/">Weekly</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-11-18T16:00:00.000Z" title="11/19/2017, 12:00:00 AM">2017-11-19</time>发表</span><span class="level-item"><time dateTime="2019-06-24T03:21:19.419Z" title="6/24/2019, 11:21:19 AM">2019-06-24</time>更新</span><span class="level-item">27 分钟读完 (大约4066个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">单片机原理(1)：基本结构</h1><div class="content"><p>单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I/O口、定时/计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。</p>
+<p>单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Digital to Analog Converter，数模转换器）、高速I/O口、PWM（Pulse Width Modulator，脉冲宽度调制器）、WDT（Watch Dog Timer，监视定时器，俗称“看门狗”）等。这些接口电路已经突破了传统的微型计算机体系结构，所以单片机也称<strong>MCU（Micro-Controller Unit，微控制器）</strong>。</p>
+<span id="more"></span>
+<p>单片机的种类十分广泛，现在市场上主流的有PIC系列、STM32系列、AVR等等。51系列单片机是对所有兼容Intel 8031指令系统的单片机的统称，它们都是Intel公司1981年制造8位MCU Intel 8051衍生兼容品，其指令集称为MCS-51。这里以此为例介绍单片机工作原理。</p>
+<h3 id="引脚及功能"><a href="#引脚及功能" class="headerlink" title="引脚及功能"></a>引脚及功能</h3><p><img src="https://i.loli.net/2019/06/21/5d0c3ef32d47388037.jpg" alt="51单片机引脚图"></p>
+<p>51单片机的通常采用的是40引脚的双列直插式封装（Dual In-line Package，DIP），引脚功能的定义如上图所示。<br>除去基本的电源引脚，其中：</p>
+<ul>
+<li><strong>VSS</strong>：电源引脚，需要接地（GND）。</li>
+<li>**XTAL1、XTAL2(External Crystal)**：时间引脚，在片内XTAL1是振荡器反相放大器和时钟发生器的输入端，XTAL2是振荡器反相放大器的输出。分别外接由两个电容与晶振的并联谐振时钟电路时，XTAL1接外部晶振和微调电容的一端，XTAL2接外部晶振和微调电容的另一端；使用外部时钟时，XTAL1接地或悬空，XTAL2引脚接外部时钟的输入。</li>
+<li>**RST(Reset)**：复位引脚，出现持续两个机器周期的高电平将导致单片机复位。</li>
+<li>**ALE/PROG(Address Latch Enable/)**：作ALE，为地址锁存允许控制，用于在访问外部存储器时锁存P0口输出的低8位地址，脉冲的频率大约为振荡器频率的1/6。作PROG，当内部程序存储器（EPROM）编程时，由此输入编程脉冲信号。</li>
+<li>**PSEN(Programme Store Enable)**：外部程序存储器选通信号。</li>
+<li>**EA/Vpp(External Enable)**：作EA功能，为外部程序存储器使能信号，低电平时，只能访问外部程序存储器。作Vpp，对EPROM编程时，用以施加编程电压。</li>
+<li><strong>P0、P1、P2、P3</strong>：四个并行I/O口，每并行口8个引脚。</li>
+</ul>
+<h3 id="I-O口结构及功能"><a href="#I-O口结构及功能" class="headerlink" title="I/O口结构及功能"></a>I/O口结构及功能</h3><p>51单片机的32个I/O引脚，组成P0到P3四个8位的并行双向I/O口，内部的<strong>特殊功能寄存器（Special Function Register，SFR）</strong>P0-P3分别是它们的端口锁存器，此外每个口还分别包含一个输出驱动器和输入缓冲器。四个并行口可以按字节操作，也可以按位操作。</p>
+<h4 id="P0"><a href="#P0" class="headerlink" title="P0"></a>P0</h4><p>可作一般I/O口使用，应用系统采用外部总线结构时，也可以分时复用作为双向<strong>数据总线（Data Bus）</strong>和低8位<strong>地址总线（Address Bus）</strong>。</p>
+<img src="https://i.loli.net/2019/06/21/5d0c44c31b28512402.jpg" width = "620" height = "300" />
+
+<p>上图为P0口某一位的结构原理图。</p>
+<p>当P0作I/O口时，CPU发出控制信号C=0，封锁与门，使场效应管V2截至，同时将下面的数据选择器（Multiplexer，MUX）拨到下方，将锁存器的$\overline Q$端与场效应管（Field Effect Transistor）V1的栅极接通。</p>
+<p>输出数据时，内部总线数据经锁存器、MUX、V1输出到引脚；输入数据后，上下两个三态输入缓冲器用以内部的读操作，分别实现读引脚和读锁存器。</p>
+<p>要注意的是，P0口作为I/O口输出时，由于输出级为漏极开路电路，需要外接<strong>上拉电阻</strong>，才能输出高电平；输入后读取数据时，V1导通将输入的高电平拉为低电平造成误读，所以在进行输入操作前，要先<strong>向端口输出锁存器写“1”</strong>。</p>
+<p>当P0口作地址/数据总线时，CPU发出控制信号C=1。由P0输出地址/数据信息时，与门打开，MUX将CPU内部地址/数据总线反向后与V1的栅极接通，V1和V2两个FET管构成推拉式输出电路，负载能力大大加强；输入数据时，是由下面的三态输入缓冲器进入内部数据的。</p>
+<h4 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h4><p>四个I/O口中功能最简单，可做一般I/O口使用。其某一位的结构原理图如下。</p>
+<img src="https://i.loli.net/2019/06/24/5d10413983d4263808.jpg" width = "620" height = "300" />
+
+<p>其内部已有上拉电阻，可直接输出高电平，驱动拉电流负载。和P0一样，端口输入后读取数据时，要先向端口输出锁存器写“1”。</p>
+<h4 id="P2"><a href="#P2" class="headerlink" title="P2"></a>P2</h4><p>可作一般I/O口使用，在应用系统采用外部总线结构时，仅用作高8位地址总线。其某一位的结构原理如下图：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c44e3a7cc083470.jpg" alt="P2口"></p>
+<p>MUX打向左边时，作一般I/O口使用，此时于前面介绍的I/O口工作原理基本一致。Q输出为0时V1导通，外部引脚输出低电平；输出1时V1截止，由于存在内部上拉电阻，外部引脚输出高电平。输入后也可分为读引脚状态和读锁存器状态。而且端口输入后读取数据时，要先向端口输出锁存器写“1”。</p>
+<h4 id="P3"><a href="#P3" class="headerlink" title="P3"></a>P3</h4><p>可作一般I/O口使用外，每个引脚都具有第二功能。其某一位的结构原理如下图：</p>
+<img src="https://i.loli.net/2019/06/21/5d0c44ff789c857779.jpg" width = "620" height = "300" alt="P3口" />
+
+<p>作一般I/O口用，原理同P2。使用引脚的第二功能时，对应的锁存器里必须为“1”，否则图中的与非门输出始终为1，V1导通，引脚始终在低电平，不能正常工作。</p>
+<p>每个引脚的第二功能如下表：</p>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>第二功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P3.0</td>
+<td>RXD(Receive External Data)</td>
+<td>串行输入端</td>
+</tr>
+<tr>
+<td>P3.1</td>
+<td>TXD(Transmit External Data)</td>
+<td>串行输出端</td>
+</tr>
+<tr>
+<td>P3.2</td>
+<td>INT0(Interrupt)</td>
+<td>外部中断0</td>
+</tr>
+<tr>
+<td>P3.3</td>
+<td>INT1</td>
+<td>外部中断1</td>
+</tr>
+<tr>
+<td>P3.4</td>
+<td>T0(Timer)</td>
+<td>计数器0外部输入</td>
+</tr>
+<tr>
+<td>P3.5</td>
+<td>T1</td>
+<td>计数器1外部输入</td>
+</tr>
+<tr>
+<td>P3.6</td>
+<td>WR(Write Enable)</td>
+<td>外部数据存储器写选通</td>
+</tr>
+<tr>
+<td>P3.7</td>
+<td>RD(Read Enable)</td>
+<td>外部数据存储器读选通</td>
+</tr>
+</tbody></table>
+<p>四个I/O口中，P1、P2、P3口可驱动4个LS TTL（Low-power Schottky TTL，低功耗肖特基TTL）负载，即输出电流不小于400uA； P0口的输出缓冲器可驱动8个LS TTL负载，作一般I/O使用时为开漏输出，需要外加上拉电阻，做数据/地址总线使用时不需要外加上拉电阻。</p>
+<h3 id="内部微体系结构"><a href="#内部微体系结构" class="headerlink" title="内部微体系结构"></a>内部微体系结构</h3><p><img src="https://i.loli.net/2019/06/21/5d0c451f3db3040825.gif" alt="内部结构图"></p>
+<p>51系列单片机内部包含：</p>
+<ul>
+<li>运算器（包括逻辑运算器ALU（Arithmetic and Logic Unit）、累加器ACC（Accumulator）、寄存器B、程序状态字寄存器PSW（Program Status Word））、程序计数器PC（Program Counter）、指令寄存器IR（Instruction Register)、指令译码器ID（Instruction Decoder）、数据指针DPTR（Data Pointer）等组成的8位CPU。</li>
+<li>4KB ROM 程序存储器、128B RAM 数据存储器</li>
+<li>可寻址64KB外部数据存储、控制电路</li>
+<li>21个特殊功能寄存器SFR</li>
+<li>32条可编程I/O端口线</li>
+<li>2个16位定时/计数器</li>
+<li>1个可编程全双工串行口</li>
+<li>5个中断源、两个优先级嵌套中断结构</li>
+<li>1个片内振荡器及时钟电路</li>
+</ul>
+<h4 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h4><p>CPU用以产生各种控制信号，是单片机的核心。</p>
+<p>ALU完成数据的算数运算、逻辑运算，并将运算结果的状态送往PSW。</p>
+<p>PC是一个16位具有自动加一功能的寄存器，用来存放即将取出的指令地址，可对64KB程序存储器直接寻址。</p>
+<p>IR是用来暂存待执行指令的8位寄存器。ID对其中的指令进行译码，将指令转变为执行此指令所需要的电信号。</p>
+<p>DPTR是一个16位专用地址指针寄存器，用来存放16位地址，作间址寄存器使用。</p>
+<h4 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h4><p>51单片机的存储器按功能可分为数据存储器（RAM）和程序存储器（ROM），按位置分又可以分为片外存储器和片内存储器 。</p>
+<h5 id="ROM"><a href="#ROM" class="headerlink" title="ROM"></a>ROM</h5><p>51单片机通常包含只4KB的程序存储器，而以PC作为地址指针，通过16位地址总线，最大可寻址$2^{16}$B即64KB的地址空间，所以一般进行外部存储器进行拓展。</p>
+<p>引脚EA}决定了程序存储器的0000-0FFFH 4KB地址范围在单片机内部还是外部。当EA=1时，程序存储器的地址分为片内的0000-0FFFH 4KB地址范围和片外程序存储器的1000-FFFFH 60KB地址范围；否则，当EA=0时，只能寻址外部程序存储器，0000-FFFFH全部64KB地址空间都在片外。</p>
+<p>系统复位后PC的内容为0000H，也就是说单片机上电后都是从程序存储器的0000H单元开始取指令执行程序，一般在此地址单元设置转移指令，使之转向用户主程序处。此外，0003-0023H单元被保留用作5个中断服务程序的入口地址：</p>
+<table>
+<thead>
+<tr>
+<th>入口地址</th>
+<th>所属中断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0003H</td>
+<td>外部中断0入口地址</td>
+</tr>
+<tr>
+<td>000BH</td>
+<td>定时器0中断入口地址</td>
+</tr>
+<tr>
+<td>0013H</td>
+<td>外部中断1入口地址</td>
+</tr>
+<tr>
+<td>001BH</td>
+<td>定时器1中断入口地址</td>
+</tr>
+<tr>
+<td>0023H</td>
+<td>串口中断入口地址</td>
+</tr>
+</tbody></table>
+<p>故中断服务程序个主程序一般都被放置在0030H单元以后。</p>
+<h5 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h5><p>128B的内部数据存储器是用得最多的地址空间，所有的操作指令的操作数据只能在此地址空间或SFR中。</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c453c6214745552.jpg" alt="RAM"></p>
+<p>RAM区结构如上图。其中，00H-1FH共32个单元为工作寄存器区，分为4组，每组8个单元组成通用寄存器，都用R0-R7表示。可以通过改变PSW的RS1和RS0、RS1两位的状态来选择CPU当前使用的工作寄存器组，如下表所示。这样可以提高CPU的操作效率和响应中断的速度，利于现场的保护及恢复。</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c454f80b3b70765.jpg" alt="工作寄存器选取"></p>
+<p>20H-2FH共16个字节128位组成位寻址区，可用位寻址方式访问，位地址为00H-7FH。位寻址区的位地址如下表：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c4571dc4bc39940.jpg" alt="位寻址区地址"></p>
+<p>最顶层的30H-7FH共80个单元为用户RAM区，作为堆栈或者数据缓存器。</p>
+<p>普通51子系列单片机中，地址为00H-7FH的低128B区域为RAM区，而地址为80H-FFH的高128B区域即为SFR。增强型52子系列中，有地址为00H-FFH的256B的RAM，而SFR的地址和RAM的高128字节地址80H-FFH是重合的，需要通过不同的寻址方式来区分它们。</p>
+<h5 id="SFR"><a href="#SFR" class="headerlink" title="SFR"></a>SFR</h5><p>SFR是专门用于控制、选择、管理、存放单片机内部各部分的工作方式、条件、状态、结果的寄存器，不同的SFR用于管理不同的硬件模块。</p>
+<p>51单片机内的21个SFR中，有5个是16位寄存器 ，11个可以进行位寻址。它们的地址分布及功能如下表：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c4588436be43129.jpg" alt="SFR"></p>
+<p>其中PSW用于存放程序运行是的各种状态信息，其各位定义如下：</p>
+<p>位地址 | D7H | D6H | D5H | D4H | D3H | D2H | D1H | D0H<br>——|——|——|——|——|——|——|——|——|——<br>定义     | CY | AC | F0 | RS1 | RS0 | OV | F1 | P</p>
+<ul>
+<li>**CY(Carry)**：进位标志位，运算过程最高为产生进位或借位，则CY=1。</li>
+<li>**AC(Assistant Carry)**：辅助进位标志位，运算过程中低四位向高位有进位或借位，则AC=1。</li>
+<li> <strong>F0/F1</strong>：软件标志位，可作为用户自定义的标志位，由用户置位或复位。</li>
+<li>**RS0和RS1(Register Select)**：RAM中的4组工作寄存器选择位。</li>
+<li>**OV(Overflow)**：溢出标志位，运算过程中产生溢出，OV=1。</li>
+<li>**P(Parity)**：奇偶标志位，执行指令是会根据ACC中1的个数的奇偶自动令P置位或清零，奇为1，偶为0；串行通信时，可以由此位验证传输的可靠性。</li>
+</ul>
+<h4 id="时钟和复位"><a href="#时钟和复位" class="headerlink" title="时钟和复位"></a>时钟和复位</h4><p>单片机内部的时钟信号用来提供单片机内部各种操作的时间基准，复位操作使单片机内的电路初始化。</p>
+<h5 id="时钟电路、单位"><a href="#时钟电路、单位" class="headerlink" title="时钟电路、单位"></a>时钟电路、单位</h5><p>51单片机的时钟信号通常由<strong>内部振荡</strong>或<strong>外部振荡</strong>方式来获得。接法如图所示：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c459d843c174881.jpg" alt="时钟信号"></p>
+<p>在XTAL1和XTAL2引脚外接晶体振荡器或者陶瓷谐振器，即构成内部振荡方式。晶振通常选用6、12或24MHz，单片机内部有一个高增益反向放大器，外接晶振将构成自激振荡，产生振荡时钟脉冲，电容C1、C2可以稳定振荡频率，电容值一般为5-30pF。</p>
+<p>外部振荡就是把已有的时钟信号引入单片机内。</p>
+<p>单片机以晶振的<strong>振荡周期</strong>（或外部输入的时钟周期）为最小的时序单位，片内的各种微操作都以此周期为时序基准；振荡频率经单片机内的二分频器分频后形成<strong>状态周期</strong>，所以，1个状态周期包含2个振荡周期；而6个状态周期组成1个<strong>机器周期</strong>，所以，1个机器周期包含12个振荡周期；执行一条指令需要1-4个机器周期，这个时间便称为<strong>指令周期</strong>。</p>
+<p>例如，单片机外接12MHz的晶振时：$$ 振荡周期 = \frac{1}{f_{osc}} = \frac{1}{12Mhz} = 0.0833 us $$ $$ 状态周期 = \frac{2}{f_{osc}} = \frac{2}{12Mhz} = 0.167 us $$ $$ 机器周期 = \frac{12}{f_{osc}} = \frac{12}{12Mhz} = 1 us $$ $$ 指令周期 = 1–4个机器周期 = 1–4 us $$</p>
+<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><p>51单片机的指令执行及存储器读取时序图如下：</p>
+<p>取指时序：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c45c021d2b45997.gif" alt="指令时序图"></p>
+<p>外部ROM读时序：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c45cb7cd8a50166.gif" alt="外部ROM读时序"></p>
+<p>外部RAM读取时序：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c45d98835052777.gif" alt="外部RAM读取时序"></p>
+<h5 id="复位电路"><a href="#复位电路" class="headerlink" title="复位电路"></a>复位电路</h5><p>当51单片机的复位引脚RST出现两个机器周期以上高电平时，单片机即完成复位操作。复位操作通常有上电复位和开关复位两种形式，接法如图所示：</p>
+<p><img src="https://i.loli.net/2019/06/21/5d0c45f532d0d76162.jpg" alt="复位电路"></p>
+<p>单片机复位后，PC=0000H，P0-P3=FFH，SP=07H，其他寄存器都回到初始的0状态。</p>
+<hr>
+<p>更新历史：</p>
+<ul>
+<li>2017.11.22 完成初稿</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>单片机原理(1)：基本结构</p><p><a href="https://hugsy.top/2017/11/19/EE/msc51_1/">https://hugsy.top/2017/11/19/EE/msc51_1/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Hugsy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-11-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/EE/">EE</a><a class="link-muted mr-2" rel="tag" href="/tags/MCU/">MCU</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180700.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/20210410180901.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/11/22/EE/msc51_2/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">单片机原理(2)：程序设计</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/11/09/ML/deep_learning_6/"><span class="level-item">【Andrew Ng】深度学习(6)：结构化机器学习项目</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "450cbb95dc5c1232d7086ce5c9b5e1d6",
+            repo: "Comment",
+            owner: "Hugsy19",
+            clientID: "a321e46c668dc3d86c4f",
+            clientSecret: "bf18f6dc879ef2ea68fc63d4387e8dddeaa1f0a2",
+            admin: ["Hugsy19"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://raw.githubusercontent.com/Hugsy19/Picbed/master/img/logo.svg" alt="Cornfield Chase" height="28"></a><p class="is-size-7"><span>&copy; 2021 Hugsy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
