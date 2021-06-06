@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2021-04-11T10:09:33.406Z</updated>
+  <updated>2021-06-06T16:27:42.711Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【My Life Will...】 1 回归</title>
+    <link href="https://hugsy.top/2021/06/06/Weekly/weekly_1/"/>
+    <id>https://hugsy.top/2021/06/06/Weekly/weekly_1/</id>
+    <published>2021-06-05T16:00:00.000Z</published>
+    <updated>2021-06-06T16:27:42.711Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;就连十年前沉迷的乌托邦，摩尔庄园都回归了，一切是该回归了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Thinking" scheme="https://hugsy.top/categories/Thinking/"/>
+    
+    
+    <category term="Weekly" scheme="https://hugsy.top/tags/Weekly/"/>
+    
+  </entry>
   
   <entry>
     <title>《Algorithms 4th》笔记</title>
@@ -32,13 +51,13 @@
     <category term="Docs" scheme="https://hugsy.top/categories/Docs/"/>
     
     
-    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
-    
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
+    
+    <category term="Algorithm" scheme="https://hugsy.top/tags/Algorithm/"/>
     
     <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
     
-    <category term="Algorithm" scheme="https://hugsy.top/tags/Algorithm/"/>
+    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
     
   </entry>
   
@@ -230,9 +249,9 @@
     <category term="Tutorials" scheme="https://hugsy.top/categories/Tutorials/"/>
     
     
-    <category term="Linux" scheme="https://hugsy.top/tags/Linux/"/>
-    
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
+    
+    <category term="Linux" scheme="https://hugsy.top/tags/Linux/"/>
     
   </entry>
   
@@ -251,11 +270,11 @@
     <category term="Projects" scheme="https://hugsy.top/categories/Projects/"/>
     
     
+    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
+    
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
     
     <category term="Android" scheme="https://hugsy.top/tags/Android/"/>
-    
-    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
     
   </entry>
   
@@ -430,28 +449,6 @@
     
     <summary type="html">&lt;p&gt;指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。&lt;/p&gt;
 &lt;p&gt;51系列单片机一般使用汇编语言（Assembly Language）直接编程，其指令系统中，有进行数据传送、算术运算、逻辑运算、位操作、控制传递等功能的111条基本指令。此外也可以采用C语言进行程序设计。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
-    
-    
-    <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
-    
-    <category term="MCU" scheme="https://hugsy.top/tags/MCU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单片机原理(1)：基本结构</title>
-    <link href="https://hugsy.top/2017/11/19/EE/msc51_1/"/>
-    <id>https://hugsy.top/2017/11/19/EE/msc51_1/</id>
-    <published>2017-11-18T16:00:00.000Z</published>
-    <updated>2021-04-11T08:48:02.900Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I/O口、定时/计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。&lt;/p&gt;
-&lt;p&gt;单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Digital to Analog Converter，数模转换器）、高速I/O口、PWM（Pulse Width Modulator，脉冲宽度调制器）、WDT（Watch Dog Timer，监视定时器，俗称“看门狗”）等。这些接口电路已经突破了传统的微型计算机体系结构，所以单片机也称&lt;strong&gt;MCU（Micro-Controller Unit，微控制器）&lt;/strong&gt;。&lt;/p&gt;</summary>
     
     
     
