@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2021-06-06T16:34:35.178Z</updated>
+  <updated>2021-07-11T08:41:40.423Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -17,14 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【My Life Will...】 1 回归</title>
-    <link href="https://hugsy.top/2021/06/06/Weekly/weekly_1/"/>
-    <id>https://hugsy.top/2021/06/06/Weekly/weekly_1/</id>
-    <published>2021-06-05T16:00:00.000Z</published>
-    <updated>2021-06-06T16:34:35.178Z</updated>
+    <title>N进制小数</title>
+    <link href="https://hugsy.top/2021/07/11/CS/oj_n_decimal/"/>
+    <id>https://hugsy.top/2021/07/11/CS/oj_n_decimal/</id>
+    <published>2021-07-10T16:00:00.000Z</published>
+    <updated>2021-07-11T08:41:40.423Z</updated>
     
     
-    <summary type="html">&lt;p&gt;就连十年前沉迷的乌托邦，摩尔庄园都回归了，一切是该回归了。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;把任意十进制正小数m转换成n进制的正小数。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="OJ" scheme="https://hugsy.top/categories/OJ/"/>
+    
+    
+    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
+    
+    <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【My Life Will...】 1</title>
+    <link href="https://hugsy.top/2021/07/11/Weekly/weekly_1/"/>
+    <id>https://hugsy.top/2021/07/11/Weekly/weekly_1/</id>
+    <published>2021-07-10T16:00:00.000Z</published>
+    <updated>2021-07-11T08:33:28.087Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span</summary>
+        
+      
     
     
     
@@ -80,30 +107,6 @@
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
     
     <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OJ练习笔记</title>
-    <link href="https://hugsy.top/2021/02/28/CS/oj_exercise/"/>
-    <id>https://hugsy.top/2021/02/28/CS/oj_exercise/</id>
-    <published>2021-02-27T16:00:00.000Z</published>
-    <updated>2021-04-11T10:12:45.599Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;笔记地址：&lt;a href=&quot;http://hugsy.top/OJ_Exercise/#/&quot;&gt;http://hugsy.top/OJ_Exercise/#/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Open Judge练习记录。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Docs" scheme="https://hugsy.top/categories/Docs/"/>
-    
-    
-    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
-    
-    <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
-    
-    <category term="OJ" scheme="https://hugsy.top/tags/OJ/"/>
     
   </entry>
   
