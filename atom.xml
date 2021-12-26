@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2021-07-11T08:41:40.423Z</updated>
+  <updated>2021-07-11T08:33:28.087Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>N进制小数</title>
-    <link href="https://hugsy.top/2021/07/11/CS/oj_n_decimal/"/>
-    <id>https://hugsy.top/2021/07/11/CS/oj_n_decimal/</id>
-    <published>2021-07-10T16:00:00.000Z</published>
-    <updated>2021-07-11T08:41:40.423Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;把任意十进制正小数m转换成n进制的正小数。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="OJ" scheme="https://hugsy.top/categories/OJ/"/>
-    
-    
-    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
-    
-    <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
-    
-  </entry>
   
   <entry>
     <title>【My Life Will...】 1</title>
@@ -59,54 +38,6 @@
     
     
     <category term="Weekly" scheme="https://hugsy.top/tags/Weekly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Algorithms 4th》笔记</title>
-    <link href="https://hugsy.top/2021/04/10/CS/algs4/"/>
-    <id>https://hugsy.top/2021/04/10/CS/algs4/</id>
-    <published>2021-04-09T16:00:00.000Z</published>
-    <updated>2021-04-11T10:09:33.406Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;笔记地址：&lt;a href=&quot;http://hugsy.top/Princeton_Algs4/#/&quot;&gt;http://hugsy.top/Princeton_Algs4/#/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;《算法（第4版）》及配套课程学习笔记。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Docs" scheme="https://hugsy.top/categories/Docs/"/>
-    
-    
-    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
-    
-    <category term="Algorithm" scheme="https://hugsy.top/tags/Algorithm/"/>
-    
-    <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
-    
-    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《C++ Primer 5th》笔记</title>
-    <link href="https://hugsy.top/2021/03/15/CS/cpp_primer/"/>
-    <id>https://hugsy.top/2021/03/15/CS/cpp_primer/</id>
-    <published>2021-03-14T16:00:00.000Z</published>
-    <updated>2021-04-11T10:06:24.809Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;笔记地址：&lt;a href=&quot;http://hugsy.top/Cpp_Primer_Practice/#/&quot;&gt;http://hugsy.top/Cpp_Primer_Practice/#/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;《C++ Primer 中文版（第 5 版）》学习笔记。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Docs" scheme="https://hugsy.top/categories/Docs/"/>
-    
-    
-    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
-    
-    <category term="Cpp" scheme="https://hugsy.top/tags/Cpp/"/>
     
   </entry>
   
@@ -461,6 +392,77 @@
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
     
     <category term="MCU" scheme="https://hugsy.top/tags/MCU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单片机原理(1)：基本结构</title>
+    <link href="https://hugsy.top/2017/11/19/EE/msc51_1/"/>
+    <id>https://hugsy.top/2017/11/19/EE/msc51_1/</id>
+    <published>2017-11-18T16:00:00.000Z</published>
+    <updated>2021-04-11T08:48:02.900Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I/O口、定时/计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。&lt;/p&gt;
+&lt;p&gt;单片机主要面对测控对象，突出的是控制功能，所以它的芯片内集成了很多面向测控对象的接口电路，如ADC（Analog to Digital Converter，模数转换器）、DAC（Digital to Analog Converter，数模转换器）、高速I/O口、PWM（Pulse Width Modulator，脉冲宽度调制器）、WDT（Watch Dog Timer，监视定时器，俗称“看门狗”）等。这些接口电路已经突破了传统的微型计算机体系结构，所以单片机也称&lt;strong&gt;MCU（Micro-Controller Unit，微控制器）&lt;/strong&gt;。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
+    
+    
+    <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
+    
+    <category term="MCU" scheme="https://hugsy.top/tags/MCU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Coursera】深度学习(6)：结构化机器学习项目</title>
+    <link href="https://hugsy.top/2017/11/09/ML/deep_learning_6/"/>
+    <id>https://hugsy.top/2017/11/09/ML/deep_learning_6/</id>
+    <published>2017-11-08T16:00:00.000Z</published>
+    <updated>2021-04-11T08:02:04.382Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;构建好一个机器学习系统并获得一些初步结果时，为得到最令人满意的结果，后续往往还需要进行大量的改进。如前面优化神经网络中所述，改进的方法多种多样，可能是收集更多的数据，或者是进行正则化，或者是采用不同的优化算法。&lt;/p&gt;
+&lt;p&gt;想要找准改进的方向，使一个机器学习系统更快更有效地工作，需要学习一些在构建机器学习系统时常用到的策略。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
+    
+    
+    <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
+    
+    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
+    
+    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Coursera】深度学习(5)：TensorFlow</title>
+    <link href="https://hugsy.top/2017/10/14/ML/deep_learning_5/"/>
+    <id>https://hugsy.top/2017/10/14/ML/deep_learning_5/</id>
+    <published>2017-10-13T16:00:00.000Z</published>
+    <updated>2021-04-11T07:55:47.977Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;每次都从零开始全部靠自己去建立一个深层神经网络模型并不现实，借助现在众多流行的深度学习框架，能够高效地实现这些模型。&lt;strong&gt;TensorFlow&lt;/strong&gt;便是其中之一。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
+    
+    
+    <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
+    
+    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
+    
+    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
+    
+    <category term="Python" scheme="https://hugsy.top/tags/Python/"/>
     
   </entry>
   
