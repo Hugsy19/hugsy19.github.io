@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2021-07-11T08:33:28.087Z</updated>
+  <updated>2022-02-23T16:03:55.907Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -17,27 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【My Life Will...】 1</title>
-    <link href="https://hugsy.top/2021/07/11/Weekly/weekly_1/"/>
-    <id>https://hugsy.top/2021/07/11/Weekly/weekly_1/</id>
-    <published>2021-07-10T16:00:00.000Z</published>
-    <updated>2021-07-11T08:33:28.087Z</updated>
+    <title>【LeetCode】1.两数之和</title>
+    <link href="https://hugsy.top/2022/02/07/CS/leetcode_1/"/>
+    <id>https://hugsy.top/2022/02/07/CS/leetcode_1/</id>
+    <published>2022-02-06T16:00:00.000Z</published>
+    <updated>2022-02-23T16:03:55.907Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;span</summary>
-        
-      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/two-sum/submissions/&quot;&gt;两数之和&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
-    <category term="Thinking" scheme="https://hugsy.top/categories/Thinking/"/>
+    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
     
     
-    <category term="Weekly" scheme="https://hugsy.top/tags/Weekly/"/>
+    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
+    
+    <category term="LeetCode" scheme="https://hugsy.top/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《C++ Primer》笔记</title>
+    <link href="https://hugsy.top/2021/09/06/CS/cpp_primer_note/"/>
+    <id>https://hugsy.top/2021/09/06/CS/cpp_primer_note/</id>
+    <published>2021-09-05T16:00:00.000Z</published>
+    <updated>2022-02-23T15:54:13.143Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;地址：&lt;a href=&quot;https://hugsy.top/cpp/#/cpp_primer/&quot;&gt;https://hugsy.top/cpp/#/cpp_primer/&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
+    
+    
+    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
+    
+    <category term="CPP" scheme="https://hugsy.top/tags/CPP/"/>
     
   </entry>
   
@@ -438,31 +455,6 @@
     <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
     
     <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Coursera】深度学习(5)：TensorFlow</title>
-    <link href="https://hugsy.top/2017/10/14/ML/deep_learning_5/"/>
-    <id>https://hugsy.top/2017/10/14/ML/deep_learning_5/</id>
-    <published>2017-10-13T16:00:00.000Z</published>
-    <updated>2021-04-11T07:55:47.977Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;每次都从零开始全部靠自己去建立一个深层神经网络模型并不现实，借助现在众多流行的深度学习框架，能够高效地实现这些模型。&lt;strong&gt;TensorFlow&lt;/strong&gt;便是其中之一。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Notes" scheme="https://hugsy.top/categories/Notes/"/>
-    
-    
-    <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
-    
-    <category term="Python" scheme="https://hugsy.top/tags/Python/"/>
     
   </entry>
   
