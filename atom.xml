@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2022-06-14T16:42:45.275Z</updated>
+  <updated>2022-10-12T15:57:03.020Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -17,32 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【LeetCode】 Week 2</title>
-    <link href="https://hugsy.top/2022/06/15/CS/leetcode_2/"/>
-    <id>https://hugsy.top/2022/06/15/CS/leetcode_2/</id>
-    <published>2022-06-14T16:00:00.000Z</published>
-    <updated>2022-06-14T16:42:45.275Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;LeetCode刷题记录，第二周。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
-    
-    
-    <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
-    
-    <category term="cpp" scheme="https://hugsy.top/tags/cpp/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【LeetCode】 Week 1</title>
-    <link href="https://hugsy.top/2022/06/08/CS/leetcode_1/"/>
-    <id>https://hugsy.top/2022/06/08/CS/leetcode_1/</id>
-    <published>2022-06-07T16:00:00.000Z</published>
-    <updated>2022-06-14T16:42:28.326Z</updated>
+    <link href="https://hugsy.top/2022/10/09/CS/leetcode_1/"/>
+    <id>https://hugsy.top/2022/10/09/CS/leetcode_1/</id>
+    <published>2022-10-08T16:00:00.000Z</published>
+    <updated>2022-10-12T15:57:03.020Z</updated>
     
     
     <summary type="html">&lt;p&gt;LeetCode刷题记录，第一周。&lt;/p&gt;</summary>
@@ -55,6 +34,8 @@
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
     
     <category term="cpp" scheme="https://hugsy.top/tags/cpp/"/>
+    
+    <category term="python" scheme="https://hugsy.top/tags/python/"/>
     
   </entry>
   
@@ -452,6 +433,30 @@
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
     
     <category term="MCU" scheme="https://hugsy.top/tags/MCU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习(6)：结构化机器学习项目</title>
+    <link href="https://hugsy.top/2017/11/09/ML/deep_learning_6/"/>
+    <id>https://hugsy.top/2017/11/09/ML/deep_learning_6/</id>
+    <published>2017-11-08T16:00:00.000Z</published>
+    <updated>2022-06-08T14:40:03.305Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;构建好一个机器学习系统并获得一些初步结果时，为得到最令人满意的结果，后续往往还需要进行大量的改进。如前面优化神经网络中所述，改进的方法多种多样，可能是收集更多的数据，或者是进行正则化，或者是采用不同的优化算法。&lt;/p&gt;
+&lt;p&gt;想要找准改进的方向，使一个机器学习系统更快更有效地工作，需要学习一些在构建机器学习系统时常用到的策略。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    
+    
+    <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
+    
+    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
+    
+    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
