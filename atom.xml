@@ -6,7 +6,7 @@
   <link href="https://hugsy.top/atom.xml" rel="self"/>
   
   <link href="https://hugsy.top/"/>
-  <updated>2022-10-13T15:52:17.825Z</updated>
+  <updated>2022-12-10T10:06:08.312Z</updated>
   <id>https://hugsy.top/</id>
   
   <author>
@@ -17,25 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【LeetCode】 Week 1</title>
+    <title>《男性的衰落》</title>
+    <link href="https://hugsy.top/2022/12/04/ME/the_descent_of_man/"/>
+    <id>https://hugsy.top/2022/12/04/ME/the_descent_of_man/</id>
+    <published>2022-12-03T16:00:00.000Z</published>
+    <updated>2022-12-10T10:06:08.312Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/35016930/&quot;&gt;《男性的衰落》&lt;/a&gt;读书笔记&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="阅读笔记" scheme="https://hugsy.top/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="ME" scheme="https://hugsy.top/tags/ME/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【LeetCode】 1-5</title>
     <link href="https://hugsy.top/2022/10/09/CS/leetcode_1/"/>
     <id>https://hugsy.top/2022/10/09/CS/leetcode_1/</id>
     <published>2022-10-08T16:00:00.000Z</published>
-    <updated>2022-10-13T15:52:17.825Z</updated>
+    <updated>2022-12-10T10:05:12.867Z</updated>
     
     
     <summary type="html">&lt;p&gt;LeetCode刷题记录，第一周。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="刷题笔记" scheme="https://hugsy.top/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
     
-    <category term="cpp" scheme="https://hugsy.top/tags/cpp/"/>
+    <category term="CPP" scheme="https://hugsy.top/tags/CPP/"/>
     
-    <category term="python" scheme="https://hugsy.top/tags/python/"/>
+    <category term="Python" scheme="https://hugsy.top/tags/Python/"/>
     
   </entry>
   
@@ -44,14 +63,14 @@
     <link href="https://hugsy.top/2021/09/06/CS/cpp_primer_note/"/>
     <id>https://hugsy.top/2021/09/06/CS/cpp_primer_note/</id>
     <published>2021-09-05T16:00:00.000Z</published>
-    <updated>2022-06-08T14:38:54.738Z</updated>
+    <updated>2022-12-10T09:50:42.339Z</updated>
     
     
     <summary type="html">&lt;p&gt;地址：&lt;a href=&quot;https://hugsy.top/cpp/#/cpp_primer/&quot;&gt;https://hugsy.top/cpp/#/cpp_primer/&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
@@ -65,14 +84,14 @@
     <link href="https://hugsy.top/2019/11/04/CS/sql_tutorial/"/>
     <id>https://hugsy.top/2019/11/04/CS/sql_tutorial/</id>
     <published>2019-11-03T16:00:00.000Z</published>
-    <updated>2022-06-08T14:38:40.138Z</updated>
+    <updated>2022-12-10T09:58:55.929Z</updated>
     
     
-    <summary type="html">&lt;p&gt;《SQL基础教程（第2版）》读书笔记&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://book.douban.com/subject/27055712/&quot;&gt;《SQL基础教程（第2版）》&lt;/a&gt;读书笔记&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
@@ -86,14 +105,14 @@
     <link href="https://hugsy.top/2019/06/18/ML/cnn_yolov3/"/>
     <id>https://hugsy.top/2019/06/18/ML/cnn_yolov3/</id>
     <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2022-06-08T14:32:18.617Z</updated>
+    <updated>2022-12-10T10:01:30.124Z</updated>
     
     
     <summary type="html">&lt;p&gt;2015年华盛顿大学的Joseph Redmon等人提出的YOLO算法中，将目标检测直接作为回归问题来解决，而使用一个一体化的CNN实现了端到端（End to End）检测，为目标检测问题提供了另外一种解决思路的同时，基于深度学习的目标检测算法也自此有了单步和多步之分。到2018年，YOLO已经更新到了v3版本，这里对该模型进行分析。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="项目笔记" scheme="https://hugsy.top/categories/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
@@ -105,15 +124,17 @@
     <link href="https://hugsy.top/2019/05/04/ML/cnn_alexnet/"/>
     <id>https://hugsy.top/2019/05/04/ML/cnn_alexnet/</id>
     <published>2019-05-03T16:00:00.000Z</published>
-    <updated>2022-06-08T14:32:22.208Z</updated>
+    <updated>2022-12-10T10:01:27.455Z</updated>
     
     
     <summary type="html">&lt;p&gt;详解AlexNet，用TensorFlow实现该架构并用它来完成Kaggle上的Dogs Vs Cats竞赛。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="教程" scheme="https://hugsy.top/categories/%E6%95%99%E7%A8%8B/"/>
     
+    
+    <category term="Python" scheme="https://hugsy.top/tags/Python/"/>
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
     
@@ -146,21 +167,17 @@
     <link href="https://hugsy.top/2019/03/21/ML/machine_learning_2/"/>
     <id>https://hugsy.top/2019/03/21/ML/machine_learning_2/</id>
     <published>2019-03-20T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:37.673Z</updated>
+    <updated>2022-12-10T10:03:54.133Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里主要介绍Logistic回归模型及正则化。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Machine Learning" scheme="https://hugsy.top/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -169,21 +186,17 @@
     <link href="https://hugsy.top/2019/03/02/ML/machine_learning_1/"/>
     <id>https://hugsy.top/2019/03/02/ML/machine_learning_1/</id>
     <published>2019-03-01T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:33.478Z</updated>
+    <updated>2022-12-10T10:03:57.996Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里介绍机器学习的基本概念以及线性回归模型。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Machine Learning" scheme="https://hugsy.top/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -192,14 +205,14 @@
     <link href="https://hugsy.top/2019/02/27/EE/raspi/"/>
     <id>https://hugsy.top/2019/02/27/EE/raspi/</id>
     <published>2019-02-26T16:00:00.000Z</published>
-    <updated>2022-06-08T14:37:05.765Z</updated>
+    <updated>2022-12-10T10:04:58.091Z</updated>
     
     
     <summary type="html">&lt;p&gt;入手一块树莓派3B+，准备用它完成毕业设计，顺便深入学习一波Linux。这里先学习官方Raspbian系统的烧录和基本配置过程。&lt;/p&gt;</summary>
     
     
     
-    <category term="Tutorial" scheme="https://hugsy.top/categories/Tutorial/"/>
+    <category term="踩坑记录" scheme="https://hugsy.top/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
     
     
     <category term="CS" scheme="https://hugsy.top/tags/CS/"/>
@@ -213,21 +226,21 @@
     <link href="https://hugsy.top/2018/06/24/EE/android_shannon/"/>
     <id>https://hugsy.top/2018/06/24/EE/android_shannon/</id>
     <published>2018-06-23T16:00:00.000Z</published>
-    <updated>2022-06-08T14:36:28.853Z</updated>
+    <updated>2022-12-10T10:00:23.658Z</updated>
     
     
     <summary type="html">&lt;p&gt;一款可译用来统计信息熵，进行二元香农、诺顿、哈夫曼编码，以及判断分组码是否唯一可译的Android APP。&lt;/p&gt;</summary>
     
     
     
-    <category term="Project" scheme="https://hugsy.top/categories/Project/"/>
+    <category term="项目笔记" scheme="https://hugsy.top/categories/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
     
-    
-    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
     
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
     
     <category term="Android" scheme="https://hugsy.top/tags/Android/"/>
+    
+    <category term="Java" scheme="https://hugsy.top/tags/Java/"/>
     
   </entry>
   
@@ -236,21 +249,17 @@
     <link href="https://hugsy.top/2018/03/09/ML/deep_learning_11/"/>
     <id>https://hugsy.top/2018/03/09/ML/deep_learning_11/</id>
     <published>2018-03-08T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:25.723Z</updated>
+    <updated>2022-12-10T10:03:36.882Z</updated>
     
     
     <summary type="html">&lt;p&gt;采用循环神经网络能够建立各种各样的&lt;strong&gt;序列模型（Sequence Model）&lt;/strong&gt;。加入一些注意力机制，能够使这些序列模型更加强大。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -259,21 +268,17 @@
     <link href="https://hugsy.top/2018/03/01/ML/deep_learning_10/"/>
     <id>https://hugsy.top/2018/03/01/ML/deep_learning_10/</id>
     <published>2018-02-28T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:21.079Z</updated>
+    <updated>2022-12-10T10:03:28.059Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;自然语言处理（Natural Language Processing, NLP）&lt;/strong&gt;是人工智能和语言学领域的学科分支，它研究实现人与计算机之间使用自然语言进行有效通信的各种理论和方法。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -282,7 +287,7 @@
     <link href="https://hugsy.top/2018/02/20/ML/deep_learning_9/"/>
     <id>https://hugsy.top/2018/02/20/ML/deep_learning_9/</id>
     <published>2018-02-19T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:16.658Z</updated>
+    <updated>2022-12-10T10:03:22.125Z</updated>
     
     
     <summary type="html">&lt;p&gt;随深度学习技术的发展，使用&lt;strong&gt;循环神经网络（Recurrent Neural Network，RNN）&lt;/strong&gt;建立的各种序列模型，使语音识别、机器翻译及自然语言理解等应用成为可能。&lt;/p&gt;</summary>
@@ -294,10 +299,6 @@
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
     
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
-    
   </entry>
   
   <entry>
@@ -305,21 +306,17 @@
     <link href="https://hugsy.top/2018/01/18/ML/deep_learning_8/"/>
     <id>https://hugsy.top/2018/01/18/ML/deep_learning_8/</id>
     <published>2018-01-17T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:11.706Z</updated>
+    <updated>2022-12-10T10:03:10.629Z</updated>
     
     
     <summary type="html">&lt;p&gt;认识了解了卷积神经网络的工作原理及其一些经典的网络结构后，这里介绍如何应用卷积神经网络，实现目标检测、人脸识别及神经风格转换。&lt;/p&gt;</summary>
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -328,7 +325,7 @@
     <link href="https://hugsy.top/2017/11/28/ML/deep_learning_7/"/>
     <id>https://hugsy.top/2017/11/28/ML/deep_learning_7/</id>
     <published>2017-11-27T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:07.861Z</updated>
+    <updated>2022-12-10T10:03:14.078Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;计算机视觉（Computer Vision）&lt;/strong&gt;是一门研究如何教机器“看”的科学，计算机视觉研究相关的理论和技术，试图创建能够从图像或者多维数据中获取“信息”的人工智能系统。&lt;/p&gt;
@@ -336,14 +333,10 @@
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -352,7 +345,7 @@
     <link href="https://hugsy.top/2017/11/27/EE/msc51_4/"/>
     <id>https://hugsy.top/2017/11/27/EE/msc51_4/</id>
     <published>2017-11-26T16:00:00.000Z</published>
-    <updated>2022-06-08T14:36:45.045Z</updated>
+    <updated>2022-12-10T09:50:22.157Z</updated>
     
     
     <summary type="html">&lt;p&gt;当单片机内部功能不能满足应用系统的要求，经需要在片外连接相应的外围芯片以满足应用系统的要求的过程，叫做系统扩展。&lt;/p&gt;
@@ -360,7 +353,7 @@
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
@@ -374,7 +367,7 @@
     <link href="https://hugsy.top/2017/11/24/EE/msc51_3/"/>
     <id>https://hugsy.top/2017/11/24/EE/msc51_3/</id>
     <published>2017-11-23T16:00:00.000Z</published>
-    <updated>2022-06-08T14:36:40.345Z</updated>
+    <updated>2022-12-10T09:50:19.188Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;中断（Interrupt）&lt;/strong&gt;是指在计算机运行过程中，出现某些意外情况需主机干预时，机器能自动停止正在运行的程序并转入处理新情况的程序，处理完毕后又返回原被暂停的程序继续运行。&lt;/p&gt;
@@ -383,7 +376,7 @@
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
@@ -397,7 +390,7 @@
     <link href="https://hugsy.top/2017/11/22/EE/msc51_2/"/>
     <id>https://hugsy.top/2017/11/22/EE/msc51_2/</id>
     <published>2017-11-21T16:00:00.000Z</published>
-    <updated>2022-06-08T14:36:36.719Z</updated>
+    <updated>2022-12-10T09:50:16.314Z</updated>
     
     
     <summary type="html">&lt;p&gt;指令系统是计算机硬件的语言系统，也叫机器语言，它是软件和硬件的主要界面，从系统结构的角度看，它是系统程序员看到的计算机的主要属性。指令系统表征了计算机的基本功能，决定了机器所要求的能力，也决定了指令的格式和机器的结构。&lt;/p&gt;
@@ -405,7 +398,7 @@
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
@@ -419,7 +412,7 @@
     <link href="https://hugsy.top/2017/11/19/EE/msc51_1/"/>
     <id>https://hugsy.top/2017/11/19/EE/msc51_1/</id>
     <published>2017-11-18T16:00:00.000Z</published>
-    <updated>2022-06-08T14:36:33.252Z</updated>
+    <updated>2022-12-10T09:50:01.345Z</updated>
     
     
     <summary type="html">&lt;p&gt;单片微型计算机（Single Chip Microcomputer）简称单片机，是把组成微型计算机的主要功能部件（CPU、RAM、ROM、I/O口、定时/计数器、串行口等）集成在一块芯片中，构成一个完整的微型计算机。&lt;/p&gt;
@@ -427,36 +420,12 @@
     
     
     
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
+    <category term="学习笔记" scheme="https://hugsy.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="EE" scheme="https://hugsy.top/tags/EE/"/>
     
     <category term="MCU" scheme="https://hugsy.top/tags/MCU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深度学习(6)：结构化机器学习项目</title>
-    <link href="https://hugsy.top/2017/11/09/ML/deep_learning_6/"/>
-    <id>https://hugsy.top/2017/11/09/ML/deep_learning_6/</id>
-    <published>2017-11-08T16:00:00.000Z</published>
-    <updated>2022-06-08T14:40:03.305Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;构建好一个机器学习系统并获得一些初步结果时，为得到最令人满意的结果，后续往往还需要进行大量的改进。如前面优化神经网络中所述，改进的方法多种多样，可能是收集更多的数据，或者是进行正则化，或者是采用不同的优化算法。&lt;/p&gt;
-&lt;p&gt;想要找准改进的方向，使一个机器学习系统更快更有效地工作，需要学习一些在构建机器学习系统时常用到的策略。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Note" scheme="https://hugsy.top/categories/Note/"/>
-    
-    
-    <category term="ML" scheme="https://hugsy.top/tags/ML/"/>
-    
-    <category term="Coursera" scheme="https://hugsy.top/tags/Coursera/"/>
-    
-    <category term="Deep Learning" scheme="https://hugsy.top/tags/Deep-Learning/"/>
     
   </entry>
   
